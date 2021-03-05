@@ -4,7 +4,7 @@ return [
 
     'title' => '',
     'title_prefix' => '',
-    'title_postfix' => '',
+    'title_postfix' => ' | PEMEX',
     /* Para colocar el icono habria que habilitar cualquier de las 2 siguientes propiedades y bien guardar nuestro logo en public/favicons/favicon.ico */
     'use_ico_only' => false,/* Solo colocar la etiqueta importante del icono */
     'use_full_favicon' => false,/* Es por si queremos aplicar todas las propiedades asociadas a un icon */
@@ -108,7 +108,7 @@ return [
             'submenu' => [
                 [
                     'text'    => 'Registrar Postulados',
-                    'route'     => 'usuaria.index',
+                    'route'     => 'area-usuaria',
                     'icon' => 'fa fa-user-plus'
                 ],
                 /*   [

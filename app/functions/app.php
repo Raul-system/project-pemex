@@ -1,1 +1,94 @@
 <?php
+
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
+function delete_file($Ruta)
+{
+    if (Storage::disk('local')->exists($Ruta)) {
+        return Storage::delete($Ruta);
+    }
+}
+
+function NameFile($File)
+{
+    return  time() . "_" . rand(50, 1000) . "_" . Str::random(25) . "_" . $File->getClientOriginalName();
+}
+
+function NameDirectory($FileDirectory)
+{
+    return time() . "_" . "FilePemex_" . $FileDirectory . Str::random(23) . rand(100, 9999);
+}
+
+function create_directory($Ruta, $FolderName)
+{
+    return \File::makeDirectory(public_path() . '/' . $Ruta . $FolderName);
+}
+
+
+function saveFile($File, $Ruta)
+{
+    $NameFile = NameFile($File);
+    /* $NameDirectory = NameDirectory($File); */
+    $path = $File->storeAs('public/' . $Ruta, $NameFile);
+    if (Storage::disk('local')->exists('public/' . $Ruta)) {
+        /* echo Storage::makeDirectory('Nuevos_Archivos'); */
+        /* echo \File::makeDirectory(public_path() . '/public/integracion_regional/Nuevo_Archivo12'); */
+        /* echo create_directory('storage' . $Ruta, $NameDirectory); */
+    }
+    return $NameFile;
+}
+
+function download_file($Ruta, $Name)
+{
+    if (Storage::disk('local')->exists($Ruta . $Name)) {
+        return Storage::download($Ruta . $Name);
+    }
+    /* return 'public/' . $departamento  . '/' . $tipo . '/' .  $archivo; */
+}
+
+
+function Observaciones_No_Procedio($request, $departamento)
+{
+
+    /* La variable que formara el mensaje */
+    $observaciones = '';
+
+    /* Voy a validar cada una de las casillas manualmente */
+    if ($departamento == 'Integracion Regional') {
+        ($request->get('atributos_plaza') != null) ? $observaciones .= '* ' . $request->get('atributos_plaza') . ' *' : null;
+        ($request->get('vigencia') != null) ? $observaciones .= '* ' . $request->get('vigencia') . ' *' : null;
+        ($request->get('puesto_siep') != null) ? $observaciones .= '* ' . $request->get('puesto_siep') . ' *' : null;
+
+        if ($request->get('atributos_plaza') == null && $request->get('vigencia') == null && $request->get('puesto_siep') == null) {
+            $observaciones = '- No se registró ningun Motivo -';
+        }
+    }
+    /* if ($departamento == 'Desarrollo_Humano') {
+        ($request->get('') != null) ? $observaciones .= '* ' . $request->get('') . ' *' : null;
+        ($request->get('') != null) ? $observaciones .= '* ' . $request->get('') . ' *' : null;
+        ($request->get('') != null) ? $observaciones .= '* ' . $request->get('') . ' *' : null;
+    } */
+    if ($departamento == 'Desarrollo Humano') {
+        ($request->get('memorandum') != null) ? $observaciones .= '* ' . $request->get('memorandum') . ' *' : null;
+        ($request->get('evaluacion_tecnica') != null) ? $observaciones .= '* ' . $request->get('evaluacion_tecnica') . ' *' : null;
+        ($request->get('ppp') != null) ? $observaciones .= '* ' . $request->get('ppp') . ' *' : null;
+        ($request->get('directorio_talento') != null) ? $observaciones .= '* ' . $request->get('directorio_talento') . ' *' : null;
+        ($request->get('carta_no_inhabilitacion') != null) ? $observaciones .= '* ' . $request->get('carta_no_inhabilitacion') . ' *' : null;
+        ($request->get('validacion_sep') != null) ? $observaciones .= '* ' . $request->get('validacion_sep') . ' *' : null;
+        ($request->get('fp') != null) ? $observaciones .= '* ' . $request->get('fp') . ' *' : null;
+
+        if ($request->get('memorandum') == null && $request->get('evaluacion_tecnica') == null && $request->get('ppp') == null && $request->get('directorio_talento') == null && $request->get('carta_no_inhabilitacion') == null && $request->get('validacion_sep') == null && $request->get('fp') == null) {
+            $observaciones = '- No se registró ningun Motivo -';
+        }
+    }
+    if ($departamento == 'Departamento Personal') {
+        ($request->get('memorandum') != null) ? $observaciones  .= '* ' . $request->get('memorandum') . ' *' : null;
+        ($request->get('dts') != null) ? $observaciones  .= '* ' . $request->get('dts') . ' *' : null;
+        ($request->get('sfp') != null) ? $observaciones  .= '* ' . $request->get('sfp') . ' *' : null;
+        if ($request->get('memorandum') == null && $request->get('dts') == null && $request->get('sfp') == null) {
+            $observaciones = '- No se registró ningun Motivo -';
+        }
+    }
+    return $observaciones;
+}

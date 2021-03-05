@@ -11,14 +11,19 @@ class Usuaria extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+
+    public function home()
     {
         return view('pages.usuaria.usuaria');
     }
 
+    public function index()
+    {
+    }
+
     public function create()
     {
-        //
+        return view('pages.usuaria.usuaria');
     }
 
     public function store(Request $request)

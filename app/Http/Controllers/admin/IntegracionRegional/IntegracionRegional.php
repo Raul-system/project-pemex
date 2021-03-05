@@ -4,80 +4,53 @@ namespace App\Http\Controllers\admin\IntegracionRegional;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\admin\IntegracionRegional\Integracion;
 
 class IntegracionRegional extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        //
+        $this->middleware('auth');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function index()
+    {
+        $integracion = Integracion::where('validacion', 'true')->get();
+        return view('pages.integracion-regional.integracion-regional-index', compact('integracion'));
+    }
+
     public function create()
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $Directorio = NameDirectory('RaulMohenoZavaleta');
+        /* La peticion surge desde la area Usuaria, que envia una serie de datos de POST, para que lo registre directamente en Integracion */
+        if ($request->hasFile('memorandum')) {
+            echo saveFile($request->file('memorandum'), 'integracion_regional/memorandum/' . $Directorio) . "<br>";
+        }
+        if ($request->hasFile('cedula_siep')) {
+            echo saveFile($request->file('cedula_siep'), 'integracion_regional/memorandum/' . $Directorio) . "<br>";
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $userIntegracion = Integracion::findOrFail($id);
+        return view('pages.integracion-regional.integracion-regional-show', compact('userIntegracion'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

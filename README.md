@@ -79,13 +79,11 @@ num_cedula
 cpp
 validacion (boolean)
 memorandum
-cedula_siep
-
+cedula_siep_document
 carta_no_inhabilitacion
 cedula_siep
 validacion_sep
 resultados_ev_tec
-
 documento1
 documento2
 documento3

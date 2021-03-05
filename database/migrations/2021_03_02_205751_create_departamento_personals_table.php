@@ -15,6 +15,25 @@ class CreateDepartamentoPersonalsTable extends Migration
     {
         Schema::create('departamento_personals', function (Blueprint $table) {
             $table->id();
+            $table->string("id_integracion")->nullable();
+            $table->string("ficha")->nullable();
+            $table->string("profesion")->nullable();
+            $table->string("situacion_contractual")->nullable();
+            $table->string("resultados_tecnicos")->nullable();
+            $table->string("nombre")->nullable();
+            $table->string("num_cedula")->nullable();
+            $table->string("cpp")->nullable();
+            $table->string("validacion")->nullable();
+            $table->string("memorandum")->nullable();
+            $table->string("cedula_siep_document")->nullable();
+            $table->string("carta_no_inhabilitacion")->nullable();
+            $table->string("cedula_siep")->nullable();
+            $table->string("validacion_sep")->nullable();
+            $table->string("resultados_ev_tec")->nullable();
+            $table->string("documento1")->nullable();
+            $table->string("documento2")->nullable();
+            $table->string("documento3")->nullable();
+            $table->string("documento4")->nullable();
             $table->timestamps();
         });
     }
