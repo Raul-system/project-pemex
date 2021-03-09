@@ -38,3 +38,11 @@ El reporte de excel ella me dijo que se haga propuesta, que se puede manejar con
 Con lo de las fechas internas puedes manejarlo dentro del departamento o por fuera a como tú gustes, puedes proponer..pero que si lleve la fecha del memorándum en que entró y salió y el conteo de días en que lapso de tiempo se llevaron para enviarlo
 El botón de busqueda está excelente el que usaste, puedes también proponerlo si ponerlo en cada departamento o a fuera.
 Te enviaré fotos de las hojas impresas donde ella me explico solo nomás para que te des una idea de la estructura del cuestionario
+
+
+
+
+BUSCADOR:
+
+El departamento de integración solo por plaza
+El departamento de desarrollo humano por ficha y nombre

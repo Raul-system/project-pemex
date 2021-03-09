@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\admin\IntegracionRegional;
+namespace App\Http\Controllers\admin\DesarrolloHumano;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\IntegracionRegional\Integracion;
+use App\Models\admin\DesarrolloHumano\DesarrolloHumano;
 
-class IntegracionRegional extends Controller
+class desarrolloHumanoController extends Controller
 {
     public $path_files_adicionales;
     public $path_memorandum;
@@ -21,37 +22,47 @@ class IntegracionRegional extends Controller
 
     public function index()
     {
-        $integracion = Integracion::where('validacion', 'false')->paginate(15);
-        return view('pages.integracion-regional.integracion-regional-index', compact('integracion'));
+        $desarrolloHumano = DesarrolloHumano::where('validacion', 'false')->paginate(15);
+        return view('pages.desarrollo-humano.desarrollo-humano-index', compact('desarrolloHumano'));
     }
 
     public function create()
     {
         //
     }
+
     public function store(Request $request)
     {
-        $request->validate([
-            "memorandum" => 'required',
-            "cedula_siep" => 'required',
-        ]);
-
-        /* La peticion surge desde la area Usuaria, que envia una serie de datos de POST, para que lo registre directamente en Integracion */
-        $Directorio = NameDirectory('RaulMohenoZavaleta');
+        /* $request->validate([
+            "posicion" => 'required',
+            "subdireccion" => 'required',
+            "grupo" => 'required',
+            "motivo_vacante" => 'required',
+            "vigencia" => 'required',
+            "plaza" => 'required',
+            "gerencia" => 'required',
+            "validacion" => 'required',
+        ]); */
+        $Directorio = NameDirectory('desarrolloHumano');
         if ($request->hasFile('memorandum')) {
-            $this->path_memorandum =  saveFile($request->file('memorandum'), 'integracion_regional/' . $Directorio);
+            $this->path_memorandum =  saveFile($request->file('memorandum'), 'desarrollo_humano/' . $Directorio);
         }
         if ($request->hasFile('cedula_siep')) {
-            $this->path_cedula_siep =  saveFile($request->file('cedula_siep'), 'integracion_regional/' . $Directorio);
+            $this->path_cedula_siep =  saveFile($request->file('cedula_siep'), 'desarrollo_humano/' . $Directorio);
         }
         if ($request->hasFile('files_especials')) {
-            $this->path_files_adicionales = saveFile($request->file('files_especials'), 'integracion_regional/' . $Directorio . "/documentos_adicionales", true);
+            $this->path_files_adicionales = saveFile($request->file('files_especials'), 'desarrollo_humano/' . $Directorio . "/documentos_adicionales", true);
         }
-
-        /* Registrar en la base de datos */
-
-        Integracion::create([
-            'validacion' => 'false',
+        DesarrolloHumano::create([
+            "id_integracion" => $request->get('id_validacion_procedimiento'),
+            "posicion" => $request->get('posicion'),
+            "subdireccion" => $request->get('subdireccion'),
+            "grupo" => $request->get('grupo'),
+            "motivo_vacante" => $request->get('motivo_vacante'),
+            "vigencia" => $request->get('vigencia'),
+            "plaza" => $request->get('plaza'),
+            "gerencia" => $request->get('gerencia'),
+            "validacion" => 'false',
             'memorandum' => $this->path_memorandum,
             'cedula_siep' => $this->path_cedula_siep,
             'documento_adicional_1' => isset($this->path_files_adicionales[0]) ? $this->path_files_adicionales[0] : null,
@@ -62,16 +73,13 @@ class IntegracionRegional extends Controller
             'documento_adicional_6' => isset($this->path_files_adicionales[5]) ? $this->path_files_adicionales[5] : null,
             'documento_adicional_7' => isset($this->path_files_adicionales[6]) ? $this->path_files_adicionales[6] : null,
         ]);
-
-        /* Redireccionar a la Misma area Usuaria con un mensaje que valido con session('status') */
-        return redirect()->route('area-usuaria')->with('status', 'Usuario registrado Correctamente!');
+        return redirect()->route('integracion-regional.index')->with('status', 'Usuario registrado Correctamente!');
     }
 
     public function show($id)
     {
-        /* $userIntegracion = Integracion::where('validacion', 'false')->get(); */
-        $archivos_adicionales = Integracion::select('documento_adicional_1', 'documento_adicional_2', 'documento_adicional_3', 'documento_adicional_4', 'documento_adicional_5', 'documento_adicional_6', 'documento_adicional_7')->where('id', $id)->get();
-        $userIntegracion = Integracion::findOrFail($id);
+        $archivos_adicionales = DesarrolloHumano::select('documento_adicional_1', 'documento_adicional_2', 'documento_adicional_3', 'documento_adicional_4', 'documento_adicional_5', 'documento_adicional_6', 'documento_adicional_7')->where('id', $id)->get();
+        $userDesarrolloHumano = DesarrolloHumano::findOrFail($id);
         $controls =  array(
             [
                 'Name' => 'atributos_plaza',
@@ -89,10 +97,10 @@ class IntegracionRegional extends Controller
                 'Razon' => 'No cumple con el puesto SIEP'
             ],
         );
-        if ($userIntegracion->validacion == 'true') {
+        if ($userDesarrolloHumano->validacion == 'true') {
             return abort(404);
-        } else if ($userIntegracion->validacion == 'false') {
-            return view('pages.integracion-regional.integracion-regional-show', compact('userIntegracion', 'archivos_adicionales', 'controls'));
+        } else if ($userDesarrolloHumano->validacion == 'false') {
+            return view('pages.desarrollo-humano.desarrollo-humano-show', compact('userDesarrolloHumano', 'archivos_adicionales', 'controls'));
         }
     }
 

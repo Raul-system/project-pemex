@@ -4,8 +4,9 @@ namespace App\Http\Controllers\admin\DepartamentoPersonal;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\admin\DepartamentoPersonal\DepartamentoPersonal;
 
-class DepartamentoPersonal extends Controller
+class departamentoPersonalController extends Controller
 {
     public function __construct()
     {

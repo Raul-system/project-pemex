@@ -11,15 +11,15 @@ class Integracion extends Model
     protected $table = 'integracions';
     protected $fillable = [
         "id",
-        "posicion",
-        "subdireccion",
-        "rupo",
-        "motivo_vacante",
-        "vigencia",
-        "plaza",
-        "gerencia",
         "validacion",
         "memorandum",
         "cedula_siep",
+        "documento_adicional_1",
+        "documento_adicional_2",
+        "documento_adicional_3",
+        "documento_adicional_4",
+        "documento_adicional_5",
+        "documento_adicional_6",
+        "documento_adicional_7",
     ];
 }

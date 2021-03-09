@@ -23,8 +23,15 @@ class CreateIntegracionsTable extends Migration
             $table->string("plaza")->nullable();
             $table->string("gerencia")->nullable(); */
             $table->string("validacion")->default('false');
-            $table->string("memorandum")->nullable();
-            $table->string("cedula_siep")->nullable();
+            $table->longText("memorandum")->nullable();
+            $table->longText("cedula_siep")->nullable();
+            $table->longText('documento_adicional_1')->nullable();
+            $table->longText('documento_adicional_2')->nullable();
+            $table->longText('documento_adicional_3')->nullable();
+            $table->longText('documento_adicional_4')->nullable();
+            $table->longText('documento_adicional_5')->nullable();
+            $table->longText('documento_adicional_6')->nullable();
+            $table->longText('documento_adicional_7')->nullable();
             $table->timestamps();
         });
     }

@@ -7,7 +7,13 @@
 @stop
 
 @section('content')
-    
+    <section class="container">
+        @if (session('status'))
+            <div class="alert alert-success text-center font-weight-bold" style="font-size: 22px;">
+                {{ session('status') }}
+            </div>
+        @endif
+    </section>
     <section class="container-fluid bg-light py-5">
         <section class="row">
             <div class="col-4 border border-white bg-dark d-flex justify-content-center align-items-center">
@@ -17,15 +23,18 @@
                 <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Proceso de Documentacion</span></div>
             </div>
         </section>
-        <section class="row">
-            @foreach ($integracion as $item)
-                <div class="col-4">
+        @foreach ($integracion as $item)
+        <section class="row py-3">
+                <div class="col-4 text-center font-weight-bold" style="font-size: 21px;">
                     {{ $item->id }}
                 </div>
                    <div class="col-8">
-                    <a href="{{ route('integracion-regional.show', $item->id) }}" class="btn btn-success btn-block" title="Consultar Documentos e Informacion">Validarcion...</a>
+                    <a href="{{ route('integracion-regional.show', $item->id) }}" class="btn btn-success btn-block" title="Consultar Documentos e Informacion">Validacion...</a>
                 </div>
+            </section>
             @endforeach
+        <section class="container d-flex justify-content-center">
+            {{ $integracion->links('vendor.pagination.default') }}
         </section>
     </section>
 
