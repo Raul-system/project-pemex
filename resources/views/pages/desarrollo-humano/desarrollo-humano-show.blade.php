@@ -1,87 +1,31 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Validacion')
 
 @section('content_header')
-    <h1>Validacion</h1>
+    <h1>Departamento de Desarrollo Humano</h1>
 @stop
 
 @section('content')
-    <section class="container" title="Descarga de Documentos">
-            <div class="card">
-              <div class="card-header bg-light text-center text-muted">
-                    Descargar Archivos
-              </div>
-              <div class="card-body">
-                <p class="card-text text-center h3 font-weight-bold">Bandeja de Entrada</p>
-                <button class="btn btn-primary d-block mx-auto" type="button" data-toggle="collapse" data-target="#SectiondownloadFiles" aria-expanded="true" aria-controls="SectiondownloadFiles">
-                    <i class="fa fa-angle-double-down" style="font-size: 25px;" aria-hidden="true"></i>
-                </button>
-              </div>
-              {{-- -------------------------------------------------- --}}
-
-<section class="container collapse" id="SectiondownloadFiles">
-    <div class="accordion" id="downloadFiles">
-      <div class="card">
-        <div class="card-header" id="headingOne">
-          <h2 class="mb-0">
-            <button class="btn btn-link btn-block text-center font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Memorandum
-            </button>
-          </h2>
-        </div>
-    
-        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#downloadFiles">
-          <div class="card-body">
-           <a href="{{ route('download',['id' =>$userDesarrolloHumano->id , 'departamento' => 'desarrollo_humano', 'file' => 'memorandum'] ) }}" class="btn btn-success btn-block">Descargar Memorandum</a>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header" id="headingTwo">
-          <h2 class="mb-0">
-            <button class="btn btn-link btn-block text-center font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Cédula SIEP
-            </button>
-          </h2>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#downloadFiles">
-          <div class="card-body">
-            <a href="{{ route('download',['id' =>$userDesarrolloHumano->id , 'departamento' => 'desarrollo_humano', 'file' => 'cedula_siep'] ) }}" class="btn btn-success btn-block">Descargar Cedula</a>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header" id="headingThree">
-          <h2 class="mb-0">
-            <button class="btn btn-link btn-block text-center font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Archivos Adicionales
-            </button>
-          </h2>
-        </div>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#downloadFiles">
-          <div class="card-body">
-            {{-- @if (is_null($archivos_adicionales))
-                
-            @endif --}}
-            @foreach (json_decode($archivos_adicionales[0]) as $key => $item)
+  
+<x-bandeja-entrada-documentos :diff-fecha="$userDesarrolloHumano->created_at->diffForHumans()" data-parent-component="downloadFiles">
+      <x-item-card-document parent-component="downloadFiles" name-collapse="section_memorandum_download" card-header="headerMemorandum" documento="Memorandum"{{-- departamento="Area Usuaria" --}}>
+        <a href="{{ route('download',['id' =>$userDesarrolloHumano->id , 'departamento' => 'desarrollo_humano', 'file' => 'memorandum'] ) }}" class="btn btn-success btn-block">Descargar Memorandum</a>
+      </x-item-card-document>
+      {{-- ------- --}}
+      <x-item-card-document parent-component="downloadFiles" name-collapse="section_cedulasiep_download" card-header="headerCedula" documento="Cedula SIEP"{{-- departamento="Area Usuaria" --}}>
+        <a href="{{ route('download',['id' =>$userDesarrolloHumano->id , 'departamento' => 'desarrollo_humano', 'file' => 'cedula_siep'] ) }}" class="btn btn-success btn-block">Descargar Cedula SIEP</a>
+      </x-item-card-document>
+      {{-- -------- --}} 
+      <x-item-card-document parent-component="downloadFiles" name-collapse="section_files_adicionales" card-header="headerFilesAdicionales" documento="Archivos Adicionales">
+         @foreach (json_decode($archivos_adicionales[0]) as $key => $item)
                     @if ($item)
                        <a href="{{ route('download',['id' =>$userDesarrolloHumano->id , 'departamento' => 'desarrollo_humano', 'file' => $key]) }}" class="btn btn-success py-2 my-3 btn-block">Descargar Archivo Adicional "{{ $key }}"</a> 
                     @endif
             @endforeach
-            {{-- {{$archivos_adicionales[0]}} --}}
-          </div>
-        </div>
-      </div>
-    </div>
-</section>
+      </x-item-card-document>
 
-              {{-- -------------------------------------------------- --}}
-              <div class="card-footer text-muted text-center">
-                {{ $userDesarrolloHumano->created_at->diffForHumans() }}
-              </div>
-            </div>
-    </section>
+</x-bandeja-entrada-documentos>
 {{-- Para completar la Validacion --}}
 
 
@@ -114,53 +58,53 @@
             <section class="col-12" title="Procedimiento">
                 <p class="text-center font-weight-bold h2 my-2 bg-success">Procedimiento</p>
                 <div class="form-group">
-                  <label for="campo_posicion">Posicion: </label>
-                  <input type="text" class="form-control" id="campo_posicion" name="posicion" placeholder="Posicion ... " value="{{ old('posicion') }}">
-                  {!!  $errors->first('posicion' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                  <label for="campo_ficha">Ficha: </label>
+                  <input type="text" class="form-control" id="campo_ficha" name="ficha" placeholder="Ficha ... " value="{{ old('ficha') }}">
+                  {!!  $errors->first('ficha' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                 </div>
                 <div class="form-group">
-                  <label for="campo_subdireccion">Subdireccion: </label>
-                  <input type="text" class="form-control" id="campo_subdireccion" name="subdireccion" placeholder="Subdireccion ..." value="{{ old('subdireccion') }}">
-                  {!!  $errors->first('subdireccion' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                  <label for="campo_profesion">Profesión: </label>
+                  <input type="text" class="form-control" id="campo_profesion" name="profesion" placeholder="Profesion ..." value="{{ old('profesion') }}">
+                  {!!  $errors->first('profesion' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                 </div>
                 <div class="form-group">
-                  <label for="campo_grupo">Grupo: </label>
-                  <input type="text" class="form-control" id="campo_grupo" name="grupo" placeholder="Grupo ..." value="{{ old('grupo') }}">
-                  {!!  $errors->first('grupo' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                  <label for="campo_sit_contractual">Sit. Contractual: </label>
+                  <input type="text" class="form-control" id="campo_sit_contractual" name="situacion_contractual" placeholder="Situacion Contractual ..." value="{{ old('situacion_contractual') }}">
+                  {!!  $errors->first('situacion_contractual' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                 </div>
                 
                 {{-- ---------------------- --}}
                         <div class="form-group">
-                              <label for="campo_motivo_vacante">Motivo de la Vacante: </label>
-                              <input type="text" class="form-control" id="campo_motivo_vacante" name="motivo_vacante" placeholder="Moivo de Vacante ..." value="{{ old('motivo_vacante') }}">
-                              {!!  $errors->first('motivo_vacante' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                              <label for="campo_resultados_tecnicos">Resultados Técnicos: </label>
+                              <input type="text" class="form-control" id="campo_resultados_tecnicos" name="resultados_tecnicos" placeholder="Resultados Técnicos ..." value="{{ old('resultados_tecnicos') }}">
+                              {!!  $errors->first('resultados_tecnicos' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                         </div>
                         <div class="form-group">
-                              <label for="campo_vigencia">Vigencia: </label>
-                              <input type="text" class="form-control" id="campo_vigencia" name="vigencia" placeholder="Vigencia ..." value="{{ old('vigencia') }}">
-                              {!!  $errors->first('vigencia' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                              <label for="campo_nombre">Nombre: </label>
+                              <input type="text" class="form-control" id="campo_nombre" name="nombre" placeholder="Nombre ..." value="{{ old('nombre') }}">
+                              {!!  $errors->first('nombre' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                         </div>
                         <div class="form-group">
-                            <label for="campo_plaza">Plaza: </label>
-                            <input type="text" class="form-control" id="campo_plaza" name="plaza" placeholder="plaza ..." value="{{ old('plaza') }}">
-                            {!!  $errors->first('plaza' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                            <label for="campo_numero_cedula">No. De cédula: </label>
+                            <input type="text" class="form-control" id="campo_numero_cedula" name="num_cedula" placeholder="No. De cédula ..." value="{{ old('num_cedula') }}">
+                            {!!  $errors->first('num_cedula' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                         </div>
                         <div class="form-group">
-                            <label for="campo_gerencia">Gerencia: </label>
-                            <input type="text" class="form-control" id="campo_gerencia" name="gerencia" placeholder="gerencia ..." value="{{ old('gerencia') }}">
-                            {!!  $errors->first('gerencia' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                            <label for="campo_cpp">CPP: </label>
+                            <input type="text" class="form-control" id="campo_cpp" name="cpp" placeholder="CPP ..." value="{{ old('cpp') }}">
+                            {!!  $errors->first('cpp' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                         </div>
                         
             </section>
           {{-- ----------------------- --}}
             <section class="col-12" title="Subida de Archivos">
-                    <p class="font-weight-bold h2 text-center mt-4 mb-2">Subir Documentos del Candidato</p>
+                    <p class="font-weight-bold h2 text-center mt-4 mb-2">Subir Documentos del Cobertura</p>
                         <div class="row">
                             <div class="col-6">
                                 <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="memorandum_file" name="memorandum" lang="es" accept=".pdf" value="{{ old('memorandum') }}">
-                                  <label class="custom-file-label" for="memorandum_file">Memorandum Firmado</label>
-                                  {!!  $errors->first('memorandum' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                                  <input type="file" class="custom-file-input" id="carta_no_inhabilitacion" name="carta_no_inhabilitacion" lang="es" accept=".pdf" value="{{ old('carta_no_inhabilitacion') }}">
+                                  <label class="custom-file-label" for="carta_no_inhabilitacion">Carta de no inhabilitación</label>
+                                  {!!  $errors->first('carta_no_inhabilitacion' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                                 </div>
                             </div>
                             <div class="col-6">
@@ -171,12 +115,31 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="container my-2">
-                            <div class="row p-4">
+                        <section class="container my-2">
+                            <article class="row">
+                                <div class="col-6">
+                                  <div class="custom-file">
+                                    {!!  $errors->first('validacion_siep' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                                      <input type="file" class="custom-file-input" id="validacion_siep_file" name="validacion_siep" lang="es" accept=".pdf" multiple>
+                                      <label class="custom-file-label" for="validacion_siep_file">Validacion SIEP</label>
+                                  </div>
+                                </div>
+                                <div class="col-6 custom-file">
+                                  <div class="custom-file">
+                                    {!!  $errors->first('resultados_ev_tec' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                                      <input type="file" class="custom-file-input" id="resultados_tec" name="resultados_ev_tec" lang="es" accept=".pdf" multiple>
+                                      <label class="custom-file-label" for="resultados_tec">Resultados ev. Tec.</label>
+                                  </div>
+                                </div>
+                            </article>
+                        </section>
+                         <div class="container mt-5">
+                           <p class="text-center font-weight-bold">Cláusula 3</p>
+                            <div class="row px-2">
                                 <div class="col-12 custom-file">
                                   {!!  $errors->first('files_especials' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                                     <input type="file" class="custom-file-input" id="files_especiales" name="files_especials[]" lang="es" accept=".pdf" multiple>
-                                    <label class="custom-file-label" for="files_especiales">Subir Archivos Adicionales Especiales</label>
+                                    <label class="custom-file-label" for="files_especiales">Subir Archivos de Clausula 3</label>
                                 </div>
                             </div>
                         </div>

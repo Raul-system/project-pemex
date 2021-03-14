@@ -27,6 +27,12 @@ class downloadPDF extends Controller
         if ($departamento == 'integracion_regional') {
             $this->resultados = Integracion::findOrFail($id);
         }
+        if ($departamento == 'desarrollo_humano') {
+            $this->resultados = DesarrolloHumano::findOrFail($id);
+        }
+        if ($departamento == 'departamento_personal') {
+            $this->resultados = DepartamentoPersonal::findOrFail($id);
+        }
         return DownloadFiles($this->resultados->$file);
     }
 }

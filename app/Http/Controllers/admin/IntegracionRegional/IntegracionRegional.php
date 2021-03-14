@@ -33,7 +33,7 @@ class IntegracionRegional extends Controller
     {
         $request->validate([
             "memorandum" => 'required',
-            "cedula_siep" => 'required',
+            /* "cedula_siep" => 'required', */
         ]);
 
         /* La peticion surge desde la area Usuaria, que envia una serie de datos de POST, para que lo registre directamente en Integracion */
@@ -41,9 +41,9 @@ class IntegracionRegional extends Controller
         if ($request->hasFile('memorandum')) {
             $this->path_memorandum =  saveFile($request->file('memorandum'), 'integracion_regional/' . $Directorio);
         }
-        if ($request->hasFile('cedula_siep')) {
+        /*  if ($request->hasFile('cedula_siep')) {
             $this->path_cedula_siep =  saveFile($request->file('cedula_siep'), 'integracion_regional/' . $Directorio);
-        }
+        } */
         if ($request->hasFile('files_especials')) {
             $this->path_files_adicionales = saveFile($request->file('files_especials'), 'integracion_regional/' . $Directorio . "/documentos_adicionales", true);
         }
@@ -53,7 +53,7 @@ class IntegracionRegional extends Controller
         Integracion::create([
             'validacion' => 'false',
             'memorandum' => $this->path_memorandum,
-            'cedula_siep' => $this->path_cedula_siep,
+            /* 'cedula_siep' => $this->path_cedula_siep, */
             'documento_adicional_1' => isset($this->path_files_adicionales[0]) ? $this->path_files_adicionales[0] : null,
             'documento_adicional_2' => isset($this->path_files_adicionales[1]) ? $this->path_files_adicionales[1] : null,
             'documento_adicional_3' => isset($this->path_files_adicionales[2]) ? $this->path_files_adicionales[2] : null,

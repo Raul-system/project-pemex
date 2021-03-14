@@ -12,12 +12,12 @@ function delete_file($Ruta)
 
 function NameFile($File)
 {
-    return  time() . "_" . rand(50, 1000) . "_" . Str::random(25) . "_" . $File->getClientOriginalName();
+    return  time() . "_" . rand(50, 1000) . "_" . Str::random(15) . "_" . $File->getClientOriginalName();
 }
 
 function NameDirectory($FileDirectory)
 {
-    return time() . "_" . "FilePemex_" . $FileDirectory . Str::random(23) . rand(100, 9999);
+    return time() . "_" . "FilePemex_" . $FileDirectory . Str::random(10) . rand(100, 1000);
 }
 
 function DownloadFiles($RouteFile)

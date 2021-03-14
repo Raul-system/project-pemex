@@ -24,7 +24,6 @@ class CreateIntegracionsTable extends Migration
             $table->string("gerencia")->nullable(); */
             $table->string("validacion")->default('false');
             $table->longText("memorandum")->nullable();
-            $table->longText("cedula_siep")->nullable();
             $table->longText('documento_adicional_1')->nullable();
             $table->longText('documento_adicional_2')->nullable();
             $table->longText('documento_adicional_3')->nullable();

@@ -7,82 +7,21 @@
 @stop
 
 @section('content')
-    <section class="container" title="Descarga de Documentos">
-            <div class="card">
-              <div class="card-header bg-light text-center text-muted">
-                    Descargar Archivos
-              </div>
-              <div class="card-body">
-                <p class="card-text text-center h3 font-weight-bold">Bandeja de Entrada</p>
-                <button class="btn btn-primary d-block mx-auto" type="button" data-toggle="collapse" data-target="#SectiondownloadFiles" aria-expanded="true" aria-controls="SectiondownloadFiles">
-                    <i class="fa fa-angle-double-down" style="font-size: 25px;" aria-hidden="true"></i>
-                </button>
-              </div>
-              {{-- -------------------------------------------------- --}}
 
-<section class="container collapse" id="SectiondownloadFiles">
-    <div class="accordion" id="downloadFiles">
-      <div class="card">
-        <div class="card-header" id="headingOne">
-          <h2 class="mb-0">
-            <button class="btn btn-link btn-block text-center font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Memorandum
-            </button>
-          </h2>
-        </div>
-    
-        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#downloadFiles">
-          <div class="card-body">
-           <a href="{{ route('download',['id' =>$userIntegracion->id , 'departamento' => 'integracion_regional', 'file' => 'memorandum'] ) }}" class="btn btn-success btn-block">Descargar Memorandum</a>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header" id="headingTwo">
-          <h2 class="mb-0">
-            <button class="btn btn-link btn-block text-center font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Cédula SIEP
-            </button>
-          </h2>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#downloadFiles">
-          <div class="card-body">
-            <a href="{{ route('download',['id' =>$userIntegracion->id , 'departamento' => 'integracion_regional', 'file' => 'cedula_siep'] ) }}" class="btn btn-success btn-block">Descargar Cedula</a>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header" id="headingThree">
-          <h2 class="mb-0">
-            <button class="btn btn-link btn-block text-center font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Archivos Adicionales
-            </button>
-          </h2>
-        </div>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#downloadFiles">
-          <div class="card-body">
-            {{-- @if (is_null($archivos_adicionales))
-                
-            @endif --}}
-            @foreach (json_decode($archivos_adicionales[0]) as $key => $item)
+<x-bandeja-entrada-documentos :diff-fecha="$userIntegracion->created_at->diffForHumans()" data-parent-component="downloadFiles">
+      <x-item-card-document parent-component="downloadFiles" name-collapse="section_memorandum_download" card-header="headerMemorandum" documento="Memorandum"{{-- departamento="Area Usuaria" --}}>
+        <a href="{{ route('download',['id' =>$userIntegracion->id , 'departamento' => 'integracion_regional', 'file' => 'memorandum'] ) }}" class="btn btn-success btn-block">Descargar Memorandum</a>
+      </x-item-card-document>
+
+       <x-item-card-document parent-component="downloadFiles" name-collapse="section_files_adicionales" card-header="headerFilesAdicionales" documento="Archivos Adicionales">
+         @foreach (json_decode($archivos_adicionales[0]) as $key => $item)
                     @if ($item)
                        <a href="{{ route('download',['id' =>$userIntegracion->id , 'departamento' => 'integracion_regional', 'file' => $key]) }}" class="btn btn-success py-2 my-3 btn-block">Descargar Archivo Adicional "{{ $key }}"</a> 
                     @endif
             @endforeach
-            {{-- {{$archivos_adicionales[0]}} --}}
-          </div>
-        </div>
-      </div>
-    </div>
-</section>
+      </x-item-card-document>
 
-              {{-- -------------------------------------------------- --}}
-              <div class="card-footer text-muted text-center">
-                {{ $userIntegracion->created_at->diffForHumans() }}
-              </div>
-            </div>
-    </section>
-{{-- Para completar la Validacion --}}
+</x-bandeja-entrada-documentos>
 
 
 <section class="container my-4" title="Formulario de Registro y Validacion">
@@ -154,7 +93,7 @@
             </section>
           {{-- ----------------------- --}}
             <section class="col-12" title="Subida de Archivos">
-                    <p class="font-weight-bold h2 text-center mt-4 mb-2">Subir Documentos del Candidato</p>
+                    <p class="font-weight-bold h2 text-center mt-4 mb-2">Subir Documentos de Cobertura</p>
                         <div class="row">
                             <div class="col-6">
                                 <div class="custom-file">
