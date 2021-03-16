@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin\DepartamentoPersonal;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\admin\DesarrolloHumano\DesarrolloHumano;
 use App\Models\admin\DepartamentoPersonal\DepartamentoPersonal;
 
 class departamentoPersonalController extends Controller
@@ -47,7 +48,7 @@ class departamentoPersonalController extends Controller
         }
         /* Clausula 3 */
         if ($request->hasFile('files_especials')) {
-            $this->resultados_ev_tec = saveFile($request->file('files_especials'), 'desarrollo_humano/' . $Directorio . "/documentos_adicionales", true);
+            $this->resultados_ev_tec = saveFile($request->file('files_especials'), 'departamento_personal/' . $Directorio . "/documentos_adicionales", true);
         }
         DepartamentoPersonal::create([
             "id_integracion" => $request->get('id_validacion_procedimiento'),
@@ -59,6 +60,7 @@ class departamentoPersonalController extends Controller
             "num_cedula" => $request->get('num_cedula'),
             "cpp" => $request->get('cpp'),
             "validacion" => 'false',
+            "name_directory" => 'public/departamento_personal/' . $Directorio,
             "carta_no_inhabilitacion" => $this->carta_no_inhabilitacion,
             "cedula_siep" => $this->path_cedula_siep,
             "validacion_siep" => $this->validacion_siep,
@@ -68,6 +70,9 @@ class departamentoPersonalController extends Controller
             "documento3" => isset($this->path_files_adicionales[2]) ? $this->path_files_adicionales[2] : null,
             "documento4" => isset($this->path_files_adicionales[3]) ? $this->path_files_adicionales[3] : null,
         ]);
+        $update_validation_to_true = DesarrolloHumano::findOrFail($request->get('id_validacion_procedimiento'));
+        $update_validation_to_true->validacion = 'true';
+        $update_validation_to_true->save();
         return redirect()->route('desarrollo-humano.index')->with('status', 'Usuario registrado Correctamente!');
     }
 

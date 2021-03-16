@@ -51,7 +51,7 @@ class desarrolloHumanoController extends Controller
             $this->path_cedula_siep =  saveFile($request->file('cedula_siep'), 'desarrollo_humano/' . $Directorio);
         }
         if ($request->hasFile('files_especials')) {
-            $this->path_files_adicionales = saveFile($request->file('files_especials'), 'desarrollo_humano/' . $Directorio . "/documentos_adicionales", true);
+            $this->path_files_adicionales = saveFile($request->file('files_especials'), 'desarrollo_humano/' . $Directorio . "/clausula3", true);
         }
         DesarrolloHumano::create([
             "id_integracion" => $request->get('id_validacion_procedimiento'),
@@ -63,6 +63,7 @@ class desarrolloHumanoController extends Controller
             "plaza" => $request->get('plaza'),
             "gerencia" => $request->get('gerencia'),
             "validacion" => 'false',
+            "name_directory" => 'public/desarrollo_humano/' . $Directorio,
             'memorandum' => $this->path_memorandum,
             'cedula_siep' => $this->path_cedula_siep,
             'documento_adicional_1' => isset($this->path_files_adicionales[0]) ? $this->path_files_adicionales[0] : null,
@@ -73,6 +74,10 @@ class desarrolloHumanoController extends Controller
             'documento_adicional_6' => isset($this->path_files_adicionales[5]) ? $this->path_files_adicionales[5] : null,
             'documento_adicional_7' => isset($this->path_files_adicionales[6]) ? $this->path_files_adicionales[6] : null,
         ]);
+        $update_validation_to_true = Integracion::findOrFail($request->get('id_validacion_procedimiento'));
+        $update_validation_to_true->validacion = 'true';
+        $update_validation_to_true->save();
+
         return redirect()->route('integracion-regional.index')->with('status', 'Usuario registrado Correctamente!');
     }
 
@@ -82,19 +87,39 @@ class desarrolloHumanoController extends Controller
         $userDesarrolloHumano = DesarrolloHumano::findOrFail($id);
         $controls =  array(
             [
-                'Name' => 'atributos_plaza',
-                'Texto' => 'Atributos de Plaza',
-                'Razon' => 'Sin atributos de plaza'
+                'Name' => 'memorandum',
+                'Texto' => 'Memorandum',
+                'Razon' => 'No cumple con el Memorandum'
             ],
             [
-                'Name' => 'vigencia',
-                'Texto' => 'Vigencia',
-                'Razon' => 'Ya no se encuentra vigente'
+                'Name' => 'evaluacion_tecnica',
+                'Texto' => 'Evaluacion Técnica',
+                'Razon' => 'No cumple con la Evaluacion Tecnica'
             ],
             [
-                'Name' => 'puesto_siep',
-                'Texto' => 'Puesto SIEP',
-                'Razon' => 'No cumple con el puesto SIEP'
+                'Name' => 'directorio_talento',
+                'Texto' => 'Directorio Talento',
+                'Razon' => 'Sin del Directorio Talento'
+            ],
+            [
+                'Name' => 'pp',
+                'Texto' => 'PPP',
+                'Razon' => 'Sin PPP'
+            ],
+            [
+                'Name' => 'carta_no_inhabilitacion',
+                'Texto' => 'Cata de No Inhabilitación',
+                'Razon' => 'Sin carta de No Inhabilitacion'
+            ],
+            [
+                'Name' => 'validacion_sep',
+                'Texto' => 'Validacion SIEP',
+                'Razon' => 'Sin Validacion SIEP'
+            ],
+            [
+                'Name' => 'fp',
+                'Texto' => 'FP',
+                'Razon' => 'Sin FP'
             ],
         );
         if ($userDesarrolloHumano->validacion == 'true') {

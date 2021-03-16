@@ -20,6 +20,7 @@ class DesarrolloHumano extends Model
         "plaza",
         "gerencia",
         "validacion",
+        "name_directory",
         "memorandum",
         "cedula_siep",
         "documento_adicional_1",

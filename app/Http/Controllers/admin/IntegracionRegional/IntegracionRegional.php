@@ -31,10 +31,6 @@ class IntegracionRegional extends Controller
     }
     public function store(Request $request)
     {
-        $request->validate([
-            "memorandum" => 'required',
-            /* "cedula_siep" => 'required', */
-        ]);
 
         /* La peticion surge desde la area Usuaria, que envia una serie de datos de POST, para que lo registre directamente en Integracion */
         $Directorio = NameDirectory('RaulMohenoZavaleta');
@@ -52,6 +48,7 @@ class IntegracionRegional extends Controller
 
         Integracion::create([
             'validacion' => 'false',
+            "name_directory" => 'public/integracion_regional/' . $Directorio,
             'memorandum' => $this->path_memorandum,
             /* 'cedula_siep' => $this->path_cedula_siep, */
             'documento_adicional_1' => isset($this->path_files_adicionales[0]) ? $this->path_files_adicionales[0] : null,
@@ -62,6 +59,7 @@ class IntegracionRegional extends Controller
             'documento_adicional_6' => isset($this->path_files_adicionales[5]) ? $this->path_files_adicionales[5] : null,
             'documento_adicional_7' => isset($this->path_files_adicionales[6]) ? $this->path_files_adicionales[6] : null,
         ]);
+
 
         /* Redireccionar a la Misma area Usuaria con un mensaje que valido con session('status') */
         return redirect()->route('area-usuaria')->with('status', 'Usuario registrado Correctamente!');

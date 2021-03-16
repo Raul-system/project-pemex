@@ -15,11 +15,11 @@ Me menciona la licenciada que debo ir en estos días a la empresa de nuevo porqu
 
 El area de desarrollo humano al momento que los documentos (memorándum y cédula SIEP) ingresen a este departamento de igual manera se debe capturar los siguientes campos:
 Ficha
-Profesión (manual)
-Sit. Cont (combo)
-Resultados técnicos (manual)
+Profesion (manual)
+Situacion_Contractual (combo)
+Resultados_tecnicos (manual)
 Nombre
-No. De cédula (manual)
+Num_Cedula (manual)
 Cpp
 
 

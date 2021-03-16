@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Area Usuaria')
 
 @section('content_header')
     <h1 class="text-center font-weight-bold h1">Subir Documentos</h1>
@@ -35,6 +35,7 @@
                 </div> --}}
             </div>
             <div class="container-fluid my-2">
+                <p class="text-center font-weight-bold my-2"><i class="fa fa-exclamation-triangle mx-1" aria-hidden="true"></i>Favor de Solo subir 7 archivos como máximo</p>
                 <div class="row py-3 px-2">
                     <div class="col-12 custom-file">
                         <input type="file" class="custom-file-input" id="files_especiales" name="files_especials[]" lang="es" accept=".pdf" multiple>

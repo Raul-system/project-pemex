@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Departamento Personal')
+@section('title', 'Contratados')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Lista de los Contratados</h1>
 @stop
 
 @section('content')
@@ -24,46 +24,45 @@
             </div>
         </section>
         @endif
-        @if (session('errorFile'))
-             <section class="container">
-            <div class="alert alert-danger text-center font-weight-bold" style="font-size: 22px;">
-                {{ session('errorFile') }}
-            </div>
-        </section>
-        @endif
     <section class="container-fluid bg-light py-5">
        <section class="row">
             <div class="col-1 border border-white bg-dark d-flex justify-content-center align-items-center">
                 <span class="font-weight-bold text-white">ID</span>
             </div>
-            <div class="col-4 border border-white bg-dark">
-                <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Ficha</span></div>
-            </div>
-            <div class="col-4 border border-white bg-dark">
-                <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Nombre</span></div>
+            <div class="col-3 border border-white bg-dark">
+                <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Plaza</span></div>
             </div>
             <div class="col-3 border border-white bg-dark">
+                <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Ficha</span></div>
+            </div>
+            <div class="col-3 border border-white bg-dark">
+                <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Nombre</span></div>
+            </div>
+            <div class="col-2 border border-white bg-dark">
                 <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Proceso de Documentacion</span></div>
             </div>
         </section>
-        @foreach ($departamentoPersonal as $item)
+        @foreach ($contratados as $item)
             <section class="row py-3">
                     <div class="col-1 text-center font-weight-bold" style="font-size: 21px;">
                         {{ $item->id }}
                     </div>
-                    <div class="col-4">
-                        <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-dark">{{$item->ficha}}</span></div>
-                    </div>
-                    <div class="col-4">
-                        <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-dark">{{ $item->nombre }}</span></div>
+                    <div class="col-3">
+                        <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-dark">{{$item->plaza}}</span></div>
                     </div>
                     <div class="col-3">
-                        <a href="{{ route('departamento-personal.show', $item->id) }}" class="btn btn-success btn-block" title="Consultar Documentos e Informacion">Validacion...</a>
+                        <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-dark">{{$item->ficha}}</span></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-dark">{{ $item->nombre }}</span></div>
+                    </div>
+                    <div class="col-2 d-flex justify-content-center">
+                        <a href="{{ route('contratados.show', $item->id) }}" class="btn btn-success btn-block" title="Consultar Documentos e Informacion">Ver más...</a>
                     </div>
                 </section>
             @endforeach
         <section class="container d-flex justify-content-center">
-            {{ $departamentoPersonal->links('vendor.pagination.default') }}
+            {{ $contratados->links('vendor.pagination.default') }}
         </section>
     </section>
 @stop

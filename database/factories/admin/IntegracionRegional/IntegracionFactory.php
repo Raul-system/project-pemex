@@ -25,7 +25,6 @@ class IntegracionFactory extends Factory
         return [
             "validacion" => $this->faker->randomElement(["true", "false"]),
             "memorandum" => "integracion_regional/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(20) . rand(100, 9999) . ".pdf",
-            "cedula_siep" => "integracion_regional/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(20) . rand(100, 9999) . ".pdf",
             "documento_adicional_1" => $this->faker->randomElement(["integracion_regional/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(25) . rand(100, 9999) . ".pdf", null]),
             "documento_adicional_2" => $this->faker->randomElement(["integracion_regional/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(25) . rand(100, 9999) . ".pdf", null]),
             "documento_adicional_3" => $this->faker->randomElement(["integracion_regional/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(25) . rand(100, 9999) . ".pdf", null]),

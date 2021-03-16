@@ -12,8 +12,8 @@ class Integracion extends Model
     protected $fillable = [
         "id",
         "validacion",
+        "name_directory",
         "memorandum",
-        "cedula_siep",
         "documento_adicional_1",
         "documento_adicional_2",
         "documento_adicional_3",

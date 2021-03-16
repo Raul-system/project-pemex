@@ -59,13 +59,44 @@
                 </div>
                 <div class="form-group">
                   <label for="campo_subdireccion">Subdireccion: </label>
-                  <input type="text" class="form-control" id="campo_subdireccion" name="subdireccion" placeholder="Subdireccion ..." value="{{ old('subdireccion') }}">
-                  {!!  $errors->first('subdireccion' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                  <select name="subdireccion" id="campo_subdireccion" class="form-control">
+                    <option value="SUBDIRECCIÓN DE PROCESO DE GAS Y PETROQUÍMICOS">SUBDIRECCIÓN DE PROCESO DE GAS Y PETROQUÍMICOS</option>
+                    <option value="SUBDIRECCIÓN DE SERVICIOS DE SALUD">SUBDIRECCIÓN DE SERVICIOS DE SALUD</option>
+                    <option value="AUDITORÍA INTERNA">AUDITORÍA INTERNA</option>
+                    <option value="SUBDIRECCIÓN DE CAPITAL HUMANO">SUBDIRECCIÓN DE CAPITAL HUMANO</option>
+                    <option value="SUBDIRECCIÓN DE TECNOLOGÍAS DE LA INFORMACIÓN">SUBDIRECCIÓN DE TECNOLOGÍAS DE LA INFORMACIÓN</option>
+                    <option value="SUBDIRECCIÓN DE TRANSPORTE">SUBDIRECCIÓN DE TRANSPORTE</option>
+                    <option value="AUDITORÍA INTERNA">AUDITORÍA INTERNA</option>
+                    <option value="SUBDIRECCIÓN DE COORDINACIÓN FINANCIERA">SUBDIRECCIÓN DE COORDINACIÓN FINANCIERA</option>
+                    <option value="SUBDIRECCIÓN DE SERVICIOS CORPORATIVOS">SUBDIRECCIÓN DE SERVICIOS CORPORATIVOS</option>
+                    <option value="SUBDIRECCIÓN DE ADMINISTRACIÓN DE SERVICIOS PARA EXPLORACIÓN Y PRODUCCIÓN">SUBDIRECCIÓN DE ADMINISTRACIÓN DE SERVICIOS PARA EXPLORACIÓN Y PRODUCCIÓN</option>
+                    <option value="SUBDIRECCIÓN DE SERVICIOS A LA EXPLOTACIÓN">SUBDIRECCIÓN DE SERVICIOS A LA EXPLOTACIÓN</option>
+                    <option value="SUBDIRECCIÓN DE PERFORACIÓN Y MANTENIMIENTO DE POZOS">SUBDIRECCIÓN DE PERFORACIÓN Y MANTENIMIENTO DE POZOS</option>
+                    <option value="SUBDIRECCIÓN DE PRODUCCIÓN REGIÓN SUR">SUBDIRECCIÓN DE PRODUCCIÓN REGIÓN SUR</option>
+                    <option value="SUBDIRECCIÓN DE EXPLORACIÓN">SUBDIRECCIÓN DE EXPLORACIÓN</option>
+                    <option value="SUBDIRECCIÓN DE PRODUCCIÓN REGIÓN MARINA NORESTE">SUBDIRECCIÓN DE PRODUCCIÓN REGIÓN MARINA NORESTE</option>
+                    <option value="SUBDIRECCIÓN DE SERVICIOS A LA EXPLOTACIÓN">SUBDIRECCIÓN DE SERVICIOS A LA EXPLOTACIÓN</option>
+                    <option value="SUBDIRECCIÓN DE PROYECTOS DE EXPLOTACIÓN ESTRATÉGICOS">SUBDIRECCIÓN DE PROYECTOS DE EXPLOTACIÓN ESTRATÉGICOS</option>
+                    <option value="SUBDIRECCIÓN DE PRODUCCIÓN REGIÓN MARINA SUROESTE">SUBDIRECCIÓN DE PRODUCCIÓN REGIÓN MARINA SUROESTE</option>
+                    <option value="SUBDIRECCIÓN DE SEGURIDAD, SALUD EN EL TRABAJO Y PROTECCIÓN AMBIENTAL">SUBDIRECCIÓN DE SEGURIDAD, SALUD EN EL TRABAJO Y PROTECCIÓN AMBIENTAL</option>
+                    <option value="SUBDIRECCIÓN TÉCNICA DE EXPLORACIÓN Y PRODUCCIÓN">SUBDIRECCIÓN TÉCNICA DE EXPLORACIÓN Y PRODUCCIÓN</option>
+                    <option value="SUBDIRECCIÓN DE TRATAMIENTO Y LOGÍSTICA PRIMARIA">SUBDIRECCIÓN DE TRATAMIENTO Y LOGÍSTICA PRIMARIA</option>
+                    <option value="SUBDIRECCIÓN DE PRODUCCIÓN REGIÓN MARINA NORESTE">SUBDIRECCIÓN DE PRODUCCIÓN REGIÓN MARINA NORESTE</option>
+                    <option value="SUBDIRECCIÓN DE PRODUCCIÓN REGIÓN SUR">SUBDIRECCIÓN DE PRODUCCIÓN REGIÓN SUR</option>
+                    <option value="SUBDIRECCIÓN DE SERVICIOS CORPORATIVOS">SUBDIRECCIÓN DE SERVICIOS CORPORATIVOS</option>
+                    <option value="DIRECCIÓN CORPORATIVA DE ADMINISTRACIÓN Y SERVICIOS">DIRECCIÓN CORPORATIVA DE ADMINISTRACIÓN Y SERVICIOS</option>
+                  </select>
+                  {{-- <input type="text" class="form-control" id="campo_subdireccion" name="subdireccion" placeholder="Subdireccion ..." value="{{ old('subdireccion') }}">
+                  {!!  $errors->first('subdireccion' , '<small class="text-danger font-weight-bold">:message</small>') !!} --}}
                 </div>
                 <div class="form-group">
                   <label for="campo_grupo">Grupo: </label>
-                  <input type="text" class="form-control" id="campo_grupo" name="grupo" placeholder="Grupo ..." value="{{ old('grupo') }}">
-                  {!!  $errors->first('grupo' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                  <select name="grupo" id="campo_grupo" class="form-control">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                  {{-- <input type="text" class="form-control" id="campo_grupo" name="grupo" placeholder="Grupo ..." value="{{ old('grupo') }}">
+                  {!!  $errors->first('grupo' , '<small class="text-danger font-weight-bold">:message</small>') !!} --}}
                 </div>
                 
                 {{-- ---------------------- --}}
@@ -111,6 +142,7 @@
                             </div>
                         </div>
                         <div class="container my-2">
+                          <p class="text-center font-weight-bold my-2"><i class="fa fa-exclamation-triangle mx-1" aria-hidden="true"></i>Favor de Solo subir 7 archivos como máximo</p>
                             <div class="row p-4">
                                 <div class="col-12 custom-file">
                                   {!!  $errors->first('files_especials' , '<small class="text-danger font-weight-bold">:message</small>') !!}

@@ -9,7 +9,9 @@ use App\Http\Controllers\admin\DesarrolloHumano\desarrolloHumanoController;
 use App\Http\Controllers\admin\DepartamentoPersonal\departamentoPersonalController;
 use App\Http\Controllers\Contratados\Contratados;
 use App\Http\Controllers\admin\PDF\downloadPDF;
-use App\Http\Controllers\admin\Procedimiento\Procedimiento;
+use App\Http\Controllers\admin\Rechazados\RechazadosController;
+use App\Http\Controllers\admin\Contratados\ContratadosController;
+use App\Http\Controllers\admin\search\searchController;
 
 Route::get('/', function () {
     return redirect()->route('area-usuaria');
@@ -32,4 +34,8 @@ Route::resource('contratados', Contratados::class);
 
 Route::get('download-pdf/{id}/{departamento}/{file}', [downloadPDF::class, 'downloadPDF'])->name('download');
 
-Route::post('procedimiento-cancelado', [Procedimiento::class, 'CancelacionDocumentos'])->name('cancelarDocumentos');
+Route::get('resultados', [searchController::class, 'getSearchToConsulte'])->name('resultados-search');
+
+Route::resource('rechazados', RechazadosController::class);
+
+Route::resource('contratados', ContratadosController::class);

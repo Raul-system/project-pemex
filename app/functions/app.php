@@ -5,8 +5,8 @@ use Illuminate\Support\Str;
 
 function delete_file($Ruta)
 {
-    if (Storage::disk('local')->exists($Ruta)) {
-        return Storage::delete($Ruta);
+    if (Storage::disk('local')->exists('public/' . $Ruta)) {
+        return Storage::delete('public/' . $Ruta);
     }
 }
 
@@ -22,7 +22,11 @@ function NameDirectory($FileDirectory)
 
 function DownloadFiles($RouteFile)
 {
-    return Storage::download('public/' . $RouteFile);
+    if (Storage::disk('local')->exists('public/' . $RouteFile)) {
+        return Storage::download('public/' . $RouteFile);
+    } else {
+        return back()->with('errorFile', 'El Archivo No Se Emcontró para Su Descarga');
+    }
 }
 
 /* function create_directory($Ruta, $FolderName)
@@ -78,9 +82,9 @@ function Observaciones_No_Procedio($request, $departamento)
         ($request->get('vigencia') != null) ? $observaciones .= $request->get('vigencia') . ', ' : null;
         ($request->get('puesto_siep') != null) ? $observaciones .= $request->get('puesto_siep') . ', ' : null;
 
-        if ($request->get('atributos_plaza') == null && $request->get('vigencia') == null && $request->get('puesto_siep') == null) {
-            $observaciones = '- No se registró ningun Motivo -';
-        }
+        // if ($request->get('atributos_plaza') == null && $request->get('vigencia') == null && $request->get('puesto_siep') == null) {
+        // $observaciones = '- No se registró ningun Motivo -';
+        // }
     }
     /* if ($departamento == 'Desarrollo_Humano') {
         ($request->get('') != null) ? $observaciones .= '* ' . $request->get('') . ' *' : null;
@@ -96,9 +100,9 @@ function Observaciones_No_Procedio($request, $departamento)
         ($request->get('validacion_sep') != null) ? $observaciones .= $request->get('validacion_sep') . ', ' : null;
         ($request->get('fp') != null) ? $observaciones .= $request->get('fp') . ', ' : null;
 
-        if ($request->get('memorandum') == null && $request->get('evaluacion_tecnica') == null && $request->get('ppp') == null && $request->get('directorio_talento') == null && $request->get('carta_no_inhabilitacion') == null && $request->get('validacion_sep') == null && $request->get('fp') == null) {
-            $observaciones = '- No se registró ningun Motivo -';
-        }
+        // if ($request->get('memorandum') == null && $request->get('evaluacion_tecnica') == null && $request->get('ppp') == null && $request->get('directorio_talento') == null && $request->get('carta_no_inhabilitacion') == null && $request->get('validacion_sep') == null && $request->get('fp') == null) {
+        // $observaciones = '- No se registró ningun Motivo -';
+        // }
     }
     if ($departamento == 'Departamento Personal') {
         ($request->get('memorandum') != null) ? $observaciones  .= $request->get('memorandum') . ', ' : null;
@@ -107,6 +111,9 @@ function Observaciones_No_Procedio($request, $departamento)
         if ($request->get('memorandum') == null && $request->get('dts') == null && $request->get('sfp') == null) {
             $observaciones = '- No se registró ningun Motivo -';
         }
+    }
+    if ($request->has('motivos_check')) {
+        $observaciones .= $request->get('otros_motivos');
     }
     return $observaciones;
 }

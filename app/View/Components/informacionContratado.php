@@ -4,16 +4,12 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class search extends Component
+class informacionContratado extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public $controls;
+    public function __construct($controls)
     {
-        //
+        $this->controls = $controls;
     }
 
     /**
@@ -23,6 +19,6 @@ class search extends Component
      */
     public function render()
     {
-        return view('components.search');
+        return view('components.informacion-contratado');
     }
 }

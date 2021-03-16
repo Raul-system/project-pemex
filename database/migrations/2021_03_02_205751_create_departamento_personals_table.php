@@ -24,6 +24,7 @@ class CreateDepartamentoPersonalsTable extends Migration
             $table->string("num_cedula")->nullable();
             $table->string("cpp")->nullable();
             $table->string("validacion")->nullable();
+            $table->text("name_directory");
             $table->string("carta_no_inhabilitacion")->nullable();
             $table->string("cedula_siep")->nullable();
             $table->string("validacion_siep")->nullable();

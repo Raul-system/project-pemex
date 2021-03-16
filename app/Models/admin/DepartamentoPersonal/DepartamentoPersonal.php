@@ -20,6 +20,7 @@ class DepartamentoPersonal extends Model
         "num_cedula",
         "cpp",
         "validacion",
+        "name_directory",
         "carta_no_inhabilitacion",
         "cedula_siep",
         "validacion_siep",

@@ -24,6 +24,7 @@ class CreateDesarrolloHumanosTable extends Migration
             $table->string("plaza")->nullable();
             $table->string("gerencia")->nullable();
             $table->string("validacion")->default('false');
+            $table->text("name_directory");
             $table->longText("memorandum")->nullable();
             $table->longText("cedula_siep")->nullable();
             $table->longText('documento_adicional_1')->nullable();

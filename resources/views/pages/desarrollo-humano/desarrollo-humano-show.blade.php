@@ -53,7 +53,7 @@
       <form class="container-fluid col-12 bg-light" action="{{ route('departamento-personal.store') }}" method="POST" enctype="multipart/form-data">
       {{-- Inicio del Formulario --}}
       @csrf
-      <input type="hidden" name="id_validacion_procedimiento" value="{{ $userDesarrolloHumano->id }}">
+      <input type="hidden" name="id_validacion_procedimiento" value="{{ $userDesarrolloHumano->id_integracion }}">
           {{-- ---------------- --}}
             <section class="col-12" title="Procedimiento">
                 <p class="text-center font-weight-bold h2 my-2 bg-success">Procedimiento</p>
@@ -135,6 +135,7 @@
                         </section>
                          <div class="container mt-5">
                            <p class="text-center font-weight-bold">Cláusula 3</p>
+                           <p class="text-center font-weight-bold my-2"><i class="fa fa-exclamation-triangle mx-1" aria-hidden="true"></i>Favor de Solo subir 4 archivos como máximo</p>
                             <div class="row px-2">
                                 <div class="col-12 custom-file">
                                   {!!  $errors->first('files_especials' , '<small class="text-danger font-weight-bold">:message</small>') !!}

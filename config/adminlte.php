@@ -97,7 +97,14 @@ return [
         [
             'text'        => 'Contratados',
             'route'         => 'contratados.index',
-            'icon'        => 'fa fa-home',
+            'icon'        => 'fa fa-user-circle',
+            /* 'label' => 4, */
+            /* 'label_color' => 'success', */
+        ],
+        [
+            'text'        => 'Rechazados',
+            'route'         => 'rechazados.index',
+            'icon'        => 'fa fa-window-close',
             /* 'label' => 4, */
             /* 'label_color' => 'success', */
         ],
