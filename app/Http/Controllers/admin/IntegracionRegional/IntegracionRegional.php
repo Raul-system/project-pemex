@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin\IntegracionRegional;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\IntegracionRegional\Integracion;
+use App\Models\trabajadores;
 
 class IntegracionRegional extends Controller
 {

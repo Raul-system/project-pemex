@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\admin\IntegracionRegional\Integracion;
 use App\Models\admin\DesarrolloHumano\DesarrolloHumano;
+use App\Models\trabajadores;
 
 class desarrolloHumanoController extends Controller
 {
@@ -115,11 +116,6 @@ class desarrolloHumanoController extends Controller
                 'Name' => 'validacion_sep',
                 'Texto' => 'Validacion SIEP',
                 'Razon' => 'Sin Validacion SIEP'
-            ],
-            [
-                'Name' => 'fp',
-                'Texto' => 'FP',
-                'Razon' => 'Sin FP'
             ],
         );
         if ($userDesarrolloHumano->validacion == 'true') {

@@ -32,6 +32,7 @@ class DesarrolloHumanoFactory extends Factory
             "plaza" => strtoupper(Str::random(9)) . ' ' . rand(0, 99999),
             "gerencia" => $this->faker->randomElement(['SUBGERENCIA DE PLANEACIÓN Y PROGRAMACIÓN DE OPERACIONES DE GAS Y PETROQUÍMICOS', 'SUBDIRECCIÓN DE PROCESO DE GAS Y PETROQUÍMICOS', 'HOSPITAL GENERAL COMALCALCO, TAB.', 'HOSPITAL REGIONAL VILLAHERMOSA, TAB.', 'E.T. REP. GERENCIA DE FINANZAS EN LAS EMPRESAS PRODUCTIVAS SUBSIDIARIAS EN VILAHERMOSA']),
             "validacion" => $this->faker->randomElement(["true", "false"]),
+            "name_directory" => 'public/' . Str::random(20),
             "memorandum" => "desarrollo_humano/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(20) . rand(100, 9999) . ".pdf",
             "cedula_siep" => "desarrollo_humano/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(20) . rand(100, 9999) . ".pdf",
             "documento_adicional_1" => $this->faker->randomElement(["desarrollo_humano/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(25) . rand(100, 9999) . ".pdf", null]),

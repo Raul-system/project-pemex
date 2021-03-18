@@ -28,6 +28,10 @@
 </x-bandeja-entrada-documentos>
 {{-- Para completar la Validacion --}}
 
+<section class="container py-5 bg-light">
+  <p class="text-center font-weight-bold h2 mt-2">Descargar Nvo Talento en formato Word</p>
+  <a class="btn btn-success btn-block mx-auto font-weight-bold text-white" href="{{ route('download-word-desarrollo-humano') }}">Descargar Nvo. Talento</a>
+</section>
 
 <section class="container my-4" title="Formulario de Registro y Validacion">
   <section class="container col-5 my-2">
@@ -54,6 +58,7 @@
       {{-- Inicio del Formulario --}}
       @csrf
       <input type="hidden" name="id_validacion_procedimiento" value="{{ $userDesarrolloHumano->id_integracion }}">
+      <input type="hidden" id="posicion_cargar_datos" value="{{ $userDesarrolloHumano->posicion }}">
           {{-- ---------------- --}}
             <section class="col-12" title="Procedimiento">
                 <p class="text-center font-weight-bold h2 my-2 bg-success">Procedimiento</p>
@@ -68,9 +73,14 @@
                   {!!  $errors->first('profesion' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                 </div>
                 <div class="form-group">
-                  <label for="campo_sit_contractual">Sit. Contractual: </label>
-                  <input type="text" class="form-control" id="campo_sit_contractual" name="situacion_contractual" placeholder="Situacion Contractual ..." value="{{ old('situacion_contractual') }}">
-                  {!!  $errors->first('situacion_contractual' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                  <label for="campo_sit_contractual">Situación Contractual: </label>
+                  {{-- <select name="situacion_contractual" id="campo_sit_contractual" class="form-control">
+                    <option value="PS">PS</option>
+                    <option value="PC">PC</option>
+                    <option value="TC">TC</option>
+                    <option value="TS">TS</option>
+                  </select> --}}
+                  <input type="text" id="campo_sit_contractual" name="situacion_contractual" value="{{ old('situacion_contractual') }}" class="form-control" placeholder="Sit. Contractual o RC">
                 </div>
                 
                 {{-- ---------------------- --}}
@@ -120,14 +130,14 @@
                                 <div class="col-6">
                                   <div class="custom-file">
                                     {!!  $errors->first('validacion_siep' , '<small class="text-danger font-weight-bold">:message</small>') !!}
-                                      <input type="file" class="custom-file-input" id="validacion_siep_file" name="validacion_siep" lang="es" accept=".pdf" multiple>
+                                      <input type="file" class="custom-file-input" id="validacion_siep_file" name="validacion_siep" lang="es" accept=".pdf" value="{{old('validacion_siep')}}">
                                       <label class="custom-file-label" for="validacion_siep_file">Validacion SIEP</label>
                                   </div>
                                 </div>
                                 <div class="col-6 custom-file">
                                   <div class="custom-file">
                                     {!!  $errors->first('resultados_ev_tec' , '<small class="text-danger font-weight-bold">:message</small>') !!}
-                                      <input type="file" class="custom-file-input" id="resultados_tec" name="resultados_ev_tec" lang="es" accept=".pdf" multiple>
+                                      <input type="file" class="custom-file-input" id="resultados_tec" name="resultados_ev_tec" lang="es" accept=".pdf" value="{{old('resultados_ev_tec')}}">
                                       <label class="custom-file-label" for="resultados_tec">Resultados ev. Tec.</label>
                                   </div>
                                 </div>
@@ -144,6 +154,74 @@
                                 </div>
                             </div>
                         </div>
+ </article>
+
+
+<section class="card mt-5 bg-secondary border border-dark">
+                    <div class="card-header bg-light text-center text-muted">
+                            Enviar Documentacion al Departamento Personal
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text text-center h3 font-weight-bold">Bandeja de Salida</p>
+                        <button class="btn btn-primary d-block mx-auto" type="button" data-toggle="collapse" data-target="#sectionBandejaSalida" aria-expanded="true" aria-controls="sectionBandejaSalida">
+                            <i class="fa fa-angle-double-down" style="font-size: 25px;" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    {{-- -------------------------------------------------- --}}
+
+                    <section class="container collapse" id="sectionBandejaSalida">
+                        {{-- inicio de la  bandeja de salida --}}
+                        <article class="row">
+                            <div class="col-6">
+                                  <div class="custom-file">
+                                    {!!  $errors->first('memorandum_documento' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                                      <input type="file" class="custom-file-input" id="memorandum_file" name="memorandum_documento" lang="es" accept=".pdf" multiple>
+                                      <label class="custom-file-label" for="memorandum_file">Memorandum</label>
+                                  </div>
+                                </div>
+                                <div class="col-6 custom-file">
+                                  <div class="custom-file">
+                                    {!!  $errors->first('cedula_siep_documento' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                                      <input type="file" class="custom-file-input" id="cedula_siep_documento" name="cedula_siep_documento" lang="es" accept=".pdf" multiple>
+                                      <label class="custom-file-label" for="cedula_siep_documento">Cedula SIEP</label>
+                                  </div>
+                                </div>
+                                {{--  --}}
+                                <div class="container my-5">
+                                    <p class="text-center font-weight-bold">Archivos Adicionales</p>
+                                    <p class="text-center font-weight-bold my-2"><i class="fa fa-exclamation-triangle mx-1" aria-hidden="true"></i>Favor de Solo subir 7 archivos como máximo</p>
+                                      <div class="row px-2">
+                                          <div class="col-12 custom-file">
+                                            {!!  $errors->first('archivos_adicionales_documentos' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                                              <input type="file" class="custom-file-input" id="archivos_adicionales" name="archivos_adicionales_documentos[]" lang="es" accept=".pdf" multiple>
+                                              <label class="custom-file-label" for="archivos_adicionales">Subir Archivos Adicionales</label>
+                                          </div>
+                                      </div>
+                        </div>
+                        {{--  --}}
+                            </article>
+                        </section>
+                         
+                       
+                        {{-- fin de la  bandeja de salida --}}
+                    </section>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <div class="container py-2 my-3" title="Envio de los Datos a Desarrollo Humano">
                               <input type="submit" value="Dar procedimiento al Candidato..." class="btn btn-success btn-block d-block mx-auto">
                         </div>
@@ -163,9 +241,26 @@
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function () {
             bsCustomFileInput.init()
+              $.ajax({
+            url : '/get-trabajador',
+            method: 'POST',
+            data: {
+              posicion : $('#posicion_cargar_datos').val(),
+              _token : $('input[name="_token"]').val()
+            }
+          }).done(function(response){
+            JSON.parse(response).forEach(element => {
+              $('#campo_ficha').val(element.ficha);
+              $('#campo_sit_contractual').val(element.rc);
+              $('#campo_nombre').val(element.nombre);
+            });
+          })
         })
+        
     </script>
 @stop

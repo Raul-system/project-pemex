@@ -26,8 +26,8 @@ class bandejaEntradaDocumentos extends Component
     public $textoBoton; */
     public $diferenciaFecha;
     public $accordionID;
-
-    public function __construct($diffFecha, $dataParentComponent/* $modeloDatos, $archivosAdicionales, $nombreDocumento, $departamento, $textoBtn */)
+    public $titleBandeja;
+    public function __construct($diffFecha, $dataParentComponent, $titleBandeja = 'Bandeja de Entrada'/* $modeloDatos, $archivosAdicionales, $nombreDocumento, $departamento, $textoBtn */)
     {
         /* $this->modeloDatos = $modeloDatos;
         $this->modeloArchivosAdicionales = $archivosAdicionales;
@@ -36,6 +36,7 @@ class bandejaEntradaDocumentos extends Component
         $this->textoBoton = $textoBtn; */
         $this->diferenciaFecha = $diffFecha;
         $this->accordionID = $dataParentComponent;
+        $this->titleBandeja = $titleBandeja;
     }
 
     public function render()

@@ -9,11 +9,15 @@ use App\Models\admin\DepartamentoPersonal\DepartamentoPersonal;
 
 class departamentoPersonalController extends Controller
 {
-    public $path_files_adicionales;/* clausula 3 */
     public $carta_no_inhabilitacion;
     public $path_cedula_siep;
     public $validacion_siep;
     public $resultados_ev_tec;
+    public $clausula3;/* clausula 3 */
+    /* Para el departamento Personal */
+    public $memorandum_documento;
+    public $cedula_siep_documento;
+    public $path_documentos_adicionales;
     public function __construct()
     {
         $this->middleware('auth');
@@ -21,6 +25,8 @@ class departamentoPersonalController extends Controller
         $this->path_cedula_siep = '';
         $this->carta_no_inhabilitacion = '';
         $this->resultados_ev_tec = '';
+        $this->memorandum_documento = '';
+        $this->cedula_siep_documento = '';
     }
 
     public function index()
@@ -35,20 +41,31 @@ class departamentoPersonalController extends Controller
     {
         $Directorio = NameDirectory('desarrolloHumano');
         if ($request->hasFile('carta_no_inhabilitacion')) {
-            $this->carta_no_inhabilitacion =  saveFile($request->file('carta_no_inhabilitacion'), 'departamento_personal/' . $Directorio);
+            $this->carta_no_inhabilitacion =  saveFile($request->file('carta_no_inhabilitacion'), 'departamento_personal/' . $Directorio . '/documentos_desarrollo_humano');
         }
         if ($request->hasFile('cedula_siep')) {
-            $this->path_cedula_siep =  saveFile($request->file('cedula_siep'), 'departamento_personal/' . $Directorio);
+            $this->path_cedula_siep =  saveFile($request->file('cedula_siep'), 'departamento_personal/' . $Directorio . '/documentos_desarrollo_humano');
         }
         if ($request->hasFile('validacion_siep')) {
-            $this->validacion_siep =  saveFile($request->file('validacion_siep'), 'departamento_personal/' . $Directorio);
+            $this->validacion_siep =  saveFile($request->file('validacion_siep'), 'departamento_personal/' . $Directorio . '/documentos_desarrollo_humano');
         }
         if ($request->hasFile('resultados_ev_tec')) {
-            $this->path_cedula_siep =  saveFile($request->file('resultados_ev_tec'), 'departamento_personal/' . $Directorio);
+            $this->resultados_ev_tec =  saveFile($request->file('resultados_ev_tec'), 'departamento_personal/' . $Directorio . '/documentos_desarrollo_humano');
         }
         /* Clausula 3 */
         if ($request->hasFile('files_especials')) {
-            $this->resultados_ev_tec = saveFile($request->file('files_especials'), 'departamento_personal/' . $Directorio . "/documentos_adicionales", true);
+            $this->resultados_evclausula3_tec = saveFile($request->file('files_especials'), 'departamento_personal/' . $Directorio . "/documentos_desarrollo_humano/clausula_3", true);
+        }
+
+        /* Documentos a Enviar al Departamento Personal */
+        if ($request->hasFile('memorandum_documento')) {
+            $this->memorandum_documento =  saveFile($request->file('memorandum_documento'), 'departamento_personal/' . $Directorio . '/para_departamento_personal');
+        }
+        if ($request->hasFile('cedula_siep_documento')) {
+            $this->cedula_siep_documento =  saveFile($request->file('cedula_siep_documento'), 'departamento_personal/' . $Directorio . '/para_departamento_personal');
+        }
+        if ($request->hasFile('archivos_adicionales_documentos')) {
+            $this->path_documentos_adicionales =  saveFile($request->file('archivos_adicionales_documentos'), 'departamento_personal/' . $Directorio . '/para_departamento_personal/documentos_adicionales', true);
         }
         DepartamentoPersonal::create([
             "id_integracion" => $request->get('id_validacion_procedimiento'),
@@ -65,10 +82,20 @@ class departamentoPersonalController extends Controller
             "cedula_siep" => $this->path_cedula_siep,
             "validacion_siep" => $this->validacion_siep,
             "resultados_ev_tec" => $this->path_cedula_siep,
-            "documento1" => isset($this->path_files_adicionales[0]) ? $this->path_files_adicionales[0] : null,
-            "documento2" => isset($this->path_files_adicionales[1]) ? $this->path_files_adicionales[1] : null,
-            "documento3" => isset($this->path_files_adicionales[2]) ? $this->path_files_adicionales[2] : null,
-            "documento4" => isset($this->path_files_adicionales[3]) ? $this->path_files_adicionales[3] : null,
+            "documento1" => isset($this->clausula3[0]) ? $this->clausula3[0] : null,
+            "documento2" => isset($this->clausula3[1]) ? $this->clausula3[1] : null,
+            "documento3" => isset($this->clausula3[2]) ? $this->clausula3[2] : null,
+            "documento4" => isset($this->clausula3[3]) ? $this->clausula3[3] : null,
+            /* Documentos para enviar al Departamento Personal */
+            "memorandum_documento" => $this->memorandum_documento,
+            "cedula_siep_documento" => $this->cedula_siep_documento,
+            "documento_1_adicional" => isset($this->path_documentos_adicionales[0]) ? $this->path_documentos_adicionales[0] : null,
+            "documento_2_adicional" => isset($this->path_documentos_adicionales[1]) ? $this->path_documentos_adicionales[1] : null,
+            "documento_3_adicional" => isset($this->path_documentos_adicionales[2]) ? $this->path_documentos_adicionales[2] : null,
+            "documento_4_adicional" => isset($this->path_documentos_adicionales[3]) ? $this->path_documentos_adicionales[3] : null,
+            "documento_5_adicional" => isset($this->path_documentos_adicionales[4]) ? $this->path_documentos_adicionales[4] : null,
+            "documento_6_adicional" => isset($this->path_documentos_adicionales[5]) ? $this->path_documentos_adicionales[5] : null,
+            "documento_7_adicional" => isset($this->path_documentos_adicionales[6]) ? $this->path_documentos_adicionales[6] : null,
         ]);
         $update_validation_to_true = DesarrolloHumano::findOrFail($request->get('id_validacion_procedimiento'));
         $update_validation_to_true->validacion = 'true';
@@ -78,7 +105,7 @@ class departamentoPersonalController extends Controller
 
     public function show($id)
     {
-        $archivos_adicionales = DepartamentoPersonal::select('documento1', 'documento2', 'documento3', 'documento4')->where('id', $id)->get();
+        $archivos_adicionales = DepartamentoPersonal::select('documento_1_adicional', 'documento_2_adicional', 'documento_3_adicional', 'documento_4_adicional', 'documento_5_adicional', 'documento_6_adicional', 'documento_7_adicional')->where('id', $id)->get();
         $userDepartamentoPersonal = DepartamentoPersonal::findOrFail($id);
         $controls =  array(
             [

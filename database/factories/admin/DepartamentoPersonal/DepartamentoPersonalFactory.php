@@ -32,6 +32,7 @@ class DepartamentoPersonalFactory extends Factory
             "num_cedula" => rand(1500, 200000),
             "cpp" => rand(1200, 100000) . ' ' . Str::random(6),
             "validacion" => $this->faker->randomElement(['true', 'false']),
+            "name_directory" => 'public/' . Str::random(20),
             "carta_no_inhabilitacion" => "departamento_personal/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_CartaNoInhabilitacion_" . Str::random(20) . rand(100, 9999) . ".pdf",
             "cedula_siep" => "departamento_personal/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_cedulaSiep_" . Str::random(20) . rand(100, 9999) . ".pdf",
             "validacion_siep" => "departamento_personal/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_validacionSiep_" . Str::random(20) . rand(100, 9999) . ".pdf",
@@ -40,6 +41,16 @@ class DepartamentoPersonalFactory extends Factory
             "documento2" => $this->faker->randomElement(["departamento_personal/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(25) . rand(100, 9999) . ".pdf", null]),
             "documento3" => $this->faker->randomElement(["departamento_personal/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(25) . rand(100, 9999) . ".pdf", null]),
             "documento4" => $this->faker->randomElement(["departamento_personal/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(25) . rand(100, 9999) . ".pdf", null]),
+            /* Documentos que se manden a Departamento Personal */
+            "memorandum_documento" => "departamento_personal/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_cedulaSiep_" . Str::random(20) . rand(100, 9999) . ".pdf",
+            "cedula_siep_documento" => "departamento_personal/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_cedulaSiep_" . Str::random(20) . rand(100, 9999) . ".pdf",
+            "documento_1_adicional" => $this->faker->randomElement(["departamento_personal/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(25) . rand(100, 9999) . ".pdf", null]),
+            "documento_2_adicional" => $this->faker->randomElement(["departamento_personal/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(25) . rand(100, 9999) . ".pdf", null]),
+            "documento_3_adicional" => $this->faker->randomElement(["departamento_personal/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(25) . rand(100, 9999) . ".pdf", null]),
+            "documento_4_adicional" => $this->faker->randomElement(["departamento_personal/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(25) . rand(100, 9999) . ".pdf", null]),
+            "documento_5_adicional" => $this->faker->randomElement(["departamento_personal/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(25) . rand(100, 9999) . ".pdf", null]),
+            "documento_6_adicional" => $this->faker->randomElement(["departamento_personal/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(25) . rand(100, 9999) . ".pdf", null]),
+            "documento_7_adicional" => $this->faker->randomElement(["departamento_personal/" . Str::random(24) . "_Pemex_Mexico_" . "/"  . time() . "_FilePemex_" . Str::random(25) . rand(100, 9999) . ".pdf", null]),
         ];
     }
 }

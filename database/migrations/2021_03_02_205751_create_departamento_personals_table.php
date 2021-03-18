@@ -25,14 +25,25 @@ class CreateDepartamentoPersonalsTable extends Migration
             $table->string("cpp")->nullable();
             $table->string("validacion")->nullable();
             $table->text("name_directory");
-            $table->string("carta_no_inhabilitacion")->nullable();
-            $table->string("cedula_siep")->nullable();
-            $table->string("validacion_siep")->nullable();
-            $table->string("resultados_ev_tec")->nullable();
-            $table->string("documento1")->nullable();
-            $table->string("documento2")->nullable();
-            $table->string("documento3")->nullable();
-            $table->string("documento4")->nullable();
+            /* Documentos para guardar en la carpeta correspondiente */
+            $table->text("carta_no_inhabilitacion")->nullable();
+            $table->text("cedula_siep")->nullable();
+            $table->text("validacion_siep")->nullable();
+            $table->text("resultados_ev_tec")->nullable();
+            $table->text("documento1")->nullable();
+            $table->text("documento2")->nullable();
+            $table->text("documento3")->nullable();
+            $table->text("documento4")->nullable();
+            /* Documentos que recibe Departamento Personañ */
+            $table->text("memorandum_documento")->nullable();
+            $table->text("cedula_siep_documento")->nullable();
+            $table->text("documento_1_adicional")->nullable();
+            $table->text("documento_2_adicional")->nullable();
+            $table->text("documento_3_adicional")->nullable();
+            $table->text("documento_4_adicional")->nullable();
+            $table->text("documento_5_adicional")->nullable();
+            $table->text("documento_6_adicional")->nullable();
+            $table->text("documento_7_adicional")->nullable();
             $table->timestamps();
         });
     }

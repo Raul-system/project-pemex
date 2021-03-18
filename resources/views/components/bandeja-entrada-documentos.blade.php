@@ -18,7 +18,7 @@
                             Descargar Archivos
                     </div>
                     <div class="card-body">
-                        <p class="card-text text-center h3 font-weight-bold">Bandeja de Entrada</p>
+                        <p class="card-text text-center h3 font-weight-bold">{{$titleBandeja}}</p>
                         <button class="btn btn-primary d-block mx-auto" type="button" data-toggle="collapse" data-target="#SectiondownloadFiles" aria-expanded="true" aria-controls="SectiondownloadFiles">
                             <i class="fa fa-angle-double-down" style="font-size: 25px;" aria-hidden="true"></i>
                         </button>

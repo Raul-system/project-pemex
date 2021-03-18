@@ -13,6 +13,11 @@ use App\Http\Controllers\admin\Rechazados\RechazadosController;
 use App\Http\Controllers\admin\Contratados\ContratadosController;
 use App\Http\Controllers\admin\search\searchController;
 
+use App\Http\Controllers\admin\Trabajadores\trabajadoresController;
+
+/* ETAPA 2 */
+use App\Http\Controllers\admin\Etapa2\fechas;
+
 Route::get('/', function () {
     return redirect()->route('area-usuaria');
 });
@@ -34,8 +39,16 @@ Route::resource('contratados', Contratados::class);
 
 Route::get('download-pdf/{id}/{departamento}/{file}', [downloadPDF::class, 'downloadPDF'])->name('download');
 
+Route::get('download-word', [downloadPDF::class, 'getWordDesarrolloHumano'])->name('download-word-desarrollo-humano');
+
 Route::get('resultados', [searchController::class, 'getSearchToConsulte'])->name('resultados-search');
 
 Route::resource('rechazados', RechazadosController::class);
 
 Route::resource('contratados', ContratadosController::class);
+
+Route::post('/get-trabajador', [trabajadoresController::class, 'getInformacion']);
+
+/* ETAPA 2 */
+
+Route::resource('proceso-fechas', fechas::class);

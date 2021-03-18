@@ -8,22 +8,14 @@
 
 @section('content')
     <x-bandeja-entrada-documentos :diff-fecha="$userDepartamentoPersonal->created_at->diffForHumans()" data-parent-component="downloadFiles">
-      <x-item-card-document parent-component="downloadFiles" name-collapse="section_carta_no_inhabilitacion_download" card-header="headerCartaNoInhabilitacion" documento="Carta de No Inhabilitacion"{{-- departamento="Area Usuaria" --}}>
-        <a href="{{ route('download',['id' =>$userDepartamentoPersonal->id , 'departamento' => 'departamento_personal', 'file' => 'carta_no_inhabilitacion'] ) }}" class="btn btn-success btn-block">Descargar Carta de No Inhabilitacion</a>
+      <x-item-card-document parent-component="downloadFiles" name-collapse="section_carta_no_inhabilitacion_download" card-header="headerCartaNoInhabilitacion" documento="Memorandum"{{-- departamento="Area Usuaria" --}}>
+        <a href="{{ route('download',['id' =>$userDepartamentoPersonal->id , 'departamento' => 'departamento_personal', 'file' => 'memorandum_documento'] ) }}" class="btn btn-success btn-block">Descargar Memorandum</a>
       </x-item-card-document>
       {{-- ------- --}}
       <x-item-card-document parent-component="downloadFiles" name-collapse="section_cedulasiep_download" card-header="headerCedulaSIEP" documento="Cedula SIEP"{{-- departamento="Area Usuaria" --}}>
-        <a href="{{ route('download',['id' =>$userDepartamentoPersonal->id , 'departamento' => 'departamento_personal', 'file' => 'cedula_siep'] ) }}" class="btn btn-success btn-block">Descargar Cedula SIEP</a>
+        <a href="{{ route('download',['id' =>$userDepartamentoPersonal->id , 'departamento' => 'departamento_personal', 'file' => 'cedula_siep_documento'] ) }}" class="btn btn-success btn-block">Descargar Cedula SIEP</a>
       </x-item-card-document>
-      {{-- -------- --}} 
-      <x-item-card-document parent-component="downloadFiles" name-collapse="section_validacionsiep_download" card-header="headerValidacionSIEP" documento="Validacion SIEP"{{-- departamento="Area Usuaria" --}}>
-        <a href="{{ route('download',['id' =>$userDepartamentoPersonal->id , 'departamento' => 'departamento_personal', 'file' => 'validacion_siep'] ) }}" class="btn btn-success btn-block">Descargar Validacion SIEP</a>
-      </x-item-card-document>
-      {{-- -------- --}} 
-      <x-item-card-document parent-component="downloadFiles" name-collapse="section_resultados_ev_tec_download" card-header="headerResultados_ev_tec" documento="Resultados Ev Tec"{{-- departamento="Area Usuaria" --}}>
-        <a href="{{ route('download',['id' =>$userDepartamentoPersonal->id , 'departamento' => 'departamento_personal', 'file' => 'resultados_ev_tec'] ) }}" class="btn btn-success btn-block">Descargar Resultados Ev Tec</a>
-      </x-item-card-document>
-      {{-- -------- --}} 
+      {{--  --}}
       <x-item-card-document parent-component="downloadFiles" name-collapse="section_files_adicionales" card-header="headerFilesAdicionales" documento="Archivos Adicionales">
          @foreach (json_decode($archivos_adicionales[0]) as $key => $item)
                     @if ($item)

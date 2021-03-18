@@ -160,8 +160,8 @@ return [
         ],
         ['header' => 'RECEPCION DE DOCUMENTOS'],
         [
-            'text'    => 'Documentos de Postulados',
-            /* 'route' => 'fechas-validacion-documentos.index', */
+            'text'    => 'Proceso de Fechas',
+            'route' => 'proceso-fechas.index',
             'icon'    => 'fas fa-fw fa-share',
 
         ],

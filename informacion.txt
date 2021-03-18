@@ -46,3 +46,94 @@ BUSCADOR:
 
 El departamento de integración solo por plaza
 El departamento de desarrollo humano por ficha y nombre
+
+
+
+* bandeja de salida 
+memorandum
+cedula siep
+archivos adicionales 7 máximo
+
+En la bandeja de entrada del Departamento Personal solo se requiere descargar
+-Memorandum
+-Cedula SIEP
+-Archivos Adicionales (7 archivos como máximo)
+
+
+
+Importar las demas tablas 
+
+
+Integracion Regional
+* POSICION
+
+Desarrollo Humano
+* FICHA
+
+ETAPA 2:
+
+Departamento Personal
+
+Fecha de Contratacion
+
+ETAPA 3:
+
+Reportes Excel
+
+de ambos
+contratados
+postulados
+
+
+ERROR
+INTREGRACION REGIONAL
+en campo Motivo de Vacante
+
+
+RECORDATORIO
+
+REPORTE
+
+
+
+
+
+
+
+
+CAMPOS QUE SE RELLENAN AUTOMATICAMENTE
+
+* DESARROLLO HUMANO
+
+Ficha
+Situacion Contractual o RC
+Nombre
+
+* INTEGRACION REGIONAL
+Posicion
+Subdireccion
+Grupo
+Plaza
+Gerencia
+
+* ESPECIFICACIONES DE LOS CAMPOS DE CADA DEPARTAMENTO
+- Departamento de Integracion Regional
+En el campo de "Motivo de la Vacante", se requiere que sea un comboBox con las siguientes opciones:
+prorroga
+vacaciones
+promocion temporal
+ascenso temporal
+comision administrativas
+incapacidad medica
+CL/43 
+maternidad
+permisos economicos
+permisos renciables
+obra determinada
+
+
+
+
+
+
+

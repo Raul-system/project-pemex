@@ -45,7 +45,7 @@
   </section>
   <article class="row">
   {{-- -------------------------- --}}
-      <form class="container-fluid col-12 bg-light" action="{{ route('desarrollo-humano.store') }}" method="POST" enctype="multipart/form-data">
+      <form class="container-fluid col-12 bg-light" action="{{ route('desarrollo-humano.store') }}" method="POST" enctype="multipart/form-data" id="form-integacion-regional">
       {{-- Inicio del Formulario --}}
       @csrf
       <input type="hidden" name="id_validacion_procedimiento" value="{{ $userIntegracion->id }}">
@@ -91,19 +91,30 @@
                 </div>
                 <div class="form-group">
                   <label for="campo_grupo">Grupo: </label>
-                  <select name="grupo" id="campo_grupo" class="form-control">
+                  {{-- <select name="grupo" id="campo_grupo" class="form-control">
                     <option value="2">2</option>
                     <option value="3">3</option>
-                  </select>
-                  {{-- <input type="text" class="form-control" id="campo_grupo" name="grupo" placeholder="Grupo ..." value="{{ old('grupo') }}">
-                  {!!  $errors->first('grupo' , '<small class="text-danger font-weight-bold">:message</small>') !!} --}}
+                  </select> --}}
+                  <input type="text" class="form-control" id="campo_grupo" name="grupo" placeholder="Grupo ..." value="{{ old('grupo') }}">
+                  {!!  $errors->first('grupo' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                 </div>
                 
                 {{-- ---------------------- --}}
                         <div class="form-group">
                               <label for="campo_motivo_vacante">Motivo de la Vacante: </label>
-                              <input type="text" class="form-control" id="campo_motivo_vacante" name="motivo_vacante" placeholder="Moivo de Vacante ..." value="{{ old('motivo_vacante') }}">
-                              {!!  $errors->first('motivo_vacante' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                              <select name="motivo_vacante" id="campo_motivo_vacante" class="form-control">
+                                <option value="prorroga">prorroga</option>
+                                <option value="vacaciones">vacaciones</option>
+                                <option value="promocion temporal">promocion temporal</option>
+                                <option value="ascenso temporal">ascenso temporal</option>
+                                <option value="comision administrativas">comision administrativas</option>
+                                <option value="incapacidad medica">incapacidad medica</option>
+                                <option value="CL/43 ">CL/43 </option>
+                                <option value="maternidad">maternidad</option>
+                                <option value="permisos economicos">permisos economicos</option>
+                                <option value="permisos renciables">permisos renciables</option>
+                                <option value="obra determinada">obra determinada</option>
+                              </select>
                         </div>
                         <div class="form-group">
                               <label for="campo_vigencia">Vigencia: </label>
@@ -171,9 +182,28 @@
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script>
         $(document).ready(function () {
             bsCustomFileInput.init();
         })
+        $('#campo_posicion').on('keyup', function(){
+          $.ajax({
+            url : '/get-trabajador',
+            method: 'POST',
+            data: {
+              posicion : $('#campo_posicion').val(),
+              _token : $('input[name="_token"]').val()
+            }
+          }).done(function(response){
+            JSON.parse(response).forEach(element => {
+              $('#campo_grupo').val(element.grupo);
+              $('#campo_plaza').val(element.plaza);
+              $('#campo_gerencia').val(element.gerencia);
+            });
+          })
+        });
   </script>
+
 @stop

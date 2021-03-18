@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\admin\IntegracionRegional\Integracion;
 use App\Models\admin\DesarrolloHumano\DesarrolloHumano;
 use App\Models\admin\DepartamentoPersonal\DepartamentoPersonal;
+use Illuminate\Support\Facades\Storage;
 
 class downloadPDF extends Controller
 {
@@ -18,7 +19,7 @@ class downloadPDF extends Controller
         $this->middleware('auth');
         $this->resultados = '';
     }
-    function downloadPDF($id, $departamento, $file)
+    public function downloadPDF($id, $departamento, $file)
     {
         /*$ id para consultar directamente en los registros */
         /* departamento para saber en que tabla ir a buscar */
@@ -34,5 +35,9 @@ class downloadPDF extends Controller
             $this->resultados = DepartamentoPersonal::findOrFail($id);
         }
         return DownloadFiles($this->resultados->$file);
+    }
+    public function getWordDesarrolloHumano()
+    {
+        return Storage::download('public/word-desarrollo-humano/nvo_talento.docx');
     }
 }

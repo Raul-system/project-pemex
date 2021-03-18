@@ -29,5 +29,15 @@ class DepartamentoPersonal extends Model
         "documento2",
         "documento3",
         "documento4",
+        /* Documentos para Enviar al Departamento Personal */
+        "memorandum_documento",
+        "cedula_siep_documento",
+        "documento_1_adicional",
+        "documento_2_adicional",
+        "documento_3_adicional",
+        "documento_4_adicional",
+        "documento_5_adicional",
+        "documento_6_adicional",
+        "documento_7_adicional",
     ];
 }

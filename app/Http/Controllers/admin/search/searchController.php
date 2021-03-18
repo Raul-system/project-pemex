@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\admin\IntegracionRegional\Integracion;
 use App\Models\admin\DesarrolloHumano\DesarrolloHumano;
 use App\Models\admin\DepartamentoPersonal\DepartamentoPersonal;
+use App\Models\Contratados;
+use App\Models\Rechazados;
 
 class searchController extends Controller
 {
@@ -28,6 +30,14 @@ class searchController extends Controller
             case 'Departamento_Personal':
                 $this->resultados_response = DepartamentoPersonal::where($request->get('text_search'), 'like', '%' . $request->get('text') . '%')
                     ->where('validacion', 'false')
+                    ->get();
+                break;
+            case 'Contratados':
+                $this->resultados_response = Contratados::where($request->get('text_search'), 'like', '%' . $request->get('text') . '%')
+                    ->get();
+                break;
+            case 'Rechazados':
+                $this->resultados_response = Rechazados::where($request->get('text_search'), 'like', '%' . $request->get('text') . '%')
                     ->get();
                 break;
                 /* default:
