@@ -6,6 +6,9 @@
     <h1>Proceso de Documentos - Fechas </h1>
 @stop
 @section('content')
+<div class="container d-flex justify-content-end">
+    <a class="btn btn-success btn-md" href="{{route('proceso-fechas.index')}}">Regresar</a>
+</div>
     <section class="container border border-dark">
         <section class="container bg-light">
             <article>

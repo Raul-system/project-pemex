@@ -40,6 +40,9 @@ class searchController extends Controller
                 $this->resultados_response = Rechazados::where($request->get('text_search'), 'like', '%' . $request->get('text') . '%')
                     ->get();
                 break;
+            case 'Fechas':
+                $this->resultados_response = DepartamentoPersonal::where($request->get('text_search'), 'like', '%' . $request->get('text') . '%')->get();
+                break;
                 /* default:
 // 
                 break; */

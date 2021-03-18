@@ -18,6 +18,10 @@ use App\Http\Controllers\admin\Trabajadores\trabajadoresController;
 /* ETAPA 2 */
 use App\Http\Controllers\admin\Etapa2\fechas;
 
+/* Etapa 3 */
+use App\Exports\UserExport;
+use App\Http\Controllers\admin\Etapa3\reporteExcelCandidato;
+
 Route::get('/', function () {
     return redirect()->route('area-usuaria');
 });
@@ -52,3 +56,10 @@ Route::post('/get-trabajador', [trabajadoresController::class, 'getInformacion']
 /* ETAPA 2 */
 
 Route::resource('proceso-fechas', fechas::class);
+
+/* ETAPA 3 */
+Route::get('lista-contratados-generar-reporte', [reporteExcelCandidato::class, 'getCandidatoExcel'])->name('list-contratados-excel');
+
+Route::get('descargar-reporte-excel/{id}', function ($id) {
+    return (new UserExport($id))->download('reporte-candidato' . $id . '.xlsx');
+})->name('generar-reporte-excel-candidato');

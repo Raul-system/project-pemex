@@ -8,21 +8,6 @@
 
 @section('content')
     <section class="container my-2">
-    <x-search-component modelo="Rechazados" route-redirect="rechazados.show" :campos="array(
-                [
-                    'text'=>'Plaza',
-                    'value'=>'plaza'
-                ],
-                [
-                    'text'=>'Ficha',
-                    'value'=>'ficha'
-                ],
-                [
-                    'text'=>'Nombre',
-                    'value'=>'nombre'
-                ],
-
-            )"></x-search-component>
     </section>
     <section class="container">
         @if (session('status'))

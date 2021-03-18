@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
- <x-search-component modelo="Departamento_Personal" route-redirect="departamento-personal.show" :campos="array(
+ {{-- <x-search-component modelo="Departamento_Personal" route-redirect="departamento-personal.show" :campos="array(
                 [
                     'text'=>'Ficha',
                     'value'=>'ficha'
@@ -16,7 +16,7 @@
                     'text'=>'Nombre',
                     'value'=>'nombre'
                 ]
-            )"></x-search-component>
+            )"></x-search-component> --}}
 @if (session('status'))
         <section class="container">
             <div class="alert alert-success text-center font-weight-bold" style="font-size: 22px;">

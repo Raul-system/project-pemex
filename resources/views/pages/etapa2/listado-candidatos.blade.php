@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
- <x-search-component modelo="Desarrollo_Humano" route-redirect="desarrollo-humano.show" :campos="array(
+ <x-search-component modelo="Fechas" route-redirect="proceso-fechas.show" :campos="array(
                  [
                     'text'=>'Nombre',
                     'value'=>'nombre'
@@ -15,10 +15,6 @@
                 [
                     'text'=>'Ficha',
                     'value'=>'ficha'
-                ],
-                [
-                    'text'=>'Plaza',
-                    'value'=>'plaza'
                 ],
             )"></x-search-component>
     {{-- --------------------- --}}

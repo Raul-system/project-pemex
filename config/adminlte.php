@@ -167,8 +167,8 @@ return [
         ],
         ['header' => 'REPORTES EXCEL'],
         [
-            'text'    => 'Generar reporte',
-            /* 'route' => 'generar-reportes-empleados.index', */
+            'text'    => 'Generar reporte Excel',
+            'route' => 'list-contratados-excel',
             'icon'    => 'fas fa-fw fa-share',
 
         ],
