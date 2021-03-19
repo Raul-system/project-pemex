@@ -8,6 +8,10 @@ use App\Models\trabajadores;
 
 class trabajadoresController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function getInformacion(Request $request)
     {
         /* Debo recibir una posicion */

@@ -11,6 +11,10 @@ use App\Models\Contratados;
 
 class ContratadosController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $contratados = Contratados::paginate(20);

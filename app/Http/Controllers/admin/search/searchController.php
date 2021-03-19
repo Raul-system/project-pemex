@@ -14,6 +14,10 @@ class searchController extends Controller
 {
     public $resultados_response;
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function getSearchToConsulte(Request $request)
     {
         switch ($request->get('modelo')) {

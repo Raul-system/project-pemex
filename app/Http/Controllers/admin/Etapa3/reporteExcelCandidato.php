@@ -8,6 +8,10 @@ use App\Models\Contratados;
 
 class reporteExcelCandidato extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function getCandidatoExcel()
     {
         $lista_contratados_reporte = Contratados::paginate(25);

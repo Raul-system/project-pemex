@@ -13,6 +13,10 @@ use App\Models\Contratados;
 
 class fechas extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         /* Retorno la lista en base a los registros de Integracion Regional, ya que desde ahi se comienza el proceso */
