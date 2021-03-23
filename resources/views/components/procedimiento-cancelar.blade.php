@@ -40,8 +40,10 @@
     </form>
 </section>
     <script type="text/javascript">
+    /* Buscamos el checkbox que habilitada la opcion "por otros motivos" y asi tambien habilitar el campo de texto para poder escribir sobre él */
     const checkBox = document.getElementById('other_motivos'), boxOtherMotivos = document.getElementById('box_otros_motivos');
     
+    /* Cada vez que sea seleccionado o lo contrario, se habilitara o deshabilitará el campo de texto para especificar el motivo */
         checkBox.addEventListener('change', function(){
             (checkBox.checked) ? boxOtherMotivos.removeAttribute('disabled') : boxOtherMotivos.setAttribute('disabled','disabled');
             (!checkBox.checked) ? boxOtherMotivos.value='' : null

@@ -33,24 +33,22 @@ class RechazadosController extends Controller
         $postulado = Integracion::findOrFail($request->get('id_postulado'));
         $postulado_desarrolloHumano = DesarrolloHumano::where('id_integracion', $postulado->id)->get();
         $postulado_departamentoPersonal = DepartamentoPersonal::where('id_integracion', $postulado->id)->get();
-        // /* Aqui se va a plantear el registro de un nuevo rechazado, asi como conllevar el proceso de eliminacion de cada uno de los archivos correspondientes*/
-
+        /* Aqui se va a plantear el registro de un nuevo rechazado, asi como conllevar el proceso de eliminacion de cada uno de los archivos correspondientes*/
         if ($postulado->first()) {
             Storage::deleteDirectory($postulado->name_directory);
             $postulado->delete();
         }
         if ($postulado_desarrolloHumano->first()) {
-            Storage::deleteDirectory($postulado_desarrolloHumano->name_directory);
-            $postulado_desarrolloHumano->delete();
+            Storage::deleteDirectory($postulado_desarrolloHumano[0]->name_directory);
+            $postulado_desarrolloHumano[0]->delete();
         }
         if ($postulado_departamentoPersonal->first()) {
-            Storage::deleteDirectory($postulado_departamentoPersonal->name_directory);
-            $postulado_departamentoPersonal->delete();
+            Storage::deleteDirectory($postulado_departamentoPersonal[0]->name_directory);
+            $postulado_departamentoPersonal[0]->delete();
         }
         Rechazados::create([
             'observaciones' => Observaciones_No_Procedio($request, $request->get('departamento'))
         ]);
-
         return redirect()->route('rechazados.index')->with('status', 'El Usuario ya fue registrado en los Candidatos Rechazados');
     }
 

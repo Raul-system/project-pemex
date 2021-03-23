@@ -13,7 +13,7 @@ use App\Models\Rechazados;
 class searchController extends Controller
 {
     public $resultados_response;
-
+    public $id_integracion_etapa2_busqueda;
     public function __construct()
     {
         $this->middleware('auth');
@@ -46,6 +46,11 @@ class searchController extends Controller
                 break;
             case 'Fechas':
                 $this->resultados_response = DepartamentoPersonal::where($request->get('text_search'), 'like', '%' . $request->get('text') . '%')->get();
+                if( $this->resultados_response->first() ){
+                    $this->id_integracion_etapa2_busqueda = Integracion::findOrFail($this->resultados_response[0]->id_integracion);
+                }else{
+                    $this->id_integracion_etapa2_busqueda = null;
+                }
                 break;
                 /* default:
 // 
@@ -54,6 +59,7 @@ class searchController extends Controller
         return view('search.resultados-busqueda', [
             'resultados' => $this->resultados_response,
             'routeConsult' => $request->get('route_consulta'),
+            'id_integracion_busqueda_etapa2'=>($this->id_integracion_etapa2_busqueda != null) ? $this->id_integracion_etapa2_busqueda->id : null ,
             'nameModel' => $request->get('modelo')
         ]);
     }

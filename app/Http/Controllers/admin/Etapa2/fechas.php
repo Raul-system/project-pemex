@@ -34,6 +34,7 @@ class fechas extends Controller
         //
     }
 
+
     public function show($id)
     {
         $proceso_integracionRegional = Integracion::findOrFail($id);

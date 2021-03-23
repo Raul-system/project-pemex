@@ -42,7 +42,7 @@
       <section class="container my-2">
         <p class="text-center font-weight-bold h2">Rechazar Documentos</p>
       </section>
-      <x-procedimiento-cancelar departamento="Desarrollo Humano" :data="$userDesarrolloHumano->id" :controls="$controls"></x-procedimiento-cancelar>
+      <x-procedimiento-cancelar departamento="Desarrollo Humano" :data="$userDesarrolloHumano->id_integracion" :controls="$controls"></x-procedimiento-cancelar>
     </div>
     {{-- ---- --}}
     <div class="col-5 mt-4 mb-5" title="Informacion de No Procede">
@@ -57,6 +57,7 @@
       <form class="container-fluid col-12 bg-light" action="{{ route('departamento-personal.store') }}" method="POST" enctype="multipart/form-data">
       {{-- Inicio del Formulario --}}
       @csrf
+      <input type="hidden" name="id_registro_desarrollo_humano" value="{{ $userDesarrolloHumano->id }}">
       <input type="hidden" name="id_validacion_procedimiento" value="{{ $userDesarrolloHumano->id_integracion }}">
       <input type="hidden" id="posicion_cargar_datos" value="{{ $userDesarrolloHumano->posicion }}">
           {{-- ---------------- --}}
@@ -175,14 +176,14 @@
                             <div class="col-6">
                                   <div class="custom-file">
                                     {!!  $errors->first('memorandum_documento' , '<small class="text-danger font-weight-bold">:message</small>') !!}
-                                      <input type="file" class="custom-file-input" id="memorandum_file" name="memorandum_documento" lang="es" accept=".pdf" multiple>
+                                      <input type="file" class="custom-file-input" id="memorandum_file" name="memorandum_documento" lang="es" accept=".pdf">
                                       <label class="custom-file-label" for="memorandum_file">Memorandum</label>
                                   </div>
                                 </div>
                                 <div class="col-6 custom-file">
                                   <div class="custom-file">
                                     {!!  $errors->first('cedula_siep_documento' , '<small class="text-danger font-weight-bold">:message</small>') !!}
-                                      <input type="file" class="custom-file-input" id="cedula_siep_documento" name="cedula_siep_documento" lang="es" accept=".pdf" multiple>
+                                      <input type="file" class="custom-file-input" id="cedula_siep_documento" name="cedula_siep_documento" lang="es" accept=".pdf">
                                       <label class="custom-file-label" for="cedula_siep_documento">Cedula SIEP</label>
                                   </div>
                                 </div>
@@ -206,20 +207,6 @@
                         {{-- fin de la  bandeja de salida --}}
                     </section>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                         <div class="container py-2 my-3" title="Envio de los Datos a Desarrollo Humano">
@@ -246,6 +233,7 @@
     <script>
         $(document).ready(function () {
             bsCustomFileInput.init()
+            /* Realizo una peticion Ajax al servidor una vez cargada la página, para generar los valores de forma automática en los campos */
               $.ajax({
             url : '/get-trabajador',
             method: 'POST',

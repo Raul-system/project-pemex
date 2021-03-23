@@ -52,6 +52,18 @@
     </div>
   </form>
 </div>
+<hr>
+<section class="container bg-light mb-4" title="Descargar Documentos de Desarrollo Humano">
+  <p class="text-center h2 my-4">Descargar Documentos de Desarrollo Humano</p>
+  <article class="row">
+    @foreach (json_decode($archivos_adicionales_desarrollo_humana[0]) as $key => $item)
+          @if ($item)
+              <a class="btn btn-success btn-block my-2" href="{{ route('download',['id' =>$userDepartamentoPersonal->id , 'departamento' => 'departamento_personal', 'file' => $key]) }}">Descargar {{$key}}</a>
+          @endif
+        @endforeach
+
+  </article>
+</section>
 @stop
 
 {{-- @section('css')

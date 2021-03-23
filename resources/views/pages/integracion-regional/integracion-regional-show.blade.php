@@ -185,9 +185,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script>
-        $(document).ready(function () {
-            bsCustomFileInput.init();
-        })
+    $(document).ready(function () {
+      /* Se carga una libreria para la gestion de archivos en un campo de tipo File */
+      bsCustomFileInput.init();
+    })
+    /* Se realiza la peticion Ajax al Servidor, se manda la posicion para que el servidor devuelva los datos del registro correspondiente */
         $('#campo_posicion').on('keyup', function(){
           $.ajax({
             url : '/get-trabajador',

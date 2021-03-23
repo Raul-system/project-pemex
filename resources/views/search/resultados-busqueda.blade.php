@@ -152,7 +152,7 @@
                     {{ isset($item->ficha) ? $item->ficha : 'No hay registros disponibles'  }}
                 </div>
                    <div class="col-3">
-                    <a href="{{ route('proceso-fechas.show', $item->id) }}" class="btn btn-success btn-block" title="Consultar Fechas">Consultar Proceso y Fechas...</a>
+                    <a href="{{ route('proceso-fechas.show', $id_integracion_busqueda_etapa2) }}" class="btn btn-success btn-block" title="Consultar Fechas">Consultar Proceso y Fechas...</a>
                 </div>
             </section>
             @endforeach

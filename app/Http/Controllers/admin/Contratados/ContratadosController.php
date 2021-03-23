@@ -27,7 +27,6 @@ class ContratadosController extends Controller
 
     public function store(Request $request)
     {
-        /* $Integracion = Integracion::all(); */
         $desarrolloHumano = DesarrolloHumano::where('id_integracion', $request->get('id_integracion'))->get();
         $departamentoPersonal = DepartamentoPersonal::where('id_integracion', $request->get('id_integracion'))->get();
         /* Lo primero es encontrar el id del Postulado desde Integracion */

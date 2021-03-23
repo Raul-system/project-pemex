@@ -39,6 +39,7 @@ class departamentoPersonalController extends Controller
     }
     public function store(Request $request)
     {
+        /* Creo un Nombre de Directorio o carpeta para guardar los archivos que me manda Desarrollo Humano */
         $Directorio = NameDirectory('desarrolloHumano');
         if ($request->hasFile('carta_no_inhabilitacion')) {
             $this->carta_no_inhabilitacion =  saveFile($request->file('carta_no_inhabilitacion'), 'departamento_personal/' . $Directorio . '/documentos_desarrollo_humano');
@@ -67,6 +68,7 @@ class departamentoPersonalController extends Controller
         if ($request->hasFile('archivos_adicionales_documentos')) {
             $this->path_documentos_adicionales =  saveFile($request->file('archivos_adicionales_documentos'), 'departamento_personal/' . $Directorio . '/para_departamento_personal/documentos_adicionales', true);
         }
+        /* Lo registro en el Departamento Personal */
         DepartamentoPersonal::create([
             "id_integracion" => $request->get('id_validacion_procedimiento'),
             "ficha" => $request->get('ficha'),
@@ -97,7 +99,7 @@ class departamentoPersonalController extends Controller
             "documento_6_adicional" => isset($this->path_documentos_adicionales[5]) ? $this->path_documentos_adicionales[5] : null,
             "documento_7_adicional" => isset($this->path_documentos_adicionales[6]) ? $this->path_documentos_adicionales[6] : null,
         ]);
-        $update_validation_to_true = DesarrolloHumano::findOrFail($request->get('id_validacion_procedimiento'));
+        $update_validation_to_true = DesarrolloHumano::findOrFail($request->get('id_registro_desarrollo_humano'));
         $update_validation_to_true->validacion = 'true';
         $update_validation_to_true->save();
         return redirect()->route('desarrollo-humano.index')->with('status', 'Usuario registrado Correctamente!');
@@ -106,6 +108,7 @@ class departamentoPersonalController extends Controller
     public function show($id)
     {
         $archivos_adicionales = DepartamentoPersonal::select('documento_1_adicional', 'documento_2_adicional', 'documento_3_adicional', 'documento_4_adicional', 'documento_5_adicional', 'documento_6_adicional', 'documento_7_adicional')->where('id', $id)->get();
+        $archivos_adicionales_desarrollo_humana = DepartamentoPersonal::select("carta_no_inhabilitacion","cedula_siep","validacion_siep","resultados_ev_tec","documento1","documento2","documento3","documento4")->where('id',$id)->get();
         $userDepartamentoPersonal = DepartamentoPersonal::findOrFail($id);
         $controls =  array(
             [
@@ -127,7 +130,7 @@ class departamentoPersonalController extends Controller
         if ($userDepartamentoPersonal->validacion == 'true') {
             return abort(404);
         } else if ($userDepartamentoPersonal->validacion == 'false') {
-            return view('pages.departamento-personal.departamento-personal-show', compact('userDepartamentoPersonal', 'archivos_adicionales', 'controls'));
+            return view('pages.departamento-personal.departamento-personal-show', compact('userDepartamentoPersonal', 'archivos_adicionales', 'controls', 'archivos_adicionales_desarrollo_humana'));
         }
     }
 

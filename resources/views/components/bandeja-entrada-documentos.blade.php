@@ -23,32 +23,10 @@
                             <i class="fa fa-angle-double-down" style="font-size: 25px;" aria-hidden="true"></i>
                         </button>
                     </div>
-                    {{-- -------------------------------------------------- --}}
-                
-
                     <section class="container collapse" id="SectiondownloadFiles">
                         {{-- inicio de la  bandeja de entrada --}}
                         <div class="accordion" id="{{ $accordionID }}">
-
-
-                        {{-- <div class="card">
-                                <div class="card-header" id="headingOne">
-                                        <h2 class="mb-0">
-                                            <button class="btn btn-link btn-block text-center font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Memorandum
-                                            </button>
-                                        </h2>
-                                </div>
-                                    
-                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#downloadFiles">
-                                        <div class="card-body">
-                                                <a href="{{ route('download',['id' =>$userIntegracion->id , 'departamento' => 'integracion_regional', 'file' => 'memorandum'] ) }}" class="btn btn-success btn-block">Descargar Memorandum</a>
-                                        </div>
-                                </div>
-                        </div>
-                    --}}
                         {{ $slot }}
-
                         </div>
                         {{-- fin de la  bandeja de entrada --}}
                     </section>

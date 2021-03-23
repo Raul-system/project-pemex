@@ -22,7 +22,7 @@
                 <span class="font-weight-bold text-white">ID</span>
             </div>
             <div class="col-11 border border-white bg-dark">
-                <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Proceso de Documentacion</span></div>
+                <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Observaciones</span></div>
             </div>
         </section>
         @foreach ($rechazados as $item)

@@ -23,7 +23,9 @@ class desarrolloHumanoController extends Controller
 
     public function index()
     {
+        /* Obtengo todos los registros de Desarrollo Humano y los pagino, es decir, los ordeno 15 por cada página o representación por página */
         $desarrolloHumano = DesarrolloHumano::where('validacion', 'false')->paginate(15);
+        /* Devuelvo una vista o página con los registros que consulte anteriormente */
         return view('pages.desarrollo-humano.desarrollo-humano-index', compact('desarrolloHumano'));
     }
 
@@ -44,6 +46,7 @@ class desarrolloHumanoController extends Controller
             "gerencia" => 'required',
             "validacion" => 'required',
         ]); */
+        /* Se crea un Nombre de Directorio o carpeta única para guardar los archivos de un usuario */
         $Directorio = NameDirectory('desarrolloHumano');
         if ($request->hasFile('memorandum')) {
             $this->path_memorandum =  saveFile($request->file('memorandum'), 'desarrollo_humano/' . $Directorio);
@@ -54,6 +57,7 @@ class desarrolloHumanoController extends Controller
         if ($request->hasFile('files_especials')) {
             $this->path_files_adicionales = saveFile($request->file('files_especials'), 'desarrollo_humano/' . $Directorio . "/clausula3", true);
         }
+        /* Se registra en el Departamento de Desarrollo Humano */
         DesarrolloHumano::create([
             "id_integracion" => $request->get('id_validacion_procedimiento'),
             "posicion" => $request->get('posicion'),
@@ -78,7 +82,7 @@ class desarrolloHumanoController extends Controller
         $update_validation_to_true = Integracion::findOrFail($request->get('id_validacion_procedimiento'));
         $update_validation_to_true->validacion = 'true';
         $update_validation_to_true->save();
-
+        /* Se redireccion al mismo Departamentro de Integracion Regional con un mensaje de que el Usuario fue registrado correctamente */
         return redirect()->route('integracion-regional.index')->with('status', 'Usuario registrado Correctamente!');
     }
 
@@ -109,7 +113,7 @@ class desarrolloHumanoController extends Controller
             ],
             [
                 'Name' => 'carta_no_inhabilitacion',
-                'Texto' => 'Cata de No Inhabilitación',
+                'Texto' => 'Carta de No Inhabilitación',
                 'Razon' => 'Sin carta de No Inhabilitacion'
             ],
             [
