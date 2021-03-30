@@ -187,19 +187,6 @@
 
 @section('js')
 
-<script src="{{asset('lib/js/jQuery/jquery.js')}}"></script>
-<script src="{{ asset('lib/js/jquery-ui.js') }}"></script>
- <script type="text/javascript">
-  $('#campo_vigencia').datepicker({
-    dateFormat: "dd/mm/yy",
-    numerOfMonths : 1,
-    changeYear: true,
-    changeMonth: true,
-    showWeek: true,
-    weekHeader : "wk no",
-    showOtherMonths: true,
-  });
- </script>
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -218,6 +205,7 @@
             method: 'POST',
             data: {
               posicion : $('#campo_posicion').val(),
+              concepto : 'posicion',
               _token : $('input[name="_token"]').val()
             }
           }).done(function(response){
@@ -229,6 +217,21 @@
           })
         });
   </script>
+
+
+<script src="{{asset('lib/js/jQuery/jquery.js')}}"></script>
+<script src="{{ asset('lib/js/jquery-ui.js') }}"></script>
+ <script type="text/javascript">
+  $('#campo_vigencia').datepicker({
+    dateFormat: "dd/mm/yy",
+    numerOfMonths : 1,
+    changeYear: true,
+    changeMonth: true,
+    showWeek: true,
+    weekHeader : "wk no",
+    showOtherMonths: true,
+  });
+ </script>
 
 @stop
 
