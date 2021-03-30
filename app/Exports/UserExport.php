@@ -18,6 +18,13 @@ class UserExport implements FromView
     }
     public function view(): View
     {
+        /* Ordenar
+        1. RC
+2. Ficha
+3. Nombre
+4. Profesión
+....
+        */
         return view('pages.etapa3.generar_reporte_individual', [
             'candidato_contratado' => Contratados::findOrFail($this->id),
         ]);

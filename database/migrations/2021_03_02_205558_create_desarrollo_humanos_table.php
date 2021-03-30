@@ -23,6 +23,7 @@ class CreateDesarrolloHumanosTable extends Migration
             $table->string("vigencia")->nullable();
             $table->string("plaza")->nullable();
             $table->string("gerencia")->nullable();
+            $table->string("juridiccion_plaza");
             $table->string("validacion")->default('false');
             $table->text("name_directory");
             $table->longText("memorandum")->nullable();

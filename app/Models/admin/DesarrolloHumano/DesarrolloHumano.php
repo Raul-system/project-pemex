@@ -19,6 +19,7 @@ class DesarrolloHumano extends Model
         "vigencia",
         "plaza",
         "gerencia",
+        "juridiccion_plaza",
         "validacion",
         "name_directory",
         "memorandum",

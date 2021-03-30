@@ -67,6 +67,7 @@ class desarrolloHumanoController extends Controller
             "vigencia" => $request->get('vigencia'),
             "plaza" => $request->get('plaza'),
             "gerencia" => $request->get('gerencia'),
+            "juridiccion_plaza" => $request->get('juridiccion_plaza'),
             "validacion" => 'false',
             "name_directory" => 'public/desarrollo_humano/' . $Directorio,
             'memorandum' => $this->path_memorandum,

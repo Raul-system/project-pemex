@@ -231,14 +231,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function () {
-            bsCustomFileInput.init()
+        $('#campo_ficha').on('keyup',function () {
+            bsCustomFileInput.init();
             /* Realizo una peticion Ajax al servidor una vez cargada la página, para generar los valores de forma automática en los campos */
               $.ajax({
             url : '/get-trabajador',
             method: 'POST',
             data: {
-              posicion : $('#posicion_cargar_datos').val(),
+              ficha : $('#campo_ficha').val(),
               _token : $('input[name="_token"]').val()
             }
           }).done(function(response){

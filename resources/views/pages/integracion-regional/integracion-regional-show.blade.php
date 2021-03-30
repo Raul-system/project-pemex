@@ -117,9 +117,10 @@
                               </select>
                         </div>
                         <div class="form-group">
+                          <div class="container"></div>
                               <label for="campo_vigencia">Vigencia: </label>
-                              <input type="text" class="form-control" id="campo_vigencia" name="vigencia" placeholder="Vigencia ..." value="{{ old('vigencia') }}">
-                              {!!  $errors->first('vigencia' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                                  <input type="text" class="form-control" id="campo_vigencia" name="vigencia" placeholder="Seleccione una fecha..." value="{{ old('vigencia') }}">
+                                  {!!  $errors->first('vigencia' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                         </div>
                         <div class="form-group">
                             <label for="campo_plaza">Plaza: </label>
@@ -130,6 +131,11 @@
                             <label for="campo_gerencia">Gerencia: </label>
                             <input type="text" class="form-control" id="campo_gerencia" name="gerencia" placeholder="gerencia ..." value="{{ old('gerencia') }}">
                             {!!  $errors->first('gerencia' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                        </div>
+                        <div class="form-group">
+                            <label for="campo_gerencia">Juridiccion de Plaza: </label>
+                            <input type="text" class="form-control" id="campo_juridiccion_plaza" name="juridiccion_plaza" placeholder="juridiccion de plaza ..." value="{{ old('juridiccion_plaza') }}">
+                            {!!  $errors->first('juridiccion_plaza' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                         </div>
                         
             </section>
@@ -180,10 +186,26 @@
 @stop --}}
 
 @section('js')
-    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script src="{{asset('lib/js/jQuery/jquery.js')}}"></script>
+<script src="{{ asset('lib/js/jquery-ui.js') }}"></script>
+ <script type="text/javascript">
+  $('#campo_vigencia').datepicker({
+    dateFormat: "dd/mm/yy",
+    numerOfMonths : 1,
+    changeYear: true,
+    changeMonth: true,
+    showWeek: true,
+    weekHeader : "wk no",
+    showOtherMonths: true,
+  });
+ </script>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        
+<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
   <script>
     $(document).ready(function () {
       /* Se carga una libreria para la gestion de archivos en un campo de tipo File */
@@ -208,4 +230,10 @@
         });
   </script>
 
+@stop
+
+@section('css')
+<link rel="stylesheet" href="{{ asset('lib/css/jquery-ui.min.css') }}">
+<link rel="stylesheet" href="{{ asset('lib/css/jquery-ui.structure.min.css') }}">
+<link rel="stylesheet" href="{{ asset('lib/css/jquery-ui.theme.min.css') }}">
 @stop
