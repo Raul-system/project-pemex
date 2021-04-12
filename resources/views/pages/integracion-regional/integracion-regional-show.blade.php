@@ -173,14 +173,14 @@
                             <div class="col-6">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" id="memorandum_file" name="memorandum" lang="es" accept=".pdf" value="{{ old('memorandum') }}">
-                                  <label class="custom-file-label" for="memorandum_file">Memorandum Firmado</label>
+                                  <label class="custom-file-label" for="memorandum_file">Memorandum Firmado <small class="text-primary mx-1">Máximo 128 MB</small> </label>
                                   {!!  $errors->first('memorandum' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" id="cedula_siep_file" name="cedula_siep" lang="es" accept=".pdf" value="{{ old('cedula_siep') }}">
-                                  <label class="custom-file-label" for="cedula_siep_file">Cédula SIEP Firmado</label>
+                                  <label class="custom-file-label" for="cedula_siep_file">Cédula SIEP Firmado <small class="text-primary mx-1">Máximo 128 MB</small> </label>
                                   {!!  $errors->first('cedula_siep' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                                 </div>
                             </div>
@@ -191,7 +191,7 @@
                                 <div class="col-12 custom-file">
                                   {!!  $errors->first('files_especials' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                                     <input type="file" class="custom-file-input" id="files_especiales" name="files_especials[]" lang="es" accept=".pdf" multiple>
-                                    <label class="custom-file-label" for="files_especiales">Subir Archivos Adicionales Especiales</label>
+                                    <label class="custom-file-label" for="files_especiales">Subir Archivos Adicionales Especiales <small class="text-primary mx-1">Máximo 768 MB en Total</small> </label>
                                 </div>
                             </div>
                         </div>

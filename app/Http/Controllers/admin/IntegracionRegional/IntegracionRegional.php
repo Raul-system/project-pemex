@@ -33,6 +33,18 @@ class IntegracionRegional extends Controller
     }
     public function store(Request $request)
     {
+
+        /* Validaciones */
+        $request->validate([
+            "posicion" => 'required|max:255',
+            "ficha" => 'required|max:255',
+            "nombre" => 'required|max:255',
+            "regimen_contractual" => 'required|max:255',
+            'memorandum' => 'required|file|mimes:pdf|max:256000',
+            'files_especials' => 'array',
+            'files_especials.*' => 'file|mimes:pdf|max:768000'
+        ]);
+
         /* La peticion surge desde la area Usuaria, que envia una serie de datos de POST, para que lo registre directamente en Integracion */
         $Directorio = NameDirectory('RaulMohenoZavaleta');
         if ($request->hasFile('memorandum')) {

@@ -37,16 +37,25 @@ class desarrolloHumanoController extends Controller
 
     public function store(Request $request)
     {
-        /* $request->validate([
-            "posicion" => 'required',
-            "subdireccion" => 'required',
-            "grupo" => 'required',
-            "motivo_vacante" => 'required',
-            "vigencia" => 'required',
-            "plaza" => 'required',
-            "gerencia" => 'required',
-            "validacion" => 'required',
-        ]); */
+        $request->validate([
+            "posicion" => 'required|max:255',
+            "subdireccion" => 'required|max:255',
+            "grupo" => 'required|max:255',
+            "nivel" => 'required|max:255',
+            "categoria" => 'required|max:255',
+            "clasificacion" => 'required|max:255',
+            "motivo_vacante" => 'required|max:255',
+            "vigencia" => 'required|max:255',
+            "plaza" => 'required|max:255',
+            "eps" => 'required|max:255',
+            "gerencia" => 'required|max:255',
+            "juridiccion_plaza" => 'required|max:255',
+            "area_integracion_valida" => 'required|max:255',
+            'memorandum' => 'required|file|max:128000|mimes:pdf',
+            'cedula_siep' => 'required|file|max:128000|mimes:pdf',
+            'files_especials' => 'array',
+            'files_especials.*' => 'file|mimes:pdf|max:768000',
+        ]);
         /* Se crea un Nombre de Directorio o carpeta única para guardar los archivos de un usuario */
         $Directorio = NameDirectory('desarrolloHumano');
         if ($request->hasFile('memorandum')) {

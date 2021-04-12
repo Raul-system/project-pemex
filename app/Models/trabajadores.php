@@ -17,6 +17,10 @@ class trabajadores extends Model
         "gerencia",
         "ficha",
         "nombre",
-        "rc"
+        "rc",
+        "eps",
+        "nivel",
+        "categoria",
+        "clasificacion"
     ];
 }

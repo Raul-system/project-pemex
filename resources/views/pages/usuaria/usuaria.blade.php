@@ -26,21 +26,24 @@
                 <div class="col-12">
                     <div class="form-group">
                       <label for="posicion">Posicion</label>
-                      <input type="text" class="form-control" id="posicion" name="posicion" placeholder="Escribe la posicion..." onkeyup="enabledInputFiles()">
+                      <input type="text" class="form-control" id="posicion" name="posicion" placeholder="Escribe la posicion..." onkeyup="enabledInputFiles()" value="{{ old("posicion") }}">
+                      {!!  $errors->first('posicion' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                     </div>
                 </div>
 
                 <div class="col-12">
                     <div class="form-group">
                       <label for="ficha">Ficha</label>
-                      <input type="text" class="form-control" id="ficha" name="ficha" placeholder="Escribe la ficha..." onkeyup="enabledInputFiles()">
+                      <input type="text" class="form-control" id="ficha" name="ficha" placeholder="Escribe la ficha..." onkeyup="enabledInputFiles()" value="{{ old("ficha") }}">
+                      {!!  $errors->first('ficha' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                     </div>
                 </div>
 
                 <div class="col-12">
                     <div class="form-group">
                       <label for="nombre">Nombre</label>
-                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escribe la nombre..." onkeyup="enabledInputFiles()">
+                      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escribe la nombre..." onkeyup="enabledInputFiles()" value="{{ old("nombre") }}">
+                      {!!  $errors->first('nombre' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                     </div>
                 </div>
 
@@ -48,15 +51,17 @@
                 <div class="col-12">
                     <div class="form-group">
                       <label for="regimen_contractual">Regimen contractual</label>
-                      <input type="text" class="form-control" id="regimen_contractual" name="regimen_contractual" placeholder="Escribe la regimen_contractual..." onkeyup="enabledInputFiles()">
+                      <input type="text" class="form-control" id="regimen_contractual" name="regimen_contractual" placeholder="Escribe la regimen_contractual..." onkeyup="enabledInputFiles()" value="{{ old("regimen_contractual") }}">
+                      {!!  $errors->first('regimen_contractual' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                     </div>
                 </div>
 
         <!-- Campos para adjuntar los documentos -->
                 <div class="col-12 mt-4">
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="memorandum_file" name="memorandum" lang="es" accept=".pdf" disabled>
-                      <label class="custom-file-label" for="memorandum_file">Memorandum</label>
+                      <input type="file" class="custom-file-input" id="memorandum_file" name="memorandum" lang="es" accept=".pdf"  disabled value="{{ old('memorandum') }}">
+                      <label class="custom-file-label" for="memorandum_file">Memorandum <small class="text-primary mx-1">Máximo 256 MB</small> </label>
+                      {!!  $errors->first('memorandum' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                     </div>
                 </div>
                 {{-- <div class="col-6">
@@ -70,11 +75,13 @@
                 <p class="text-center font-weight-bold my-2"><i class="fa fa-exclamation-triangle mx-1" aria-hidden="true"></i>Favor de Solo subir 7 archivos como máximo</p>
                 <div class="row py-3 px-2">
                     <div class="col-12 custom-file">
-                        <input type="file" class="custom-file-input" id="files_especiales" name="files_especials[]" lang="es" accept=".pdf" multiple disabled>
-                        <label class="custom-file-label" for="files_especiales">Subir Archivos Especiales</label>
+                        <input type="file" class="custom-file-input" id="files_especiales" name="files_especials[]" lang="es" accept=".pdf" multiple disabled value="{{ old('files_especials') }}">
+                        <label class="custom-file-label" for="files_especiales">Subir Archivos Adicionales <small class="text-primary mx-1">Máximo 768 MB en total</small></label>
+                        {!!  $errors->first('files_especials' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                     </div>
                 </div>
             </div>
+
             <section class="container py-3 mt-3">
                 <input type="submit" class="btn btn-success btn-block d-block mx-auto" value="Registrar y Guardar Documentos">
             </section>

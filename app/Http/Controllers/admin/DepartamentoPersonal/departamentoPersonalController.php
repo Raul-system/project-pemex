@@ -40,6 +40,30 @@ class departamentoPersonalController extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate([
+            "ficha" => 'required|max:255',
+            "profesion" => 'required|max:255',
+            "situacion_contractual" => 'required|max:255',
+            "transitorio" => 'required|max:255',
+            "resultados_tecnicos" => 'required|max:255',
+            "nombre" => 'required|max:255',
+            "num_cedula" => 'required|max:255',
+            "cpp" => 'required|max:255',
+            "dh_valida" => 'required|max:255',
+            /* Archivos */
+            'carta_no_inhabilitacion' => 'required|file|max:64000|mimes:pdf',
+            'cedula_siep' => 'required|file|max:64000|mimes:pdf',
+            'validacion_siep' => 'required|file|max:64000|mimes:pdf',
+            'resultados_ev_tec' => 'required|file|max:64000|mimes:pdf',
+            'files_especials' => 'array',
+            'files_especials.*' => 'file|mimes:pdf|max:128000',
+            /* archivos de clausula 3 */
+            'memorandum_documento' => 'required|file|max:128000|mimes:pdf',
+            'cedula_siep_documento' => 'required|file|max:128000|mimes:pdf',
+            'archivos_adicionales_documentos' => 'array',
+            'archivos_adicionales_documentos.*' => 'file|mimes:pdf|max:512000',
+        ]);
+
         /* Creo un Nombre de Directorio o carpeta para guardar los archivos que me manda Desarrollo Humano */
         $Directorio = NameDirectory('desarrolloHumano');
         if ($request->hasFile('carta_no_inhabilitacion')) {

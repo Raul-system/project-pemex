@@ -38,6 +38,6 @@ class downloadPDF extends Controller
     }
     public function getWordDesarrolloHumano()
     {
-        return Storage::download('public/word-desarrollo-humano/nvo_talento.docx');
+        return Storage::download('public/word-desarrollo-humano/notificacion_stprm.docx');
     }
 }

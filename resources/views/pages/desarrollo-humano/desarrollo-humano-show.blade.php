@@ -122,14 +122,14 @@
                             <div class="col-6">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" id="carta_no_inhabilitacion" name="carta_no_inhabilitacion" lang="es" accept=".pdf" value="{{ old('carta_no_inhabilitacion') }}">
-                                  <label class="custom-file-label" for="carta_no_inhabilitacion">Carta de no inhabilitación</label>
+                                  <label class="custom-file-label" for="carta_no_inhabilitacion">Carta de no inhabilitación <small class="mx-1 text-primary">Máximo 64 MB</small> </label>
                                   {!!  $errors->first('carta_no_inhabilitacion' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" id="cedula_siep_file" name="cedula_siep" lang="es" accept=".pdf" value="{{ old('cedula_siep') }}">
-                                  <label class="custom-file-label" for="cedula_siep_file">Cédula SIEP Firmado</label>
+                                  <label class="custom-file-label" for="cedula_siep_file">Cédula SIEP Firmado <small class="mx-1 text-primary">Máximo 64 MB</small> </label>
                                   {!!  $errors->first('cedula_siep' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                                 </div>
                             </div>
@@ -138,16 +138,16 @@
                             <article class="row">
                                 <div class="col-6">
                                   <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="validacion_siep_file" name="validacion_siep" lang="es" accept=".pdf" value="{{old('validacion_siep')}}">
+                                    <label class="custom-file-label" for="validacion_siep_file">Validacion SIEP <small class="mx-1 text-primary">Máximo 64 MB</small> </label>
                                     {!!  $errors->first('validacion_siep' , '<small class="text-danger font-weight-bold">:message</small>') !!}
-                                      <input type="file" class="custom-file-input" id="validacion_siep_file" name="validacion_siep" lang="es" accept=".pdf" value="{{old('validacion_siep')}}">
-                                      <label class="custom-file-label" for="validacion_siep_file">Validacion SIEP</label>
                                   </div>
                                 </div>
                                 <div class="col-6 custom-file">
                                   <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="resultados_tec" name="resultados_ev_tec" lang="es" accept=".pdf" value="{{old('resultados_ev_tec')}}">
+                                    <label class="custom-file-label" for="resultados_tec">Resultados ev. Tec. <small class="mx-1 text-primary">Máximo 64 MB</small> </label>
                                     {!!  $errors->first('resultados_ev_tec' , '<small class="text-danger font-weight-bold">:message</small>') !!}
-                                      <input type="file" class="custom-file-input" id="resultados_tec" name="resultados_ev_tec" lang="es" accept=".pdf" value="{{old('resultados_ev_tec')}}">
-                                      <label class="custom-file-label" for="resultados_tec">Resultados ev. Tec.</label>
                                   </div>
                                 </div>
                             </article>
@@ -157,9 +157,9 @@
                            <p class="text-center font-weight-bold my-2"><i class="fa fa-exclamation-triangle mx-1" aria-hidden="true"></i>Favor de Solo subir 4 archivos como máximo</p>
                             <div class="row px-2">
                                 <div class="col-12 custom-file">
+                                  <input type="file" class="custom-file-input" id="files_especiales" name="files_especials[]" lang="es" accept=".pdf" multiple>
+                                  <label class="custom-file-label" for="files_especiales">Subir Archivos de Clausula 3 <small class="mx-1 text-primary">Máximo 128 MB en Total</small> </label>
                                   {!!  $errors->first('files_especials' , '<small class="text-danger font-weight-bold">:message</small>') !!}
-                                    <input type="file" class="custom-file-input" id="files_especiales" name="files_especials[]" lang="es" accept=".pdf" multiple>
-                                    <label class="custom-file-label" for="files_especiales">Subir Archivos de Clausula 3</label>
                                 </div>
                             </div>
                         </div>
@@ -183,16 +183,16 @@
                         <article class="row">
                             <div class="col-6">
                                   <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="memorandum_file" name="memorandum_documento" lang="es" accept=".pdf">
+                                    <label class="custom-file-label" for="memorandum_file">Memorandum <small class="mx-1 text-primary">Máximo 128 MB</small></label>
                                     {!!  $errors->first('memorandum_documento' , '<small class="text-danger font-weight-bold">:message</small>') !!}
-                                      <input type="file" class="custom-file-input" id="memorandum_file" name="memorandum_documento" lang="es" accept=".pdf">
-                                      <label class="custom-file-label" for="memorandum_file">Memorandum</label>
                                   </div>
                                 </div>
                                 <div class="col-6 custom-file">
                                   <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="cedula_siep_documento" name="cedula_siep_documento" lang="es" accept=".pdf">
+                                    <label class="custom-file-label" for="cedula_siep_documento">Cedula SIEP <small class="mx-1 text-primary">Máximo 128 MB</small> </label>
                                     {!!  $errors->first('cedula_siep_documento' , '<small class="text-danger font-weight-bold">:message</small>') !!}
-                                      <input type="file" class="custom-file-input" id="cedula_siep_documento" name="cedula_siep_documento" lang="es" accept=".pdf">
-                                      <label class="custom-file-label" for="cedula_siep_documento">Cedula SIEP</label>
                                   </div>
                                 </div>
                                 {{--  --}}
@@ -201,9 +201,9 @@
                                     <p class="text-center font-weight-bold my-2"><i class="fa fa-exclamation-triangle mx-1" aria-hidden="true"></i>Favor de Solo subir 7 archivos como máximo</p>
                                       <div class="row px-2">
                                           <div class="col-12 custom-file">
+                                            <input type="file" class="custom-file-input" id="archivos_adicionales" name="archivos_adicionales_documentos[]" lang="es" accept=".pdf" multiple>
+                                            <label class="custom-file-label" for="archivos_adicionales">Subir Archivos Adicionales <small class="mx-1 text-primary">Máximo 512 MB en Total</small> </label>
                                             {!!  $errors->first('archivos_adicionales_documentos' , '<small class="text-danger font-weight-bold">:message</small>') !!}
-                                              <input type="file" class="custom-file-input" id="archivos_adicionales" name="archivos_adicionales_documentos[]" lang="es" accept=".pdf" multiple>
-                                              <label class="custom-file-label" for="archivos_adicionales">Subir Archivos Adicionales</label>
                                           </div>
                                       </div>
                         </div>
@@ -225,8 +225,8 @@
     </form>
     {{-- Descargar Documento Word --}}
         <section class="container py-5 bg-light">
-          <p class="text-center font-weight-bold h2 mt-2">Descargar Nvo Talento en formato Word</p>
-          <a class="btn btn-success btn-block mx-auto font-weight-bold text-white" href="{{ route('download-word-desarrollo-humano') }}">Descargar Nvo. Talento</a>
+          <p class="text-center font-weight-bold h2 mt-2">Descargar Notificacion STPRM Word</p>
+          <a class="btn btn-success btn-block mx-auto font-weight-bold text-white" href="{{ route('download-word-desarrollo-humano') }}">Descargar Notificacion STPRM</a>
         </section>
   </article>
 </section>
