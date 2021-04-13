@@ -226,7 +226,7 @@
     {{-- Descargar Documento Word --}}
         <section class="container py-5 bg-light">
           <p class="text-center font-weight-bold h2 mt-2">Descargar Notificacion STPRM Word</p>
-          <a class="btn btn-success btn-block mx-auto font-weight-bold text-white" href="{{ route('download-word-desarrollo-humano') }}">Descargar Notificacion STPRM</a>
+          <a class="btn btn-success btn-block mx-auto font-weight-bold text-white" href="{{ route('download-word-desarrollo-humano', $userDesarrolloHumano->posicion) }}">Descargar Notificacion STPRM</a>
         </section>
   </article>
 </section>

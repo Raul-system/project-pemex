@@ -255,7 +255,7 @@ con el nombre que colocas en el ".env" en la propiedad "DB_DATABASE"
      * npm run dev
      * php artisan migrate
      * php artisan storage:link
-
+     * composer require phpoffice/phpword
 
 
 ## REPOSITORIO DISPONIBLE EN

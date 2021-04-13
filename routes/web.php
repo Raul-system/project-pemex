@@ -39,7 +39,7 @@ Route::resource('contratados', Contratados::class);
 
 Route::get('download-pdf/{id}/{departamento}/{file}', [downloadPDF::class, 'downloadPDF'])->name('download');
 
-Route::get('download-word', [downloadPDF::class, 'getWordDesarrolloHumano'])->name('download-word-desarrollo-humano');
+Route::get('download-word/{posicion}', [downloadPDF::class, 'getWordDesarrolloHumano'])->name('download-word-desarrollo-humano');
 
 Route::get('resultados', [searchController::class, 'getSearchToConsulte'])->name('resultados-search');
 

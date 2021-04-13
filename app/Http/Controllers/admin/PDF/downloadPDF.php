@@ -10,6 +10,7 @@ use App\Models\admin\IntegracionRegional\Integracion;
 use App\Models\admin\DesarrolloHumano\DesarrolloHumano;
 use App\Models\admin\DepartamentoPersonal\DepartamentoPersonal;
 use Illuminate\Support\Facades\Storage;
+use App\Models\trabajadores;
 
 class downloadPDF extends Controller
 {
@@ -36,8 +37,14 @@ class downloadPDF extends Controller
         }
         return DownloadFiles($this->resultados->$file);
     }
-    public function getWordDesarrolloHumano()
+    public function getWordDesarrolloHumano($posicion)
     {
-        return Storage::download('public/word-desarrollo-humano/notificacion_stprm.docx');
+        $data = trabajadores::where('posicion', $posicion)->get();
+        $template = new \PhpOffice\PhpWord\TemplateProcessor('word-desarrollo-humano/Notificacion_STPRM.docx');
+        $template->setValue('plaza', $data[0]->posicion);
+        $template->setValue('nivel', $data[0]->nivel);
+        $template->setValue('categoria', $data[0]->categoria);
+        $template->saveAs('notificacion_stprm_nuevo.docx');
+        return response()->download('notificacion_stprm_nuevo.docx')->deleteFileAfterSend(true);
     }
 }
