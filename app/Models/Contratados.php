@@ -27,7 +27,6 @@ class Contratados extends Model
         "ficha",
         "profesion",
         "situacion_Contractual",
-        "transitorio",
         "resultados_tecnicos",
         "nombre",
         "num_Cedula",

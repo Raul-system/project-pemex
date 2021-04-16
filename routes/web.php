@@ -49,6 +49,7 @@ Route::resource('contratados', ContratadosController::class);
 
 Route::post('/get-trabajador', [trabajadoresController::class, 'getInformacion']);
 
+
 /* ETAPA 2 */
 Route::resource('proceso-fechas', fechas::class);
 /* ETAPA 3 */

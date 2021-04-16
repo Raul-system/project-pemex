@@ -26,12 +26,13 @@ class CreateContratadosTable extends Migration
             $table->string("ficha");
             $table->string("profesion");
             $table->string("situacion_Contractual");
-            $table->string('transitorio');
             $table->string("resultados_tecnicos");
             $table->string("nombre");
             $table->string("num_Cedula");
             $table->string("cpp");
             $table->string("dh_valida");
+            /* departamento personal */
+            $table->string('fecha_desbloqueo_plaza');
             $table->timestamps();
         });
     }

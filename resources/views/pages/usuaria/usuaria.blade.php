@@ -25,7 +25,7 @@
 
                 <div class="col-12">
                     <div class="form-group">
-                      <label for="posicion">Posicion</label>
+                      <label for="posicion">Posicion <small class="text-primary">Necesario para rellenar de forma automática la Ficha y Nombre...</small></label>
                       <input type="text" class="form-control" id="posicion" name="posicion" placeholder="Escribe la posicion..." onkeyup="enabledInputFiles()" value="{{ old("posicion") }}">
                       {!!  $errors->first('posicion' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                     </div>
@@ -60,9 +60,13 @@
                 <div class="col-12 mt-4">
                     <div class="custom-file">
                       <input type="file" class="custom-file-input" id="memorandum_file" name="memorandum" lang="es" accept=".pdf"  disabled value="{{ old('memorandum') }}">
-                      <label class="custom-file-label" for="memorandum_file">Memorandum <small class="text-primary mx-1">Máximo 256 MB</small> </label>
+                      <label class="custom-file-label" for="memorandum_file" id="label_memorandum_file">Memorandum <small class="text-primary mx-1">Máximo 256 MB</small> </label>
                       {!!  $errors->first('memorandum' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                     </div>
+                    <section class="d-flex justify-content-center mt-3">
+                        <button class="btn btn-primary btn-md mx-2" id="PreviewMemorandum">Vista Previa</button>
+                        <button class="btn btn-danger btn-md mx-2" id="EliminarMemorandum">Eliminar</button>
+                    </section>
                 </div>
                 {{-- <div class="col-6">
                     <div class="custom-file">
@@ -76,10 +80,15 @@
                 <div class="row py-3 px-2">
                     <div class="col-12 custom-file">
                         <input type="file" class="custom-file-input" id="files_especiales" name="files_especials[]" lang="es" accept=".pdf" multiple disabled value="{{ old('files_especials') }}">
-                        <label class="custom-file-label" for="files_especiales">Subir Archivos Adicionales <small class="text-primary mx-1">Máximo 768 MB en total</small></label>
+                        <label class="custom-file-label" for="files_especiales" id="label_files_adicionales">Subir Archivos Adicionales <small class="text-primary mx-1">Máximo 768 MB en total</small></label>
                         {!!  $errors->first('files_especials' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                     </div>
                 </div>
+                <section class="d-flex justify-content-center mt-3">
+                    <button class="btn btn-primary btn-md mx-2" id="btn_preview_files_adicionales">Vista Previa</button>
+                    <button class="btn btn-danger btn-md mx-2" id="btn_eliminar_files_adicionales">Eliminar</button>
+                </section>
+                
             </div>
 
             <section class="container py-3 mt-3">
@@ -87,6 +96,54 @@
             </section>
         </form>
     </section>
+
+    {{-- Modal --}}
+    <!-- Button trigger modal -->
+
+<!-- Modal para Visualizar el PDF-->
+<div class="modal fade " id="preview_file" aria-labelledby="preview_file" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title bg-light" id="titleModalPreviewPDF"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+            <iframe id="previewPDFframe" width="100%" height="500px" frameborder="0"></iframe>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{-- Visualizar varios Botones para Visualizar cada multiple PDF  --}}
+<div class="modal fade " id="preview_buttons_files_adicionales" aria-labelledby="preview_buttons_files_adicionales" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title bg-light" id="titleModalPreviewPDF"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="rows_btn_preview_files_adicionales">
+        
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 @stop
 
 {{-- @section('css')
@@ -96,10 +153,64 @@
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    
     <script>
         $(document).ready(function () {
         bsCustomFileInput.init()
         })
+
+        /* Logica para la vista previa y eliminacion del memorandum */
+        $('#PreviewMemorandum').on('click', function(e){
+                        e.preventDefault()
+                        let $getMemorandum = document.querySelector('#memorandum_file').files[0];
+                        if( $getMemorandum != undefined ){
+                            let $createUrlBrowser = URL.createObjectURL( $getMemorandum );
+                            $('#preview_file').modal('show');
+                            $('#titleModalPreviewPDF').html( $getMemorandum.name );
+                            $('#previewPDFframe').attr('src', $createUrlBrowser);
+                        }else{
+                            alert("Por favor, primero adjunta el Documento Memorandum ");
+                        }
+        });
+        $('#EliminarMemorandum').on('click', function(e){
+            e.preventDefault()
+            if( document.querySelector('#memorandum_file').files[0] != undefined ){
+                document.querySelector('#memorandum_file').value = ""
+                $('#label_memorandum_file').html(`Memorandum <small class="text-primary mx-1">Máximo 256 MB</small>`);
+            }else{
+                alert("Por favor, primero adjunta el Documento Memorandum ");
+            }
+        });
+            /* ------------------------------------------------------ */
+
+            /*  Logica para la vista previa y eliminacion de archivos adicionales */
+            
+        
+
+            $('#btn_preview_files_adicionales').on('click', function(e){
+                e.preventDefault();
+                    let documentos_adicionales = document.querySelector('#files_especiales').files;
+                    let url_files = generateUrls(documentos_adicionales);
+                    if(documentos_adicionales.length > 0){
+                        $('#preview_buttons_files_adicionales').modal('show');
+                        $( '#rows_btn_preview_files_adicionales' ).html(
+                            generateBtnPreviewFilesAdicionales(url_files , documentos_adicionales )
+                        );
+                    }else{
+                        alert("Por favor primero adjuntar los Archivos Adicionales");
+                    }
+            });
+            $('#btn_eliminar_files_adicionales').on('click', function(e){
+                 e.preventDefault()
+            if( document.querySelector('#files_especiales').files.length > 0 ){
+                document.querySelector('#files_especiales').value = ""
+                $('#label_files_adicionales').html(`Archivos Adicionales <small class="text-primary mx-1">Máximo 768 MB</small>`);
+            }else{
+                alert("Por favor primero adjuntar los Archivos Adicionales");
+            }
+            });
+            /* --------------------------------------------------------------------------- */
 
         function enabledInputFiles(){
         const inputName = $('#nombre').val(), inputPosicion = $('#posicion').val(), inputFicha = $('ficha').val(), inputRegimenContractual = $('#regimen_contractual').val();
@@ -113,6 +224,23 @@
                 }
         }
 
+        $('#posicion').on('keyup', function(){
+            $.ajax({
+            url : '/get-trabajador',
+            method: 'POST',
+            data: {
+              posicion : $(this).val(),
+              concepto : 'posicion',
+              _token : $('input[name="_token"]').val()
+            }
+          }).done(function(response){
+            JSON.parse(response).forEach(element => {
+              $('#ficha').val(element.ficha);
+              $('#nombre').val(element.nombre);
+              /* $('#regimen_contractual').val(element.regimen_contractual); */
+            });
+          })
+        });
 
     </script>
 @stop

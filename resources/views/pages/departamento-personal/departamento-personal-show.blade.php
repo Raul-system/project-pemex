@@ -48,6 +48,13 @@
     @csrf
     <div class="container form-group my-4">
       <input type="hidden" name="id_integracion" value="{{$userDepartamentoPersonal->id_integracion}}">
+
+         <div class="form-group">
+                              <label for="campo_fecha_desbloqueo_plaza">Fecha de desbloqueo de Plaza: </label>
+                                  <input type="text" class="form-control" id="campo_fecha_desbloqueo_plaza" name="fecha_desbloqueo_plaza" placeholder="Seleccione una fecha..." value="{{ old('fecha_desbloqueo_plaza') }}">
+                                  {!!  $errors->first('fecha_desbloqueo_plaza' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+        </div>
+
       <button type="submit" class="btn btn-success btn-block">Realizar Contratacion</button>
     </div>
   </form>
@@ -71,6 +78,7 @@
 @stop --}}
 
 @section('js')
+<script src="{{ asset('lib/js/jquery-ui.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
     <script>
@@ -78,4 +86,17 @@
           bsCustomFileInput.init()
       })
     </script>
+    
+ <script type="text/javascript">
+  $('#campo_fecha_desbloqueo_plaza').datepicker({
+    dateFormat: "dd/mm/yy",
+    numerOfMonths : 1,
+    changeYear: true,
+    changeMonth: true,
+    showWeek: true,
+    weekHeader : "wk no",
+    showOtherMonths: true,
+  });
+ </script>
+
 @stop

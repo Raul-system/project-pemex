@@ -93,8 +93,8 @@
         'value'=>$contratado->cpp
     ],
     [
-        'text' => 'Transitorio o PS',
-        'value' => $contratado->transitorio
+    'text' => 'Fecha de desbloqueo de Plaza',
+    'value' => 'fecha_desbloqueo_plaza'
     ],
 )"></x-informacion-contratado>
 @stop

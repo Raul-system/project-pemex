@@ -81,11 +81,6 @@
                   <input type="text" id="campo_sit_contractual" name="situacion_contractual" value="{{ old('situacion_contractual') }}" class="form-control" placeholder="Sit. Contractual o RC">
                 </div>
                 
-                <div class="form-group">
-                              <label for="transitorio">Transitorio o PS: </label>
-                              <input type="text" class="form-control" id="transitorio" name="transitorio" placeholder="Transitorio o PS ..." value="{{ old('transitorio') }}">
-                              {!!  $errors->first('transitorio' , '<small class="text-danger font-weight-bold">:message</small>') !!}
-                  </div>
                 {{-- ---------------------- --}}
                         <div class="form-group">
                               <label for="campo_resultados_tecnicos">Resultados Técnicos: </label>
@@ -121,52 +116,79 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="carta_no_inhabilitacion" name="carta_no_inhabilitacion" lang="es" accept=".pdf" value="{{ old('carta_no_inhabilitacion') }}">
-                                  <label class="custom-file-label" for="carta_no_inhabilitacion">Carta de no inhabilitación <small class="mx-1 text-primary">Máximo 64 MB</small> </label>
+                                  <input type="file" class="custom-file-input" id="carta_no_inhabilitacion_document" name="carta_no_inhabilitacion" lang="es" accept=".pdf" value="{{ old('carta_no_inhabilitacion') }}">
+                                  <label class="custom-file-label" for="carta_no_inhabilitacion_document" id="label_carta_no_inhabilitacion">Carta de no inhabilitación <small class="mx-1 text-primary">Máximo 64 MB</small> </label>
                                   {!!  $errors->first('carta_no_inhabilitacion' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                                 </div>
+                                   <section class="d-flex justify-content-center mt-3">
+                                      <button class="btn btn-primary btn-md mx-2" id="preview_carta_no_inhabilitacion">Vista Previa</button>
+                                      <button class="btn btn-danger btn-md mx-2" id="btn_eliminar_carta_no_inhabilitacion">Eliminar</button>
+                                  </section>
                             </div>
                             <div class="col-6">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" id="cedula_siep_file" name="cedula_siep" lang="es" accept=".pdf" value="{{ old('cedula_siep') }}">
-                                  <label class="custom-file-label" for="cedula_siep_file">Cédula SIEP Firmado <small class="mx-1 text-primary">Máximo 64 MB</small> </label>
+                                  <label class="custom-file-label" for="cedula_siep_file" id="label_cedula_siep_file">Cédula SIEP Firmado <small class="mx-1 text-primary">Máximo 64 MB</small> </label>
                                   {!!  $errors->first('cedula_siep' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                                 </div>
+                                 <section class="d-flex justify-content-center mt-3">
+                                    <button class="btn btn-primary btn-md mx-2" id="btn_preview_cedula_siep_file">Vista Previa</button>
+                                    <button class="btn btn-danger btn-md mx-2" id="btn_eliminar_cedula_siep_file">Eliminar</button>
+                                </section>
                             </div>
                         </div>
+                        
                         <section class="container my-2">
                             <article class="row">
                                 <div class="col-6">
                                   <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="validacion_siep_file" name="validacion_siep" lang="es" accept=".pdf" value="{{old('validacion_siep')}}">
-                                    <label class="custom-file-label" for="validacion_siep_file">Validacion SIEP <small class="mx-1 text-primary">Máximo 64 MB</small> </label>
+                                    <label class="custom-file-label" for="validacion_siep_file" id="label_validacion_siep_file">Validacion SIEP <small class="mx-1 text-primary">Máximo 64 MB</small> </label>
                                     {!!  $errors->first('validacion_siep' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                                   </div>
+                                      <section class="d-flex justify-content-center mt-3">
+                                          <button class="btn btn-primary btn-md mx-2" id="preview_validacion_siep_file">Vista Previa</button>
+                                          <button class="btn btn-danger btn-md mx-2" id="btn_eliminar_validacion_siep_file">Eliminar</button>
+                                      </section>
                                 </div>
+
                                 <div class="col-6 custom-file">
                                   <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="resultados_tec" name="resultados_ev_tec" lang="es" accept=".pdf" value="{{old('resultados_ev_tec')}}">
-                                    <label class="custom-file-label" for="resultados_tec">Resultados ev. Tec. <small class="mx-1 text-primary">Máximo 64 MB</small> </label>
+                                    <label class="custom-file-label" for="resultados_tec" id="label_resultados_ev_tec">Resultados ev. Tec. <small class="mx-1 text-primary">Máximo 64 MB</small> </label>
                                     {!!  $errors->first('resultados_ev_tec' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                                   </div>
+                                      <section class="d-flex justify-content-center mt-3">
+                                          <button class="btn btn-primary btn-md mx-2" id="preview_resultados_ev_tec">Vista Previa</button>
+                                          <button class="btn btn-danger btn-md mx-2" id="btn_eliminar_resultados_ev_tec">Eliminar</button>
+                                      </section>
                                 </div>
+
                             </article>
                         </section>
+
                          <div class="container mt-5">
-                           <p class="text-center font-weight-bold">Cláusula 3</p>
-                           <p class="text-center font-weight-bold my-2"><i class="fa fa-exclamation-triangle mx-1" aria-hidden="true"></i>Favor de Solo subir 4 archivos como máximo</p>
-                            <div class="row px-2">
-                                <div class="col-12 custom-file">
-                                  <input type="file" class="custom-file-input" id="files_especiales" name="files_especials[]" lang="es" accept=".pdf" multiple>
-                                  <label class="custom-file-label" for="files_especiales">Subir Archivos de Clausula 3 <small class="mx-1 text-primary">Máximo 128 MB en Total</small> </label>
-                                  {!!  $errors->first('files_especials' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                              <p class="text-center font-weight-bold">Cláusula 3</p>
+                              <p class="text-center font-weight-bold my-2"><i class="fa fa-exclamation-triangle mx-1" aria-hidden="true"></i>Favor de Solo subir 4 archivos como máximo</p>
+                                
+                              <div class="row px-2">
+                                    <div class="col-12 custom-file">
+                                      <input type="file" class="custom-file-input" id="files_especiales" name="files_especials[]" lang="es" accept=".pdf" multiple>
+                                      <label class="custom-file-label" for="files_especiales" id="label_files_adicionales_clausula">Subir Archivos de Clausula 3 <small class="mx-1 text-primary">Máximo 128 MB en Total</small> </label>
+                                      {!!  $errors->first('files_especials' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                                    </div>
+                                          <section class="d-block mx-auto d-flex justify-content-center mt-3">
+                                              <button class="btn btn-primary btn-md mx-2" id="preview_files_especiales">Vista Previa</button>
+                                              <button class="btn btn-danger btn-md mx-2" id="btn_eliminar_files_especiales">Eliminar</button>
+                                          </section>
                                 </div>
-                            </div>
+
                         </div>
- </article>
+  
+                    </article>
 
 
-<section class="card mt-5 bg-secondary border border-dark">
+            <section class="card mt-5 bg-secondary border border-dark">
                     <div class="card-header bg-light text-center text-muted">
                             Enviar Documentacion al Departamento Personal
                     </div>
@@ -182,31 +204,46 @@
                         {{-- inicio de la  bandeja de salida --}}
                         <article class="row">
                             <div class="col-6">
-                                  <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="memorandum_file" name="memorandum_documento" lang="es" accept=".pdf">
-                                    <label class="custom-file-label" for="memorandum_file">Memorandum <small class="mx-1 text-primary">Máximo 128 MB</small></label>
-                                    {!!  $errors->first('memorandum_documento' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" id="memorandum_file_document" name="memorandum_documento" lang="es" accept=".pdf">
+                                      <label class="custom-file-label" for="memorandum_file" id="label_memorandum_file_document">Memorandum <small class="mx-1 text-primary">Máximo 128 MB</small></label>
+                                      {!!  $errors->first('memorandum_documento' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                                    </div>
+                                           <section class="d-flex justify-content-center mt-3">
+                                              <button class="btn btn-primary btn-md mx-2" id="preview_memorandum_file_oficial">Vista Previa</button>
+                                              <button class="btn btn-danger btn-md mx-2" id="btn_eliminar_memorandum_file_oficial">Eliminar</button>
+                                          </section>
+                            </div>
+
+                                  <div class="col-6 custom-file">
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" id="cedula_siep_documento" name="cedula_siep_documento" lang="es" accept=".pdf">
+                                      <label class="custom-file-label" for="cedula_siep_documento" id="label_cedula_siep_documento">Cedula SIEP <small class="mx-1 text-primary">Máximo 128 MB</small> </label>
+                                      {!!  $errors->first('cedula_siep_documento' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                                    </div>
+                                          <section class="d-flex justify-content-center mt-3">
+                                              <button class="btn btn-primary btn-md mx-2" id="preview_cedula_siep_documento">Vista Previa</button>
+                                              <button class="btn btn-danger btn-md mx-2" id="btn_eliminar_cedula_siep_documento">Eliminar</button>
+                                          </section>
                                   </div>
-                                </div>
-                                <div class="col-6 custom-file">
-                                  <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="cedula_siep_documento" name="cedula_siep_documento" lang="es" accept=".pdf">
-                                    <label class="custom-file-label" for="cedula_siep_documento">Cedula SIEP <small class="mx-1 text-primary">Máximo 128 MB</small> </label>
-                                    {!!  $errors->first('cedula_siep_documento' , '<small class="text-danger font-weight-bold">:message</small>') !!}
-                                  </div>
-                                </div>
-                                {{--  --}}
-                                <div class="container my-5">
-                                    <p class="text-center font-weight-bold">Archivos Adicionales</p>
-                                    <p class="text-center font-weight-bold my-2"><i class="fa fa-exclamation-triangle mx-1" aria-hidden="true"></i>Favor de Solo subir 7 archivos como máximo</p>
-                                      <div class="row px-2">
-                                          <div class="col-12 custom-file">
-                                            <input type="file" class="custom-file-input" id="archivos_adicionales" name="archivos_adicionales_documentos[]" lang="es" accept=".pdf" multiple>
-                                            <label class="custom-file-label" for="archivos_adicionales">Subir Archivos Adicionales <small class="mx-1 text-primary">Máximo 512 MB en Total</small> </label>
-                                            {!!  $errors->first('archivos_adicionales_documentos' , '<small class="text-danger font-weight-bold">:message</small>') !!}
-                                          </div>
-                                      </div>
-                        </div>
+
+                                  {{--  --}}
+                                  <div class="container my-5">
+                                      <p class="text-center font-weight-bold">Archivos Adicionales</p>
+                                      <p class="text-center font-weight-bold my-2"><i class="fa fa-exclamation-triangle mx-1" aria-hidden="true"></i>Favor de Solo subir 7 archivos como máximo</p>
+                                            <div class="row px-2">
+                                                <div class="col-12 custom-file">
+                                                  <input type="file" class="custom-file-input" id="archivos_adicionales" name="archivos_adicionales_documentos[]" lang="es" accept=".pdf" multiple>
+                                                  <label class="custom-file-label" for="archivos_adicionales" id="label_files_adicionales_oficial">Subir Archivos Adicionales <small class="mx-1 text-primary">Máximo 512 MB en Total</small> </label>
+                                                  {!!  $errors->first('archivos_adicionales_documentos' , '<small class="text-danger font-weight-bold">:message</small>') !!}
+                                                </div>
+                                            
+                                                    <section class="d-block mx-auto d-flex justify-content-center mt-3">
+                                                      <button class="btn btn-primary btn-md mx-2" id="preview_archivos_adicionales_documentos">Vista Previa</button>
+                                                      <button class="btn btn-danger btn-md mx-2" id="btn_eliminar_archivos_adicionales_documentos">Eliminar</button>
+                                                  </section>
+                                            </div>
+                                    </div>
                         {{--  --}}
                             </article>
                         </section>
@@ -232,6 +269,55 @@
 </section>
 
 
+
+<!-- Modal para Visualizar el PDF-->
+<div class="modal fade " id="preview_file" aria-labelledby="preview_file" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title bg-light" id="titleModalPreviewPDF"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+            <iframe id="previewPDFframe" width="100%" height="500px" frameborder="0"></iframe>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{-- Visualizar varios Botones para Visualizar cada multiple PDF  --}}
+<div class="modal fade " id="preview_buttons_files_adicionales" aria-labelledby="preview_buttons_files_adicionales" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title bg-light" id="titleModalPreviewPDF"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="rows_btn_preview_files_adicionales">
+        
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 @stop
 
 {{-- @section('css')
@@ -239,13 +325,18 @@
 @stop --}}
 
 @section('js')
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('js/desarrollo-humano/preview_campos_clausula3.js') }}"></script>
+<script src="{{ asset('js/desarrollo-humano/preview_campos_dep_peresonal.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
     <script>
+      $(document).ready(function(){
+        bsCustomFileInput.init();
+      });
         $('#campo_ficha').on('keyup',function () {
-            bsCustomFileInput.init();
+            
             /* Realizo una peticion Ajax al servidor una vez cargada la página, para generar los valores de forma automática en los campos */
               $.ajax({
             url : '/get-trabajador',

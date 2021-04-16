@@ -43,7 +43,7 @@
       <img src="https://cdn.icon-icons.com/icons2/957/PNG/128/delete_icon-icons.com_74434.png" alt="Error" class="d-block mx-auto" height="150px" width="65%">
     </div>
   </section>
-  <article class="row">
+  <article class="row my-4">
   {{-- -------------------------- --}}
       <form class="container-fluid col-12 bg-light" action="{{ route('desarrollo-humano.store') }}" method="POST" enctype="multipart/form-data" id="form-integacion-regional">
       {{-- Inicio del Formulario --}}
@@ -173,29 +173,47 @@
                             <div class="col-6">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" id="memorandum_file" name="memorandum" lang="es" accept=".pdf" value="{{ old('memorandum') }}">
-                                  <label class="custom-file-label" for="memorandum_file">Memorandum Firmado <small class="text-primary mx-1">Máximo 128 MB</small> </label>
+                                  <label class="custom-file-label" for="memorandum_file" id="label_memorandum_file">Memorandum Firmado <small class="text-primary mx-1">Máximo 128 MB</small> </label>
                                   {!!  $errors->first('memorandum' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                                 </div>
+                                <section class="d-flex justify-content-center mt-3">
+                                    <button class="btn btn-primary btn-md mx-2" id="btn_preview_memorandum_file">Vista Previa</button>
+                                    <button class="btn btn-danger btn-md mx-2" id="btn_eliminar_memorandum_file">Eliminar</button>
+                                </section>
                             </div>
+
                             <div class="col-6">
                                 <div class="custom-file">
                                   <input type="file" class="custom-file-input" id="cedula_siep_file" name="cedula_siep" lang="es" accept=".pdf" value="{{ old('cedula_siep') }}">
-                                  <label class="custom-file-label" for="cedula_siep_file">Cédula SIEP Firmado <small class="text-primary mx-1">Máximo 128 MB</small> </label>
+                                  <label class="custom-file-label" for="cedula_siep_file" id="label_cedula_siep_file">Cédula SIEP Firmado <small class="text-primary mx-1">Máximo 128 MB</small> </label>
                                   {!!  $errors->first('cedula_siep' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                                 </div>
+                                <section class="d-flex justify-content-center mt-3">
+                                    <button class="btn btn-primary btn-md mx-2" id="btn_preview_cedula_siep_file">Vista Previa</button>
+                                    <button class="btn btn-danger btn-md mx-2" id="btn_eliminar_cedula_siep_file">Eliminar</button>
+                                </section>
                             </div>
+
                         </div>
                         <div class="container my-2">
                           <p class="text-center font-weight-bold my-2"><i class="fa fa-exclamation-triangle mx-1" aria-hidden="true"></i>Favor de Solo subir 7 archivos como máximo</p>
-                            <div class="row p-4">
+                            
+                          <div class="row p-4">
                                 <div class="col-12 custom-file">
                                   {!!  $errors->first('files_especials' , '<small class="text-danger font-weight-bold">:message</small>') !!}
                                     <input type="file" class="custom-file-input" id="files_especiales" name="files_especials[]" lang="es" accept=".pdf" multiple>
-                                    <label class="custom-file-label" for="files_especiales">Subir Archivos Adicionales Especiales <small class="text-primary mx-1">Máximo 768 MB en Total</small> </label>
+                                    <label class="custom-file-label" for="files_especiales" id="label_archivos_adicionales">Subir Archivos Adicionales Especiales <small class="text-primary mx-1">Máximo 768 MB en Total</small> </label>
+
+                                  <section class="d-flex justify-content-center my-3">
+                                    <button class="btn btn-primary btn-md mx-2" id="btn_preview_files_adicionales">Vista Previa</button>
+                                    <button class="btn btn-danger btn-md mx-2" id="btn_eliminar_files_adicionales">Eliminar</button>
+                                </section>
+
                                 </div>
                             </div>
+
                         </div>
-                        <div class="container py-2 my-3" title="Envio de los Datos a Desarrollo Humano">
+                        <div class="container py-4 my-5" title="Envio de los Datos a Desarrollo Humano">
                               <input type="submit" value="Dar procedimiento al Candidato..." class="btn btn-success btn-block d-block mx-auto">
                         </div>
             </section>
@@ -203,6 +221,57 @@
     </form>
   </article>
 </section>
+
+
+
+<!-- Modal para Visualizar el PDF-->
+<div class="modal fade " id="preview_file" aria-labelledby="preview_file" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title bg-light" id="titleModalPreviewPDF"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+            <iframe id="previewPDFframe" width="100%" height="500px" frameborder="0"></iframe>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{-- Visualizar varios Botones para Visualizar cada multiple PDF  --}}
+<div class="modal fade " id="preview_buttons_files_adicionales" aria-labelledby="preview_buttons_files_adicionales" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title bg-light" id="titleModalPreviewPDF"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="rows_btn_preview_files_adicionales">
+        
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 
 
 
@@ -214,12 +283,12 @@
 
 @section('js')
 
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         
+<script src="{{ asset('lib/js/jquery-ui.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+ <script src="{{ asset('js/main.js') }}"></script>
+ <script src="{{ asset('js/integracion-regional/main.js') }}"></script>
   <script>
     $(document).ready(function () {
       /* Se carga una libreria para la gestion de archivos en un campo de tipo File */
@@ -247,11 +316,11 @@
             });
           })
         });
-  </script>
 
 
-<script src="{{asset('lib/js/jQuery/jquery.js')}}"></script>
-<script src="{{ asset('lib/js/jquery-ui.js') }}"></script>
+</script>
+
+
  <script type="text/javascript">
   $('#campo_vigencia').datepicker({
     dateFormat: "dd/mm/yy",

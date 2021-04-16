@@ -15,7 +15,6 @@ class DepartamentoPersonal extends Model
         "ficha",
         "profesion",
         "situacion_contractual",
-        "transitorio",
         "resultados_tecnicos",
         "nombre",
         "num_cedula",

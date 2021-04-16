@@ -19,7 +19,6 @@ class CreateDepartamentoPersonalsTable extends Migration
             $table->string("ficha")->nullable();
             $table->string("profesion")->nullable();
             $table->string("situacion_contractual")->nullable();
-            $table->string('transitorio')->nullable();
             $table->string("resultados_tecnicos")->nullable();
             $table->string("nombre")->nullable();
             $table->string("num_cedula")->nullable();

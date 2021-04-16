@@ -30,6 +30,9 @@ class ContratadosController extends Controller
     {
         $desarrolloHumano = DesarrolloHumano::where('id_integracion', $request->get('id_integracion'))->get();
         $departamentoPersonal = DepartamentoPersonal::where('id_integracion', $request->get('id_integracion'))->get();
+        $request->validate([
+            "fecha_desbloqueo_plaza" => 'required|max:15'
+        ]);
         /* Lo primero es encontrar el id del Postulado desde Integracion */
         Contratados::create([
             "posicion" => $desarrolloHumano[0]->posicion,
@@ -54,6 +57,8 @@ class ContratadosController extends Controller
             "num_Cedula" => $departamentoPersonal[0]->num_cedula,
             "cpp" => $departamentoPersonal[0]->cpp,
             "dh_valida" => $departamentoPersonal[0]->dh_valida,
+
+            "fecha_desbloqueo_plaza" => $request->get('fecha_desbloqueo_plaza'),
         ]);
         $updateData =  dataSearch::where('id_integracion', $request->get('id_integracion'))->get();
         $updateData[0]->validacion_departamento_personal = 'true';
