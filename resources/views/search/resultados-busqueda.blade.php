@@ -282,6 +282,112 @@
         {{-- <section class="container d-flex justify-content-center">
             {{ $integracion->links('vendor.pagination.default') }}
         </section> --}}
+
+        @if ($nameModel == 'Contratados')
+
+            <div class="d-flex justify-content-end">
+                <a href="{{ route('contratados.index') }}" class="btn btn-primary btn-md my-3 mr-3">Regresar...</a>
+            </div>
+       
+           <section class="row">
+               <div class="col-1 border border-white bg-dark d-flex justify-content-center align-items-center">
+                <span class="font-weight-bold text-white">ID</span>
+            </div>
+            <div class="col-3 border border-white bg-dark">
+                <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Plaza</span></div>
+            </div>
+            <div class="col-3 border border-white bg-dark">
+                <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Ficha</span></div>
+            </div>
+            <div class="col-3 border border-white bg-dark">
+                <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Nombre</span></div>
+            </div>
+            
+            <div class="col-2 border border-white bg-dark">
+                <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Proceso de Documentacion</span></div>
+            </div>
+        </section>
+            @foreach ($resultados as $item)
+                <section class="row py-3">
+                    <div class="col-1 text-center font-weight-bold" style="font-size: 21px;">
+                        {{ $item->id }}
+                    </div>
+                    <div class="col-3 text-center font-weight-bold" style="font-size: 21px;">
+                        {{ $item->ficha }}
+                    </div>
+                    <div class="col-3 text-center font-weight-bold" style="font-size: 21px;">
+                        {{ $item->nombre }}
+                    </div>
+                    <div class="col-3 text-center font-weight-bold" style="font-size: 21px;">
+                        {{ $item->plaza }}
+                    </div>
+                    <div class="col-2">
+                        <a href="{{ route($routeConsult, $item->id) }}" class="btn btn-success btn-block" title="Consultar Documentos e Informacion">Ver más...</a>
+                    </div>
+                </section>
+                @endforeach
+       @endif
+
+
+        @if ($nameModel == 'Rechazados')
+
+            <div class="d-flex justify-content-end">
+                <a href="{{ route('rechazados.index') }}" class="btn btn-primary btn-md my-3 mr-3">Regresar...</a>
+            </div>
+            <section class="row">
+
+                <div class="col-2 border border-white bg-dark d-flex justify-content-center align-items-center">
+                    <span class="font-weight-bold text-white">Posicion</span>
+                </div>
+
+                <div class="col-2 border border-white bg-dark d-flex justify-content-center align-items-center">
+                    <span class="font-weight-bold text-white">Ficha</span>
+                </div>
+
+                <div class="col-2 border border-white bg-dark d-flex justify-content-center align-items-center">
+                    <span class="font-weight-bold text-white">Nombre</span>
+                </div>
+
+                <div class="col-2 border border-white bg-dark d-flex justify-content-center align-items-center">
+                    <span class="font-weight-bold text-white">Regimen Contractual</span>
+                </div>
+
+                <div class="col-4 border border-white bg-dark">
+                    <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Proceso de Documentacion</span></div>
+                </div>
+
+            </section>
+             @foreach ($resultados as $item)
+                <section class="row py-3">
+
+                    <div class="col-2 text-center font-weight-bold" style="font-size: 21px;">
+                        {{ $item->posicion }}
+                    </div>
+
+                    <div class="col-2 text-center font-weight-bold" style="font-size: 21px;">
+                        {{ $item->ficha }}
+                    </div>
+
+                    <div class="col-2 text-center font-weight-bold" style="font-size: 21px;">
+                        {{ $item->nombre }}
+                    </div>
+
+                    <div class="col-2 text-center font-weight-bold" style="font-size: 21px;">
+                        {{ $item->regimen_contractual }}
+                    </div>
+                    
+                    <div class="col-4">
+                        <a href="{{ route($routeConsult, $item->id) }}" class="btn btn-success btn-block" title="Consultar Documentos e Informacion">Validacion...</a>
+                    </div>
+
+                </section>
+            @endforeach
+        @endif
+
+
+
+
+
     </section>
 
 @stop

@@ -35,19 +35,12 @@
     <p class="h2 text-center font-weight-bold">Desarrollo Humano</p>
   </section>
   <section class="row">
-    <div class="form-group col-7" title="No Procede">
-      <section class="container my-2">
-        <p class="text-center font-weight-bold h2">Motivo de Rechazo</p>
-      </section>
+
+    <div class="form-group col-12" title="No Procede">
       <x-procedimiento-cancelar departamento="Desarrollo Humano" :data="$userDesarrolloHumano->id_integracion" :controls="$controls"></x-procedimiento-cancelar>
     </div>
     {{-- ---- --}}
-    <div class="col-5 mt-4 mb-5" title="Informacion de No Procede">
-      <p class="text-justify text-muted mt-5">
-        El control de No procede cancelará automaticamente todos los documentos del Candidato y será dado de baja en el sistema de Validación
-      </p>
-      <img src="https://cdn.icon-icons.com/icons2/957/PNG/128/delete_icon-icons.com_74434.png" alt="Error" class="d-block mx-auto" height="150px" width="65%">
-    </div>
+
   </section>
   <article class="row">
   {{-- -------------------------- --}}
@@ -335,6 +328,31 @@
       $(document).ready(function(){
         bsCustomFileInput.init();
       });
+
+        $('#btn_preview_notificacion_no_procedencia_file').on('click', function(e){
+                        e.preventDefault()
+                        let $getNotificacionNoProcedencia = document.querySelector('#notificacion_no_procedencia').files[0];
+                        if( $getNotificacionNoProcedencia != undefined ){
+                            let $createUrlBrowser = URL.createObjectURL( $getNotificacionNoProcedencia );
+                            $('#preview_file').modal('show');
+                            $('#titleModalPreviewPDF').html( $getNotificacionNoProcedencia.name );
+                            $('#previewPDFframe').attr('src', $createUrlBrowser);
+                        }else{
+                            alert("Por favor, primero adjunta el Documento Notificacion No Procedencia ");
+                        }
+        });
+        $('#btn_eliminar_notificacion_no_procedencia_file').on('click', function(e){
+            e.preventDefault()
+            if( document.querySelector('#notificacion_no_procedencia').files[0] != undefined ){
+                document.querySelector('#notificacion_no_procedencia').value = ""
+                $('#label_notificacion_no_procedencia_file').html(`Notificación a la No Procedencia <small class="text-primary mx-1">Máximo 128 MB</small>`);
+            }else{
+                alert("Por favor, primero adjunta el Documento Notificacion No Procedencia ");
+            }
+        });
+
+
+
         $('#campo_ficha').on('keyup',function () {
             
             /* Realizo una peticion Ajax al servidor una vez cargada la página, para generar los valores de forma automática en los campos */

@@ -48,6 +48,9 @@ class searchController extends Controller
             case 'Fechas':
                 $this->resultados_response = dataSearch::where($request->get('text_search'), 'like', '%' . $request->get('text') . '%')->get();
                 break;
+            case 'Contratados':
+                $this->resultados_response = Contratados::where($request->get('text_search'), 'like', '%' . $request->get('text') . '%')->get();
+                break;
                 /* default:
 // 
                 break; */

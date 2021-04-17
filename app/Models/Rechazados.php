@@ -15,6 +15,8 @@ class Rechazados extends Model
         'ficha',
         'nombre',
         'regimen_contractual',
-        "observaciones"
+        "observaciones",
+        "departamento",
+        "url_notificacion_no_procedencia"
     ];
 }

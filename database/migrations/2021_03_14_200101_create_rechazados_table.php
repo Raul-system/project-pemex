@@ -15,6 +15,8 @@ class CreateRechazadosTable extends Migration
             $table->string('nombre');
             $table->string('regimen_contractual');
             $table->text('observaciones');
+            $table->string('departamento');
+            $table->text('url_notificacion_no_procedencia')->nullable();
             $table->timestamps();
         });
     }

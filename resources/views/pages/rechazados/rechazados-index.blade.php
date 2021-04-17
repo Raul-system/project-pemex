@@ -8,6 +8,24 @@
 
 @section('content')
     <section class="container my-2">
+        <x-search-component modelo="Rechazados" route-redirect="rechazados.show" :campos="array(
+               [
+                    'text'=>'Posicion',
+                    'value'=>'posicion'
+                ],
+                [
+                    'text'=>'Nombre',
+                    'value'=>'nombre',
+                ],
+                [
+                    'text'=>'Ficha',
+                    'value'=>'ficha',
+                ],
+                [
+                    'text'=>'Regimen Contractual',
+                    'value'=>'regimen_contractual',
+                ],
+            )"></x-search-component>
     </section>
     <section class="container">
         @if (session('status'))
@@ -32,7 +50,9 @@
                 <span class="font-weight-bold text-white">Regimen Contractual</span>
             </div>
             <div class="col-4 border border-white bg-dark">
-                <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Observaciones</span></div>
+                <div class="container d-flex justify-content-center align-items-center">
+                    <span class="mx-2">Procedimiento</span>
+                </div>
             </div>
 
         </section>
@@ -52,7 +72,7 @@
                     {{ $item->regimen_contractual }}
                 </div>
                    <div class="col-4 text-justify">
-                    {{$item->observaciones}}
+                    <a href="{{  route('rechazados.show' , $item->id) }}" class="btn btn-success btn-block">Procedimiento...</a>
                 </div>
 
             </section>

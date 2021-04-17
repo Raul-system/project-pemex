@@ -29,19 +29,12 @@
     <p class="h2 text-center font-weight-bold">Proceso de Validacion</p>
   </section>
   <section class="row">
-    <div class="form-group col-7" title="No Procede">
-      <section class="container my-2">
-        <p class="text-center font-weight-bold h2">Motivo de Rechazo</p>
-      </section>
-      <x-procedimiento-cancelar departamento="Integracion Regional" :data="$userIntegracion->id" :controls="$controls"></x-procedimiento-cancelar>
-    </div>
-    {{-- ---- --}}
-    <div class="col-5 mt-4 mb-5" title="Informacion de No Procede">
-      <p class="text-justify text-muted mt-5">
-        El control de No procede cancelará automaticamente todos los documentos del Candidato y será dado de baja en el sistema de Validación
-      </p>
-      <img src="https://cdn.icon-icons.com/icons2/957/PNG/128/delete_icon-icons.com_74434.png" alt="Error" class="d-block mx-auto" height="150px" width="65%">
-    </div>
+    
+    
+        <div class="form-group col-12" title="No Procede">
+          <x-procedimiento-cancelar departamento="Integracion Regional" :data="$userIntegracion->id" :controls="$controls"></x-procedimiento-cancelar>
+        </div>
+
   </section>
   <article class="row my-4">
   {{-- -------------------------- --}}

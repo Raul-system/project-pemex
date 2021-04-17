@@ -17,7 +17,24 @@
                     'value'=>'nombre'
                 ]
             )"></x-search-component> --}}
+             <section class="container my-2">
+        <x-search-component modelo="Contratados" route-redirect="contratados.show" :campos="array(
+               [
+                    'text'=>'Posicion',
+                    'value'=>'posicion'
+                ],
+                [
+                    'text'=>'Nombre',
+                    'value'=>'nombre',
+                ],
+                [
+                    'text'=>'Ficha',
+                    'value'=>'ficha',
+                ],
+            )"></x-search-component>
+    </section>
 @if (session('status'))
+   
         <section class="container">
             <div class="alert alert-success text-center font-weight-bold" style="font-size: 22px;">
                 {{ session('status') }}

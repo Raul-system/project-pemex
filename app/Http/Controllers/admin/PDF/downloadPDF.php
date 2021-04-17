@@ -11,6 +11,7 @@ use App\Models\admin\DesarrolloHumano\DesarrolloHumano;
 use App\Models\admin\DepartamentoPersonal\DepartamentoPersonal;
 use Illuminate\Support\Facades\Storage;
 use App\Models\trabajadores;
+use App\Models\Rechazados;
 
 class downloadPDF extends Controller
 {
@@ -35,8 +36,12 @@ class downloadPDF extends Controller
         if ($departamento == 'departamento_personal') {
             $this->resultados = DepartamentoPersonal::findOrFail($id);
         }
-        return DownloadFiles($this->resultados->$file);
+        if ($departamento == 'rechazados') {
+            $this->resultados = Rechazados::findOrFail($id);
+        }
+        return DownloadFiles($this->resultados->$file);/* url */
     }
+
     public function getWordDesarrolloHumano($posicion)
     {
         $data = trabajadores::where('posicion', $posicion)->get();
