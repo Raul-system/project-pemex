@@ -21,7 +21,7 @@ class fechas extends Controller
     public function index()
     {
         /* Retorno la lista en base a los registros de Integracion Regional, ya que desde ahi se comienza el proceso */
-        $integrantes_proceso = dataSearch::paginate(15);
+        $integrantes_proceso = dataSearch::where('status_rechazo', '<>', 'true')->paginate(15);
         return view('pages.etapa2.listado-candidatos', compact('integrantes_proceso'));
     }
 

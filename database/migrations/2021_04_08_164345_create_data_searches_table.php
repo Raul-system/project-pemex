@@ -25,6 +25,7 @@ class CreateDataSearchesTable extends Migration
             $table->string('validacion_desarrollo_humano')->default('false');
             $table->string('id_departamento_personal')->nullable();
             $table->string('validacion_departamento_personal')->default('false');
+            $table->string('status_rechazo')->default('false')->nullable();
             $table->timestamps();
         });
     }

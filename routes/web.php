@@ -18,6 +18,10 @@ use App\Http\Controllers\admin\Etapa2\fechas;
 /* Etapa 3 */
 use App\Exports\UserExport;
 use App\Http\Controllers\admin\Etapa3\reporteExcelCandidato;
+/* Controlador Gestion y consulta de informacion de Status del trabajador en proceso de validaciones de departamento */
+use App\Http\Controllers\admin\status\gestionStatus;
+use App\Http\Controllers\consultarInformacionTablas;
+
 
 use Illuminate\Support\Str;
 
@@ -49,6 +53,8 @@ Route::resource('contratados', ContratadosController::class);
 
 Route::post('/get-trabajador', [trabajadoresController::class, 'getInformacion']);
 
+/* Departamento de Gestion de Status y Notificaciones */
+Route::resource('/consultar-status', gestionStatus::class);
 
 /* ETAPA 2 */
 Route::resource('proceso-fechas', fechas::class);
@@ -57,3 +63,9 @@ Route::get('lista-contratados-generar-reporte', [reporteExcelCandidato::class, '
 Route::get('descargar-reporte-excel/{id}', function ($id) {
     return (new UserExport($id))->download('reporte-' . Str::random(10) . $id . '.xlsx');
 })->name('generar-reporte-excel-candidato');
+
+
+/* Consumir con Ajax */
+Route::post('/get-data-search', [consultarInformacionTablas::class, 'getDataSearch']);
+Route::post('/get-data-departamento', [consultarInformacionTablas::class, 'getDataDepartamentForStatus']);
+Route::post('/post-data-status', [consultarInformacionTablas::class, 'updatePostNewStatus']);

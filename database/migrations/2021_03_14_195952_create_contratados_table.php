@@ -32,7 +32,7 @@ class CreateContratadosTable extends Migration
             $table->string("cpp");
             $table->string("dh_valida");
             /* departamento personal */
-            $table->string('fecha_desbloqueo_plaza');
+            $table->string('fecha_desbloqueo_plaza')->nullable();
             $table->timestamps();
         });
     }

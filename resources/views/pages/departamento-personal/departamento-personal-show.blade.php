@@ -85,9 +85,7 @@
       $(document).ready(function () {
           bsCustomFileInput.init()
       })
-    </script>
-    
- <script type="text/javascript">
+  
   $('#campo_fecha_desbloqueo_plaza').datepicker({
     dateFormat: "dd/mm/yy",
     numerOfMonths : 1,
@@ -97,6 +95,14 @@
     weekHeader : "wk no",
     showOtherMonths: true,
   });
- </script>
 
+    </script>
+    
+@stop
+
+
+@section('css')
+<link rel="stylesheet" href="{{ asset('lib/css/jquery-ui.min.css') }}">
+<link rel="stylesheet" href="{{ asset('lib/css/jquery-ui.structure.min.css') }}">
+<link rel="stylesheet" href="{{ asset('lib/css/jquery-ui.theme.min.css') }}">
 @stop

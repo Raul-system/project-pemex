@@ -32,7 +32,7 @@ class departamentoPersonalController extends Controller
 
     public function index()
     {
-        $departamentoPersonal = dataSearch::where('validacion_departamento_personal', 'false')->where('id_departamento_personal', '<>', null)->paginate(15);
+        $departamentoPersonal = dataSearch::where('validacion_departamento_personal', 'false')->where('id_departamento_personal', '<>', null)->where('status_rechazo', '<>', 'true')->paginate(15);
         return view('pages.departamento-personal.departamento-personal-index', compact('departamentoPersonal'));
     }
     public function create()
@@ -62,6 +62,7 @@ class departamentoPersonalController extends Controller
             'archivos_adicionales_documentos' => 'array',
             'archivos_adicionales_documentos.*' => 'file|mimes:pdf|max:512000',
         ]);
+
 
         /* Creo un Nombre de Directorio o carpeta para guardar los archivos que me manda Desarrollo Humano */
         $Directorio = NameDirectory('desarrolloHumano');

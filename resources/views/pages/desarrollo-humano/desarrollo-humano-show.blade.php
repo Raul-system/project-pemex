@@ -29,9 +29,7 @@
 {{-- Para completar la Validacion --}}
 
 
-
-<section class="container my-4" title="Formulario de Registro y Validacion">
-  <section class="container col-5 my-2">
+<section class="container col-5 my-2">
     <p class="h2 text-center font-weight-bold">Desarrollo Humano</p>
   </section>
   <section class="row">
@@ -42,9 +40,13 @@
     {{-- ---- --}}
 
   </section>
+
+
+<section class="container my-4" title="Formulario de Registro y Validacion">
+  
   <article class="row">
   {{-- -------------------------- --}}
-      <form class="container-fluid col-12 bg-light" action="{{ route('departamento-personal.store') }}" method="POST" enctype="multipart/form-data">
+<form class="container-fluid col-12 bg-light" action="{{ route('departamento-personal.store') }}" method="POST" enctype="multipart/form-data">
       {{-- Inicio del Formulario --}}
       @csrf
       <input type="hidden" name="id_registro_desarrollo_humano" value="{{ $userDesarrolloHumano->id }}">

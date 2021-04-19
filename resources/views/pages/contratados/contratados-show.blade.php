@@ -94,7 +94,7 @@
     ],
     [
     'text' => 'Fecha de desbloqueo de Plaza',
-    'value' => 'fecha_desbloqueo_plaza'
+    'value' => $contratado->fecha_desbloqueo_plaza
     ],
 )"></x-informacion-contratado>
 @stop

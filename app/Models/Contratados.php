@@ -32,5 +32,6 @@ class Contratados extends Model
         "num_Cedula",
         "cpp",
         "dh_valida",
+        "fecha_desbloqueo_plaza"
     ];
 }

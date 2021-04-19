@@ -25,16 +25,19 @@ class searchController extends Controller
             case 'Integracion_Regional':
                 $this->resultados_response = dataSearch::where($request->get('text_search'), 'like', '%' . $request->get('text') . '%')
                     ->where('validacion_integracion', 'false')
+                    ->where('status_rechazo', '<>', 'true')
                     ->get();
                 break;
             case 'Desarrollo_Humano':
                 $this->resultados_response = dataSearch::where($request->get('text_search'), 'like', '%' . $request->get('text') . '%')
                     ->where('validacion_desarrollo_humano', 'false')
+                    ->where('status_rechazo', '<>', 'true')
                     ->get();
                 break;
             case 'Departamento_Personal':
                 $this->resultados_response = dataSearch::where($request->get('text_search'), 'like', '%' . $request->get('text') . '%')
                     ->where('validacion_departamento_personal', 'false')
+                    ->where('status_rechazo', '<>', 'true')
                     ->get();
                 break;
             case 'Etapa3':
@@ -50,6 +53,11 @@ class searchController extends Controller
                 break;
             case 'Contratados':
                 $this->resultados_response = Contratados::where($request->get('text_search'), 'like', '%' . $request->get('text') . '%')->get();
+                break;
+            case 'forStatus':
+                $this->resultados_response = dataSearch::where($request->get('text_search'), 'like', '%' . $request->get('text') . '%')
+                    ->where('status_rechazo', '<>', 'true')
+                    ->get();
                 break;
                 /* default:
 // 

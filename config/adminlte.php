@@ -158,6 +158,15 @@ return [
                 ],
             ],
         ],
+
+        ['header' => 'Status'],
+        [
+            'text'    => 'Consultar Status',
+            'route' => 'consultar-status.index',
+            'icon'    => 'fas fa-fw fa-share',
+
+        ],
+
         ['header' => 'RECEPCION DE DOCUMENTOS'],
         [
             'text'    => 'Proceso de Fechas',

@@ -86,6 +86,8 @@ class RechazadosController extends Controller
             'departamento' => $request->get('departamento'),
             "url_notificacion_no_procedencia" => $this->path_notificacion_no_procedencia
         ]);
+        $dataSearchIntegracion[0]->status_rechazo = 'true';
+        $dataSearchIntegracion[0]->save();
         return redirect()->route('rechazados.index')->with('status', 'El Usuario ya fue registrado en Contratacion No Aplicada');
     }
 

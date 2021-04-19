@@ -23,7 +23,7 @@ class IntegracionRegional extends Controller
 
     public function index()
     {
-        $integracion = dataSearch::where('validacion_integracion', 'false')->where('id_integracion', '<>', null)->paginate(15);
+        $integracion = dataSearch::where('validacion_integracion', 'false')->where('id_integracion', '<>', null)->where('status_rechazo', '<>', 'true')->paginate(15);
         return view('pages.integracion-regional.integracion-regional-index', compact('integracion'));
     }
 

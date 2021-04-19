@@ -25,7 +25,7 @@ class desarrolloHumanoController extends Controller
     public function index()
     {
         /* Obtengo todos los registros de Desarrollo Humano y los pagino, es decir, los ordeno 15 por cada página o representación por página */
-        $desarrolloHumano = dataSearch::where('validacion_desarrollo_humano', 'false')->where('id_desarrollo_humano', '<>', null)->paginate(15);
+        $desarrolloHumano = dataSearch::where('validacion_desarrollo_humano', 'false')->where('id_desarrollo_humano', '<>', null)->where('status_rechazo', '<>', 'true')->paginate(15);
         /* Devuelvo una vista o página con los registros que consulte anteriormente */
         return view('pages.desarrollo-humano.desarrollo-humano-index', compact('desarrolloHumano'));
     }

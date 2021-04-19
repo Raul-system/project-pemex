@@ -34,10 +34,13 @@
                     <span class="font-weight-bold text-white">Regimen Contractual</span>
                 </div>
 
-                <div class="col-4 border border-white bg-dark">
+                <div class="col-2 border border-white bg-dark">
                     <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Proceso de Documentacion</span></div>
                 </div>
 
+                <div class="col-2 border border-white bg-dark">
+                    <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Ver/Modificar Status....</span></div>
+                </div>
             </section>
              @foreach ($resultados as $item)
                 <section class="row py-3">
@@ -58,8 +61,12 @@
                         {{ $item->regimen_contractual }}
                     </div>
                     
-                    <div class="col-4">
+                    <div class="col-2">
                         <a href="{{ route($routeConsult, $item->id_integracion) }}" class="btn btn-success btn-block" title="Consultar Documentos e Informacion">Validacion...</a>
+                    </div>
+
+                     <div class="col-2">
+                        <button class="btn btn-success btn-block" id="btnWatchStatus" data-element="WatchStatus">Ver Status...</button>
                     </div>
 
                 </section>
@@ -90,8 +97,12 @@
                     <span class="font-weight-bold text-white">Regimen Contractual</span>
                 </div>
 
-                <div class="col-4 border border-white bg-dark">
+                <div class="col-2 border border-white bg-dark">
                     <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Proceso de Documentacion</span></div>
+                </div>
+
+                <div class="col-2 border border-white bg-dark">
+                    <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Ver/Modificar Status....</span></div>
                 </div>
 
             </section>
@@ -114,8 +125,12 @@
                         {{ $item->regimen_contractual }}
                     </div>
                     
-                    <div class="col-4">
+                    <div class="col-2">
                         <a href="{{ route($routeConsult, $item->id_desarrollo_humano) }}" class="btn btn-success btn-block" title="Consultar Documentos e Informacion">Validacion...</a>
+                    </div>
+
+                    <div class="col-2">
+                        <button class="btn btn-success btn-block" id="btnWatchStatus" data-element="WatchStatus">Ver Status...</button>
                     </div>
 
                 </section>
@@ -147,8 +162,12 @@
                     <span class="font-weight-bold text-white">Regimen Contractual</span>
                 </div>
 
-                <div class="col-4 border border-white bg-dark">
+                <div class="col-2 border border-white bg-dark">
                     <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Proceso de Documentacion</span></div>
+                </div>
+
+                <div class="col-2 border border-white bg-dark">
+                    <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Ver/Modificar Status....</span></div>
                 </div>
 
             </section>
@@ -171,8 +190,12 @@
                         {{ $item->regimen_contractual }}
                     </div>
                     
-                    <div class="col-4">
+                    <div class="col-2">
                         <a href="{{ route($routeConsult, $item->id_departamento_personal) }}" class="btn btn-success btn-block" title="Consultar Documentos e Informacion">Validacion...</a>
+                    </div>
+
+                    <div class="col-2">
+                        <button class="btn btn-success btn-block" id="btnWatchStatus" data-element="WatchStatus">Ver Status...</button>
                     </div>
 
                 </section>
@@ -384,6 +407,60 @@
             @endforeach
         @endif
 
+          @if ($nameModel == 'forStatus')
+
+            <div class="d-flex justify-content-end">
+                <a href="{{ route('consultar-status.index') }}" class="btn btn-primary btn-md my-3 mr-3">Regresar...</a>
+            </div>
+            <section class="row">
+
+                <div class="col-2 border border-white bg-dark d-flex justify-content-center align-items-center">
+                    <span class="font-weight-bold text-white">Posicion</span>
+                </div>
+
+                <div class="col-2 border border-white bg-dark d-flex justify-content-center align-items-center">
+                    <span class="font-weight-bold text-white">Ficha</span>
+                </div>
+
+                <div class="col-2 border border-white bg-dark d-flex justify-content-center align-items-center">
+                    <span class="font-weight-bold text-white">Nombre</span>
+                </div>
+
+                <div class="col-2 border border-white bg-dark d-flex justify-content-center align-items-center">
+                    <span class="font-weight-bold text-white">Regimen Contractual</span>
+                </div>
+
+                <div class="col-4 border border-white bg-dark">
+                    <div class="container d-flex justify-content-center align-items-center"><span class="font-weight-bold text-white">Proceso de Documentacion</span></div>
+                </div>
+
+            </section>
+             @foreach ($resultados as $item)
+                <section class="row py-3">
+
+                    <div class="col-2 text-center font-weight-bold" style="font-size: 21px;">
+                        {{ $item->posicion }}
+                    </div>
+
+                    <div class="col-2 text-center font-weight-bold" style="font-size: 21px;">
+                        {{ $item->ficha }}
+                    </div>
+
+                    <div class="col-2 text-center font-weight-bold" style="font-size: 21px;">
+                        {{ $item->nombre }}
+                    </div>
+
+                    <div class="col-2 text-center font-weight-bold" style="font-size: 21px;">
+                        {{ $item->regimen_contractual }}
+                    </div>
+                    
+                    <div class="col-4">
+                        <a href="{{ route($routeConsult, $item->id) }}" class="btn btn-success btn-block" title="Consultar Documentos e Informacion">Validacion...</a>
+                    </div>
+
+                </section>
+            @endforeach
+        @endif
 
 
 
