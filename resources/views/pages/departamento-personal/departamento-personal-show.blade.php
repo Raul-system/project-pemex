@@ -25,6 +25,23 @@
       </x-item-card-document>
 
 </x-bandeja-entrada-documentos>
+
+
+
+  <div class="container" title="Seccion para el Informe del Status del Trabajador">
+    <button class="btn btn-block" style="background-color: #29B6F6;" id="btnWatchStatus" data-element="WatchStatus" data-id-search="{{ $dataSearchResult[0]->id }}" data-id-departament="{{ $dataSearchResult[0]->id_desarrollo_humano }}" onclick="executeActivitiesDinamicForStatus(
+                            {{$dataSearchResult[0]->id_desarrollo_humano}},
+                            '/get-data-departamento',
+                            'Departamento Personal',
+                            {{ $dataSearchResult[0]->id }},
+                            '/get-data-search',
+                            'modalForStatusWatchOrEdit'
+                        )">Ver Status...</button>
+
+                        <x-modal-for-status :idDataDepartament="$dataSearchResult[0]->id_desarrollo_humano" routeRedirect="'/post-data-status'" departamento="'Departamento Personal'"></x-modal-for-status>
+  </div>
+
+
 <section class="container">
   <article class="row">
     <div class="col-6 text-center font-weight-bold bg-dark text-white py-2">

@@ -90,6 +90,7 @@ class IntegracionRegional extends Controller
     public function show($id)
     {
         /* $userIntegracion = Integracion::where('validacion', 'false')->get(); */
+        $dataSearchResults = dataSearch::where('id_integracion', $id)->get();
         $archivos_adicionales = Integracion::select('documento_adicional_1', 'documento_adicional_2', 'documento_adicional_3', 'documento_adicional_4', 'documento_adicional_5', 'documento_adicional_6', 'documento_adicional_7')->where('id', $id)->get();
         $userIntegracion = Integracion::findOrFail($id);
         $controls =  array(
@@ -117,7 +118,7 @@ class IntegracionRegional extends Controller
         if ($userIntegracion->validacion == 'true') {
             return abort(404);
         } else if ($userIntegracion->validacion == 'false') {
-            return view('pages.integracion-regional.integracion-regional-show', compact('userIntegracion', 'archivos_adicionales', 'controls'));
+            return view('pages.integracion-regional.integracion-regional-show', compact('userIntegracion', 'archivos_adicionales', 'controls', 'id', 'dataSearchResults'));
         }
     }
 

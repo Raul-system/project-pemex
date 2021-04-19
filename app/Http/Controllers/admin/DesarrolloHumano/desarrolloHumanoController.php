@@ -110,6 +110,7 @@ class desarrolloHumanoController extends Controller
 
     public function show($id)
     {
+        $dataSearchResult = dataSearch::where('id_desarrollo_humano', $id)->get();
         $archivos_adicionales = DesarrolloHumano::select('documento_adicional_1', 'documento_adicional_2', 'documento_adicional_3', 'documento_adicional_4', 'documento_adicional_5', 'documento_adicional_6', 'documento_adicional_7')->where('id', $id)->get();
         $userDesarrolloHumano = DesarrolloHumano::findOrFail($id);
         $controls =  array(
@@ -147,7 +148,7 @@ class desarrolloHumanoController extends Controller
         if ($userDesarrolloHumano->validacion == 'true') {
             return abort(404);
         } else if ($userDesarrolloHumano->validacion == 'false') {
-            return view('pages.desarrollo-humano.desarrollo-humano-show', compact('userDesarrolloHumano', 'archivos_adicionales', 'controls'));
+            return view('pages.desarrollo-humano.desarrollo-humano-show', compact('userDesarrolloHumano', 'archivos_adicionales', 'controls', 'dataSearchResult'));
         }
     }
 

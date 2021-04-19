@@ -139,6 +139,7 @@ class departamentoPersonalController extends Controller
 
     public function show($id)
     {
+        $dataSearchResult = dataSearch::where('id_departamento_personal', $id)->get();
         $archivos_adicionales = DepartamentoPersonal::select('documento_1_adicional', 'documento_2_adicional', 'documento_3_adicional', 'documento_4_adicional', 'documento_5_adicional', 'documento_6_adicional', 'documento_7_adicional')->where('id', $id)->get();
         $archivos_adicionales_desarrollo_humana = DepartamentoPersonal::select("carta_no_inhabilitacion", "cedula_siep", "validacion_siep", "resultados_ev_tec", "documento1", "documento2", "documento3", "documento4")->where('id', $id)->get();
         $userDepartamentoPersonal = DepartamentoPersonal::findOrFail($id);
@@ -162,7 +163,7 @@ class departamentoPersonalController extends Controller
         if ($userDepartamentoPersonal->validacion == 'true') {
             return abort(404);
         } else if ($userDepartamentoPersonal->validacion == 'false') {
-            return view('pages.departamento-personal.departamento-personal-show', compact('userDepartamentoPersonal', 'archivos_adicionales', 'controls', 'archivos_adicionales_desarrollo_humana'));
+            return view('pages.departamento-personal.departamento-personal-show', compact('userDepartamentoPersonal', 'archivos_adicionales', 'controls', 'archivos_adicionales_desarrollo_humana', 'dataSearchResult'));
         }
     }
 

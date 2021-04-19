@@ -36,6 +36,21 @@
         </div>
 
   </section>
+
+  <div class="container" title="Seccion para el Informe del Status del Trabajador">
+    <button class="btn btn-block" style="background-color: #29B6F6;" id="btnWatchStatus" data-element="WatchStatus" data-id-search="{{ $dataSearchResults[0]->id }}" data-id-departament="{{ $dataSearchResults[0]->id_integracion }}" onclick="executeActivitiesDinamicForStatus(
+                            {{$dataSearchResults[0]->id_integracion}},
+                            '/get-data-departamento',
+                            'Integracion Regional',
+                            {{ $dataSearchResults[0]->id }},
+                            '/get-data-search',
+                            'modalForStatusWatchOrEdit'
+                        )">Ver Status...</button>
+
+                        <x-modal-for-status :idDataDepartament="$dataSearchResults[0]->id_integracion" routeRedirect="'/post-data-status'" departamento="'Integracion Regional'"></x-modal-for-status>
+  </div>
+
+          
   <article class="row my-4">
   {{-- -------------------------- --}}
       <form class="container-fluid col-12 bg-light" action="{{ route('desarrollo-humano.store') }}" method="POST" enctype="multipart/form-data" id="form-integacion-regional">
@@ -43,6 +58,7 @@
       @csrf
       <input type="hidden" name="id_validacion_procedimiento" value="{{ $userIntegracion->id }}">
           {{-- ---------------- --}}
+
             <section class="col-12" title="Procedimiento">
                 <p class="text-center font-weight-bold h2 my-2 bg-success">Procedimiento</p>
                 <div class="form-group">
@@ -282,6 +298,7 @@
  <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
  <script src="{{ asset('js/main.js') }}"></script>
  <script src="{{ asset('js/integracion-regional/main.js') }}"></script>
+ <script src="{{ asset('js/forStatus/main.js') }}"></script>
   <script>
     $(document).ready(function () {
       /* Se carga una libreria para la gestion de archivos en un campo de tipo File */

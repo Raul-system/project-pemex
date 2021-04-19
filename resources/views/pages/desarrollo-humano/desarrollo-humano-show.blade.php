@@ -42,6 +42,20 @@
   </section>
 
 
+  <div class="container" title="Seccion para el Informe del Status del Trabajador">
+    <button class="btn btn-block" style="background-color: #29B6F6;" id="btnWatchStatus" data-element="WatchStatus" data-id-search="{{ $dataSearchResult[0]->id }}" data-id-departament="{{ $dataSearchResult[0]->id_desarrollo_humano }}" onclick="executeActivitiesDinamicForStatus(
+                            {{$dataSearchResult[0]->id_desarrollo_humano}},
+                            '/get-data-departamento',
+                            'Desarrollo Humano',
+                            {{ $dataSearchResult[0]->id }},
+                            '/get-data-search',
+                            'modalForStatusWatchOrEdit'
+                        )">Ver Status...</button>
+
+                        <x-modal-for-status :idDataDepartament="$dataSearchResult[0]->id_desarrollo_humano" routeRedirect="'/post-data-status'" departamento="'Desarrollo Humano'"></x-modal-for-status>
+  </div>
+
+
 <section class="container my-4" title="Formulario de Registro y Validacion">
   
   <article class="row">
@@ -326,6 +340,7 @@
 <script src="{{ asset('js/desarrollo-humano/preview_campos_dep_peresonal.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+<script src="{{ asset('js/forStatus/main.js') }}"></script>
     <script>
       $(document).ready(function(){
         bsCustomFileInput.init();
