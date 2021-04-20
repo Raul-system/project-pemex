@@ -64,14 +64,10 @@
                         <p class="h2 font-weight-bold text-center py-3">En Integracion Regional</p>
                         @if ($getDataIntegracion->first())
                             <p class="text-center">
-                                Trabajador que valida: <strong>{{ ($getDataIntegracion[0]->trabajador_que_valida != null) ? $getDataIntegracion[0]->trabajador_que_valida : 'No Hay Información Disponible' }}</strong>
-                            </p>
-                            <p class="text-center">
                                 Status: <strong>{{ ($getDataIntegracion[0]->status != null) ? $getDataIntegracion[0]->status : 'No Hay Información Disponible' }}</strong>
                             </p>
-                            <p class="text-center">
-                                Motivo o Razón del status: <strong>{{ ($getDataIntegracion[0]->motivo_razon_status != null) ? $getDataIntegracion[0]->motivo_razon_status : 'No Hay Información Disponible' }}</strong>
-                            </p>
+                             @else
+                            <p class="text-center font-weight-bold">*Este candidato aun no está presente en este Departamento*</p>
                         @endif
 
                             <hr>
@@ -79,13 +75,7 @@
                             <p class="h2 font-weight-bold text-center py-3">En Desarrollo Humano</p>
                             @if ($getDataDesarrollo->first())
                             <p class="text-center">
-                                Trabajador que valida: <strong>{{ ($getDataDesarrollo[0]->trabajador_que_valida != null) ? $getDataDesarrollo[0]->trabajador_que_valida : 'No Hay Información Disponible' }}</strong>
-                            </p>
-                            <p class="text-center">
                                 Status: <strong>{{ ($getDataDesarrollo[0]->status != null) ? $getDataDesarrollo[0]->status : 'No Hay Información Disponible' }}</strong>
-                            </p>
-                            <p class="text-center">
-                                Motivo o Razón del status: <strong>{{ ($getDataDesarrollo[0]->motivo_razon_status != null) ? $getDataDesarrollo[0]->motivo_razon_status : 'No Hay Información Disponible' }}</strong>
                             </p>
                             @else
                             <p class="text-center font-weight-bold">*Este candidato aun no está presente en este Departamento*</p>
@@ -96,13 +86,7 @@
                             <p class="h2 font-weight-bold text-center py-3">En Departamento Personal</p>
                             @if ($getDataDepartamentoPersonal->first())
                             <p class="text-center">
-                                Trabajador que valida: <strong>{{ ($getDataDepartamentoPersonal[0]->trabajador_que_valida != null) ? $getDataDepartamentoPersonal[0]->trabajador_que_valida : 'No Hay Información Disponible' }}</strong>
-                            </p>
-                            <p class="text-center">
                                 Status: <strong>{{ ($getDataDepartamentoPersonal[0]->status != null) ? $getDataDepartamentoPersonal[0]->status : 'No Hay Información Disponible' }}</strong>
-                            </p>
-                            <p class="text-center">
-                                Motivo o Razón del status: <strong>{{ ($getDataDepartamentoPersonal[0]->motivo_razon_status != null) ? $getDataDepartamentoPersonal[0]->motivo_razon_status : 'No Hay Información Disponible' }}</strong>
                             </p>
                             @else
                             <p class="text-center font-weight-bold">*Este candidato aun no está presente en este Departamento*</p>

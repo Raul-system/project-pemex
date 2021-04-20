@@ -41,11 +41,7 @@
 
                         <article class="container my-3" data-element="sectionForStatus">
                             <div class="row" style="background-color: #E3F2FD;">
-                                <div class="col-12 d-flex justify-content-center form-group" id="box_trabajador_que_valida">
-                                </div>
-                                <div class="col-12 d-flex justify-content-center form-group" id="box_status">
-                                </div>
-                                <div class="col-12 d-flex justify-content-center form-group" id="box_motivo_razon_status">
+                                <div class="col-12 form-group" id="box_status">
                                 </div>
                             </div>
                         </article>

@@ -3,7 +3,7 @@
 @section('title', 'Resultados de Búsqueda')
 
 @section('content_header')
-    <h1>Lista de Documentos en Proceso de Validacion</h1>
+    <h1>Resultados Busqueda en {{ $nameModel }}</h1>
 @stop
 
 @section('content')
@@ -66,10 +66,19 @@
                     </div>
 
                      <div class="col-2">
-                        <button class="btn btn-success btn-block" id="btnWatchStatus" data-element="WatchStatus">Ver Status...</button>
+                        <button class="btn btn-success btn-block" id="btnWatchStatus" data-element="WatchStatus" data-id-search="{{ $item->id }}" data-id-departament="{{ $item->id_integracion }}" onclick="executeActivitiesDinamicForStatus(
+                            {{$item->id_integracion}},
+                            '/get-data-departamento',
+                            'Integracion Regional',
+                            {{ $item->id }},
+                            '/get-data-search',
+                            'modalForStatusWatchOrEdit'
+                        )">Ver Status...</button>
                     </div>
 
                 </section>
+
+                <x-modal-for-status :idDataDepartament="$item->id_integracion" routeRedirect="'/post-data-status'" departamento="'Integracion Regional'"></x-modal-for-status>
             @endforeach
         @endif
         {{-- --- --}}
@@ -130,10 +139,19 @@
                     </div>
 
                     <div class="col-2">
-                        <button class="btn btn-success btn-block" id="btnWatchStatus" data-element="WatchStatus">Ver Status...</button>
+                        <button class="btn btn-success btn-block" id="btnWatchStatus" data-element="WatchStatus" data-id-search="{{ $item->id }}" data-id-departament="{{ $item->id_desarrollo_humano }}" onclick="executeActivitiesDinamicForStatus(
+                            {{$item->id_desarrollo_humano}},
+                            '/get-data-departamento',
+                            'Desarrollo Humano',
+                            {{ $item->id }},
+                            '/get-data-search',
+                            'modalForStatusWatchOrEdit'
+                        )">Ver Status...</button>
                     </div>
 
                 </section>
+
+                <x-modal-for-status :idDataDepartament="$item->id_desarrollo_humano" routeRedirect="'/post-data-status'" departamento="'Desarrollo Humano'"></x-modal-for-status>
             @endforeach
 
         @endif
@@ -195,10 +213,20 @@
                     </div>
 
                     <div class="col-2">
-                        <button class="btn btn-success btn-block" id="btnWatchStatus" data-element="WatchStatus">Ver Status...</button>
+                        <button class="btn btn-success btn-block" id="btnWatchStatus" data-element="WatchStatus" data-id-search="{{ $item->id }}" data-id-departament="{{ $item->id_departamento_personal }}" onclick="executeActivitiesDinamicForStatus(
+                            {{$item->id_departamento_personal}},
+                            '/get-data-departamento',
+                            'Departamento Personal',
+                            {{ $item->id }},
+                            '/get-data-search',
+                            'modalForStatusWatchOrEdit'
+                        )">Ver Status...</button>
                     </div>
 
                 </section>
+
+            <x-modal-for-status :idDataDepartament="$item->id_departamento_personal" routeRedirect="'/post-data-status'" departamento="'Departamento Personal'"></x-modal-for-status>
+
             @endforeach
 
         @endif
@@ -473,10 +501,11 @@
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop --}}
 
-{{-- @section('js')
-    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+@section('js')
+<script src="{{ asset('js/forStatus/main.js') }}"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
     $(document).ready(function () {
         bsCustomFileInput.init()
-    })
-@stop --}}
+    }) --}}
+@stop

@@ -3,7 +3,7 @@
 @section('title', 'Rechazados')
 
 @section('content_header')
-    <h1>Contratación No Procedente</h1>
+    <h1>Contratación No Procedencia</h1>
 @stop
 
 @section('content')

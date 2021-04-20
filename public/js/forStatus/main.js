@@ -10,41 +10,19 @@ function consultar_data_departamento( _id ,  ruta, departamento ){
               _token : $('input[name="_token"]').val()
             }
           }).done(function(response){
-              if(response.dataResultSearchDepartament.trabajador_que_valida == null){
-                 $('#box_trabajador_que_valida').html(
-                  /* html */`<label for='campo_nombre_quien_valida'>Trabajador que Valida: </label>
-                  <input type="text" class="form-control" id="campo_nombre_quien_valida" value="No hay Informacion Definida" required max="255"disabled>`
-                )
-              }else{
-                    $('#box_trabajador_que_valida').html(
-                  /* html */`<label for='campo_nombre_quien_valida'>Trabajador que Valida: </label>
-                  <input type="text" class="form-control" id="campo_nombre_quien_valida" value="${ response.dataResultSearchDepartament.trabajador_que_valida }" required max="255"disabled>`
-                )
-              }
 
                if(response.dataResultSearchDepartament.status == null){
                   $('#box_status').html(
                   /* html */`<label for='campo_status'>Status: </label>
-                  <input type="text" class="form-control" id="campo_status" value="No hay Informacion Definida" required max="255"disabled>`
+                  <input type="text" class="form-control" id="campo_status" required maxLength="255" disabled value="No hay Informacion Definida">`
               );
               }else{
                      $('#box_status').html(
                   /* html */`<label for='campo_status'>Status: </label>
-                  <input type="text" class="form-control" id="campo_status" value="${ response.dataResultSearchDepartament.status }" required max="255"disabled>`
+                  <input type="text" class="form-control" id="campo_status" value="${ response.dataResultSearchDepartament.status }" required max="255" disabled>`
               );
               }
 
-            if(response.dataResultSearchDepartament.motivo_razon_status == null){
-                  $('#box_motivo_razon_status').html(
-                  /* html */`<label for='campo_motivo_razon_status'>Motivo o Razon del Status: </label>
-                  <input type="text" class="form-control" id="campo_motivo_razon_status" value="No hay Informacion Definida" required max="255"disabled>`
-              )
-              }else{
-                     $('#box_motivo_razon_status').html(
-                  /* html */`<label for='campo_motivo_razon_status'>Motivo o Razon del Status: </label>
-                    <input type="text" class="form-control" id="campo_motivo_razon_status" value="${ response.dataResultSearchDepartament.motivo_razon_status }" required max="255"disabled>`
-                    )
-              }
               
 
           })
@@ -106,9 +84,7 @@ function executeActivitieUpdateForStatus( _id_for_departament , ruta , departame
         dataType : 'json',
         data:{
             id : _id_for_departament,
-            campo_nombre_quien_valida : $('#campo_nombre_quien_valida').val(),
             campo_status : $('#campo_status').val(),
-            campo_motivo_razon_status : $('#campo_motivo_razon_status').val(),
             departamento : departamento,
             _token : $('input[name="_token"]').val()
         }
@@ -132,9 +108,7 @@ function ActivateInputsForEdit(/* campos a deshabilitar */ elements , dataIDUpda
 
 function getIDForDepartamentConsult(_id_data_departament, ruta, departamento){
     ActivateInputsForEdit([
-        '#campo_nombre_quien_valida',
         '#campo_status',
-        '#campo_motivo_razon_status'
     ] , _id_data_departament , ruta , departamento);
 }
 

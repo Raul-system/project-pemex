@@ -3,7 +3,7 @@
 @section('title', 'Contratados')
 
 @section('content_header')
-    <h1>Lista de los Contratados</h1>
+    <h1>Contratación Aplicada</h1>
 @stop
 
 @section('content')

@@ -3,7 +3,7 @@
 @section('title', 'Rechazados')
 
 @section('content_header')
-    <h1>Contratación No Procedente - Información</h1>
+    <h1>Contratación No Procedencia - Información</h1>
 @stop
 
 @section('content')
@@ -11,10 +11,10 @@
     </section>
     <section class="container">
             <x-bandeja-entrada-documentos :diff-fecha="$userRechazado->created_at->diffForHumans()" data-parent-component="downloadFileNotificacionNoProcedente">
-                        <x-item-card-document parent-component="downloadFileNotificacionNoProcedente" name-collapse="section_url_notificacion_no_procedencia_download" card-header="headerNotificacionNoProcedente" documento="Notificacion No Procedente"{{-- departamento="Rechazados" --}}>
+                        <x-item-card-document parent-component="downloadFileNotificacionNoProcedente" name-collapse="section_url_notificacion_no_procedencia_download" card-header="headerNotificacionNoProcedente" documento="Notificacion No Procedencia"{{-- departamento="Rechazados" --}}>
         
                             @if ($userRechazado->url_notificacion_no_procedencia != null || $userRechazado->url_notificacion_no_procedencia != "")
-                                <a href="{{ route('download',['id' =>$userRechazado->id , 'departamento' => 'rechazados', 'file' => 'url_notificacion_no_procedencia'] ) }}" class="btn btn-success btn-block">Descargar Notificacion No Procedente</a>
+                                <a href="{{ route('download',['id' =>$userRechazado->id , 'departamento' => 'rechazados', 'file' => 'url_notificacion_no_procedencia'] ) }}" class="btn btn-success btn-block">Descargar Notificacion No Procedencia</a>
                             @else
                                 <p class="text-center font-weight-bold h3">No Hay Archivo Por Descargar</p>
                             @endif

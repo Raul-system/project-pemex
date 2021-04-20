@@ -45,27 +45,21 @@ class consultarInformacionTablas extends Controller
         if ($request->get('departamento') == 'Integracion Regional') {
 
             $EncontrarTrabajadorIntegracion = Integracion::findOrFail($request->get('id'));
-            $EncontrarTrabajadorIntegracion->trabajador_que_valida = $request->get('campo_nombre_quien_valida');
             $EncontrarTrabajadorIntegracion->status = $request->get('campo_status');
-            $EncontrarTrabajadorIntegracion->motivo_razon_status = $request->get('campo_motivo_razon_status');
             $EncontrarTrabajadorIntegracion->save();
         }
 
         if ($request->get('departamento') == 'Desarrollo Humano') {
 
             $EncontrarTrabajadorIntegracion = DesarrolloHumano::findOrFail($request->get('id'));
-            $EncontrarTrabajadorIntegracion->trabajador_que_valida = $request->get('campo_nombre_quien_valida');
             $EncontrarTrabajadorIntegracion->status = $request->get('campo_status');
-            $EncontrarTrabajadorIntegracion->motivo_razon_status = $request->get('campo_motivo_razon_status');
             $EncontrarTrabajadorIntegracion->save();
         }
 
         if ($request->get('departamento') == 'Departamento Personal') {
 
             $EncontrarTrabajadorIntegracion = DepartamentoPersonal::findOrFail($request->get('id'));
-            $EncontrarTrabajadorIntegracion->trabajador_que_valida = $request->get('campo_nombre_quien_valida');
             $EncontrarTrabajadorIntegracion->status = $request->get('campo_status');
-            $EncontrarTrabajadorIntegracion->motivo_razon_status = $request->get('campo_motivo_razon_status');
             $EncontrarTrabajadorIntegracion->save();
         }
 

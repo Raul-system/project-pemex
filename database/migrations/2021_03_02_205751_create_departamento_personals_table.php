@@ -45,9 +45,7 @@ class CreateDepartamentoPersonalsTable extends Migration
             $table->text("documento_5_adicional")->nullable();
             $table->text("documento_6_adicional")->nullable();
             $table->text("documento_7_adicional")->nullable();
-            $table->string('trabajador_que_valida')->nullable();
-            $table->string('status')->nullable();
-            $table->text('motivo_razon_status')->nullable();
+            $table->text('status')->nullable();
             $table->timestamps();
         });
     }

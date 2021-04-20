@@ -128,9 +128,7 @@ class gestionStatus extends Controller
     private function updateDataForStatus($modelDta, $request)
     {
         $result = $modelDta->save([
-            'trabajador_que_valida' => $request->get('trabajador_que_valida'),
             'status' => $request->get('status'),
-            'motivo_razon_status' => $request->get('motivo_razon_status'),
         ]);
         return $result;
     }
@@ -152,7 +150,7 @@ class gestionStatus extends Controller
                 $this->updateDataForStatus($getDataDepartamentoForStatus, $request);
                 break;
         }
-        return json_encode(['resultado' => 'Los Datos fueron Actualizados Correctamente', 'TrabajadorQueValida' => $getDataDepartamentoForStatus->trabajador_que_valida, 'status_update' => $getDataDepartamentoForStatus->status, 'motivoForStatus' => $getDataDepartamentoForStatus->motivo_razon_status]);
+        return json_encode(['resultado' => 'Los Datos fueron Actualizados Correctamente', 'status_update' => $getDataDepartamentoForStatus->status]);
     }
 
     public function destroy($id)

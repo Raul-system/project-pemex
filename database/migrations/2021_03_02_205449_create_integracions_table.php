@@ -33,9 +33,7 @@ class CreateIntegracionsTable extends Migration
             $table->longText('documento_adicional_6')->nullable();
             $table->longText('documento_adicional_7')->nullable();
             /* Es para controlar el status actual */
-            $table->string('trabajador_que_valida')->nullable();
-            $table->string('status')->nullable();
-            $table->text('motivo_razon_status')->nullable();
+            $table->text('status')->nullable();
             $table->timestamps();
         });
     }
